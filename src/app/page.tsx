@@ -20,7 +20,7 @@ export default function Home() {
         <Pricing />
         <BottomCTA />
       </main>
-      <StickyWhatsAppCTA href="https://wa.me/515055787905" />
+      <StickyWhatsAppCTA href="https://wa.me/15055787905" />
       <Footer />
     </>
   );

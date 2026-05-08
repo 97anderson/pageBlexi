@@ -50,7 +50,7 @@ export function BottomCTA() {
 
               <div className="flex flex-col gap-3 lg:items-end">
                 <motion.a
-                  href="https://wa.me/515055787905"
+                  href="https://wa.me/15055787905"
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ scale: 1.03, y: -1 }}

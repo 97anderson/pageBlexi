@@ -33,7 +33,7 @@ npm run start
 
 ## Enlaces importantes (WhatsApp)
 
-- **Probar en WhatsApp (agente IA / prueba)**: `https://wa.me/515055787905`
+- **Probar en WhatsApp (agente IA / prueba, +1 505 578-7905)**: `https://wa.me/15055787905`
 - **Hablar por WhatsApp**: `https://wa.me/573222393582`
 
 ## Páginas legales

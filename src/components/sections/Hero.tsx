@@ -108,7 +108,7 @@ export function Hero() {
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
           >
             <motion.a
-              href="https://wa.me/515055787905"
+              href="https://wa.me/15055787905"
               target="_blank"
               rel="noreferrer"
               whileHover={{ scale: 1.02, y: -1 }}

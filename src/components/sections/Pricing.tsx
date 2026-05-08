@@ -37,7 +37,7 @@ const plans: Plan[] = [
     highlighted: true,
     badge: "Más popular",
     features: [
-      "Conversaciones ilimitadas",
+      "Hasta 1000 conversaciones / mes",
       "Dashboard CRM completo en tiempo real",
       "Seguimiento de leads y pedidos",
       "Optimización de respuestas y catálogo",
@@ -124,7 +124,7 @@ export function Pricing() {
                   </p>
 
                   <a
-                    href="https://wa.me/515055787905"
+                    href="https://wa.me/15055787905"
                     target="_blank"
                     rel="noreferrer"
                     className={

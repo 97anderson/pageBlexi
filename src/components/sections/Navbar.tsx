@@ -51,7 +51,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://wa.me/515055787905"
+            href="https://wa.me/15055787905"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-cyan-500/40 transition hover:bg-brand-primaryHover hover:shadow-lg hover:shadow-cyan-500/50"
