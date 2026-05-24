@@ -376,7 +376,7 @@ export function Pricing() {
             <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-brand-textMuted">
               Incluido en todos los planes
             </p>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-3">
               {allPlansInclude.map(({ icon: Icon, label, desc }) => (
                 <div key={label} className="flex items-start gap-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-white">
