@@ -10,7 +10,6 @@ import {
   Sparkles,
   Star,
   Users,
-  Zap,
 } from "lucide-react";
 
 import { Reveal } from "@/components/ui/Reveal";
@@ -73,7 +72,7 @@ const plans: Plan[] = [
       "Panel de analíticas y tasa de conversión",
       "Lenguaje regional LATAM adaptado",
       "Optimización mensual del agente incluida",
-      "Soporte prioritario — respuesta en 4 h",
+      "Soporte prioritario — respuesta en 1 día hábil",
     ],
   },
   {
@@ -94,17 +93,12 @@ const plans: Plan[] = [
       "Integración de pagos (Nequi, PSE, links)",
       "Reportes semanales de conversión",
       "Onboarding personalizado con tu equipo",
-      "Soporte dedicado — respuesta en 2 h",
+      "Soporte dedicado — respuesta en 12 h",
     ],
   },
 ];
 
 const allPlansInclude = [
-  {
-    icon: Zap,
-    label: "Configuración en 30 min",
-    desc: "Listo para vender el mismo día",
-  },
   {
     icon: Clock,
     label: "Atención 24/7/365",
