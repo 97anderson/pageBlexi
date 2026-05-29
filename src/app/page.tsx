@@ -1,6 +1,7 @@
 import { BottomCTA } from "@/components/sections/BottomCTA";
 import { CRMShowcase } from "@/components/sections/CRMShowcase";
 import { Footer } from "@/components/sections/Footer";
+import { FreeTrial } from "@/components/sections/FreeTrial";
 import { Hero } from "@/components/sections/Hero";
 import { Navbar } from "@/components/sections/Navbar";
 import { PainVsSolution } from "@/components/sections/PainVsSolution";
@@ -18,6 +19,7 @@ export default function Home() {
         <Workflow />
         <CRMShowcase />
         <Pricing />
+        <FreeTrial />
         <BottomCTA />
       </main>
       <StickyWhatsAppCTA href="https://wa.me/15055787905" />

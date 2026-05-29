@@ -108,15 +108,14 @@ export function Hero() {
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
           >
             <motion.a
-              href="https://wa.me/15055787905"
-              target="_blank"
-              rel="noreferrer"
+              href="#free-trial"
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 450, damping: 22 }}
               className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-primary px-8 text-base font-semibold text-white shadow-lg shadow-cyan-500/50 transition-shadow hover:bg-brand-primaryHover hover:shadow-xl hover:shadow-cyan-500/60"
             >
-              Probar en WhatsApp
+              <Sparkles className="size-4" strokeWidth={2.2} aria-hidden />
+              Prueba gratis 14 días
               <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
             </motion.a>
             <motion.a
@@ -136,6 +135,12 @@ export function Hero() {
               Hablar por WhatsApp
             </motion.a>
           </motion.div>
+          <motion.p
+            variants={fadeUp}
+            className="mt-2 text-xs text-brand-textMuted"
+          >
+            Sin tarjeta de crédito · Cancela cuando quieras · Activo en 24h
+          </motion.p>
 
           <motion.div
             variants={fadeUp}
