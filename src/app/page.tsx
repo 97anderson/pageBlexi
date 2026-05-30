@@ -1,5 +1,6 @@
 import { BottomCTA } from "@/components/sections/BottomCTA";
 import { CRMShowcase } from "@/components/sections/CRMShowcase";
+import { Features } from "@/components/sections/Features";
 import { Footer } from "@/components/sections/Footer";
 import { FreeTrial } from "@/components/sections/FreeTrial";
 import { Hero } from "@/components/sections/Hero";
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         <PainVsSolution />
         <Workflow />
+        <Features />
         <CRMShowcase />
         <Pricing />
         <FreeTrial />

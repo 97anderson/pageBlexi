@@ -16,28 +16,28 @@ const steps = [
     icon: BookOpen,
     title: "Inteligencia",
     description:
-      "Aprende tu negocio en segundos con tu menú, catálogo o PDF. Sin código.",
+      "Aprende tu negocio en segundos: menú, catálogo o PDF. Entiende texto y notas de voz. Sin código.",
   },
   {
     n: "02",
     icon: HeartHandshake,
     title: "Asesoría",
     description:
-      "Responde dudas complejas como si fueras tú: tono natural, info exacta.",
+      "Responde dudas complejas como si fueras tú: tono natural, info exacta, sin errores.",
   },
   {
     n: "03",
     icon: ShoppingCart,
     title: "Ventas",
     description:
-      "Toma el pedido y llena el carrito automáticamente, paso a paso.",
+      "Toma el pedido, llena el carrito y — si el cliente duda — lo recupera automáticamente en 24 h.",
   },
   {
     n: "04",
     icon: CreditCard,
     title: "Pagos",
     description:
-      "Genera el link de cobro, confirma la orden y la deja en tu CRM.",
+      "Genera el link de cobro, confirma la orden y la registra en el CRM. Ciclo completo.",
   },
 ];
 

@@ -6,7 +6,9 @@ import {
   Clock,
   HeartCrack,
   MessagesSquare,
+  Mic2,
   Moon,
+  RefreshCw,
   ShieldCheck,
   Sparkles,
   TrendingUp,
@@ -20,12 +22,16 @@ const painPoints = [
     text: "Mensajes acumulados sin responder",
   },
   {
+    icon: Mic2,
+    text: "Audios de voz ignorados — el cliente se va",
+  },
+  {
     icon: Moon,
-    text: "Clientes escribiendo a las 11pm",
+    text: "Clientes escribiendo a las 11pm sin respuesta",
   },
   {
     icon: HeartCrack,
-    text: "Ventas perdidas que ni te enteras",
+    text: "Pedidos a medias que nunca se cierran",
   },
 ];
 
@@ -35,12 +41,16 @@ const winPoints = [
     text: "Atención inmediata 24 / 7",
   },
   {
+    icon: Mic2,
+    text: "Entiende y responde notas de voz",
+  },
+  {
     icon: ShieldCheck,
     text: "Cero clientes ignorados, cero estrés",
   },
   {
-    icon: TrendingUp,
-    text: "Ventas en piloto automático",
+    icon: RefreshCw,
+    text: "Recupera carritos antes de que se pierdan",
   },
 ];
 
@@ -106,7 +116,7 @@ export function PainVsSolution() {
 
                 <div className="mt-8 flex items-center gap-3 text-xs font-semibold text-red-600">
                   <Clock className="size-4" aria-hidden />
-                  Tiempo perdido: 4–6 horas al día
+                  Tiempo perdido: 4–6 h/día · Ventas sin recuperar: hasta el 30%
                 </div>
               </div>
             </motion.div>
