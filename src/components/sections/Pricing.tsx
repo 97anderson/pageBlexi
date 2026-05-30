@@ -33,14 +33,14 @@ const plans: Plan[] = [
     name: "Plata",
     tagline: "Para empezar",
     price: "$490.000",
-    conversations: "800 conversaciones / mes",
+    conversations: "500 conversaciones / mes",
     description:
       "Tu primer asesor de IA en WhatsApp. Atiende, responde y cierra pedidos mientras descansas.",
     savingsBadge: "Menos que un asesor de medio tiempo",
     cta: "Empezar con Plata",
     ctaHref: "https://wa.me/573222393582",
     features: [
-      "800 conversaciones al mes",
+      "500 conversaciones al mes",
       "1 línea de WhatsApp activa",
       "Catálogo hasta 100 productos o servicios",
       "Pedidos y citas automáticas 24/7",
