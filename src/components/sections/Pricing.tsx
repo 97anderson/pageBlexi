@@ -1,18 +1,24 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   Building2,
   Check,
+  ChevronDown,
   Clock,
   Shield,
   Sparkles,
   Star,
   Users,
 } from "lucide-react";
+import { useState } from "react";
 
 import { Reveal } from "@/components/ui/Reveal";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
 
 type Plan = {
   name: string;
@@ -27,6 +33,20 @@ type Plan = {
   badge?: string;
   features: string[];
 };
+
+type CompatGroup = {
+  items: { emoji: string; label: string }[];
+};
+
+type PlanCompat = {
+  ideal: CompatGroup;
+  also: CompatGroup;
+  soon?: CompatGroup;
+};
+
+// ---------------------------------------------------------------------------
+// Plan data
+// ---------------------------------------------------------------------------
 
 const plans: Plan[] = [
   {
@@ -100,6 +120,227 @@ const plans: Plan[] = [
   },
 ];
 
+// ---------------------------------------------------------------------------
+// Business type compatibility per plan
+// ---------------------------------------------------------------------------
+
+const planCompat: Record<string, PlanCompat> = {
+  Plata: {
+    ideal: {
+      items: [
+        { emoji: "🍔", label: "Restaurantes y comidas rápidas" },
+        { emoji: "🥐", label: "Panaderías y cafeterías" },
+        { emoji: "🎂", label: "Pastelerías" },
+        { emoji: "💊", label: "Farmacias" },
+        { emoji: "🔧", label: "Talleres mecánicos y motos" },
+        { emoji: "🐾", label: "Veterinarias y tiendas de mascotas" },
+        { emoji: "💇", label: "Salones de belleza y barberías" },
+        { emoji: "🧹", label: "Servicios del hogar (limpieza, plomería)" },
+        { emoji: "🩺", label: "Clínicas y consultorios pequeños" },
+        { emoji: "📚", label: "Librerías y papelerías" },
+      ],
+    },
+    also: {
+      items: [
+        { emoji: "👗", label: "Ropa y accesorios (catálogo básico)" },
+        { emoji: "💐", label: "Florería (sin imágenes)" },
+        { emoji: "🐶", label: "Grooming y spas para mascotas" },
+      ],
+    },
+    soon: {
+      items: [
+        { emoji: "🌺", label: "Perfumerías y lociones — próximamente Plata" },
+        { emoji: "💎", label: "Joyería — catálogo visual, requiere Oro" },
+      ],
+    },
+  },
+  Oro: {
+    ideal: {
+      items: [
+        { emoji: "🌺", label: "Perfumerías y lociones" },
+        { emoji: "💐", label: "Florería y arreglos florales" },
+        { emoji: "👗", label: "Tiendas de ropa, calzado y accesorios" },
+        { emoji: "💎", label: "Joyería y bisutería" },
+        { emoji: "🎂", label: "Pastelerías y repostería artesanal" },
+        { emoji: "📱", label: "Electrónica y tecnología" },
+        { emoji: "🍔", label: "Restaurantes con alto volumen" },
+        { emoji: "💇", label: "Franquicias de belleza" },
+        { emoji: "🐾", label: "Clínicas veterinarias" },
+        { emoji: "🩺", label: "Grupos médicos y laboratorios" },
+      ],
+    },
+    also: {
+      items: [
+        { emoji: "🛋️", label: "Muebles y decoración (catálogo visual)" },
+        { emoji: "🎨", label: "Artesanías y productos hechos a mano" },
+        { emoji: "🧴", label: "Cosméticos y cuidado personal" },
+      ],
+    },
+  },
+  Platino: {
+    ideal: {
+      items: [
+        { emoji: "🏪", label: "Cadenas y franquicias (multi-sucursal)" },
+        { emoji: "🍔", label: "Cadenas de restaurantes" },
+        { emoji: "💊", label: "Cadenas de farmacias" },
+        { emoji: "🛋️", label: "Muebles, decoración y diseño de interiores" },
+        { emoji: "🚗", label: "Concesionarios y grandes talleres" },
+        { emoji: "🏥", label: "Grupos médicos o redes de clínicas" },
+        { emoji: "🌺", label: "Distribuidoras de perfumes y cosméticos" },
+        { emoji: "👗", label: "Multi-tiendas de moda" },
+        { emoji: "🎨", label: "Galerías y tiendas de arte" },
+        { emoji: "🏋️", label: "Cadenas de gimnasios o bienestar" },
+      ],
+    },
+    also: {
+      items: [
+        { emoji: "📦", label: "E-commerce con catálogo +500 productos" },
+        { emoji: "🏗️", label: "Constructoras o inmobiliarias (próx.)" },
+      ],
+    },
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Sub-component: business types expandable panel
+// ---------------------------------------------------------------------------
+
+function PlanBusinessTypes({
+  planName,
+  highlighted,
+}: {
+  planName: string;
+  highlighted?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const compat = planCompat[planName];
+  if (!compat) return null;
+
+  const toggleBg = highlighted
+    ? "border-white/20 bg-white/10 text-white hover:bg-white/15"
+    : "border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100";
+
+  const sectionTitle = highlighted
+    ? "text-white/60"
+    : "text-slate-400";
+
+  return (
+    <div className="mt-4">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className={`flex w-full items-center justify-between gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition ${toggleBg}`}
+      >
+        <span>¿Es para mi negocio?</span>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className="size-3.5" strokeWidth={2.5} aria-hidden />
+        </motion.span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="panel"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div
+              className={`mt-2 rounded-xl border p-4 text-xs ${
+                highlighted
+                  ? "border-white/15 bg-white/8"
+                  : "border-slate-100 bg-slate-50"
+              }`}
+            >
+              {/* Ideal para */}
+              <p className={`mb-2 font-bold uppercase tracking-wider ${sectionTitle}`}>
+                ✅ Ideal para
+              </p>
+              <ul className="mb-3 space-y-1.5">
+                {compat.ideal.items.map((b) => (
+                  <li
+                    key={b.label}
+                    className={`flex items-center gap-2 ${
+                      highlighted ? "text-white/80" : "text-slate-700"
+                    }`}
+                  >
+                    <span className="shrink-0 text-sm">{b.emoji}</span>
+                    {b.label}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Funciona también */}
+              {compat.also.items.length > 0 && (
+                <>
+                  <p className={`mb-2 font-bold uppercase tracking-wider ${sectionTitle}`}>
+                    ⚡ Funciona también
+                  </p>
+                  <ul className="mb-3 space-y-1.5">
+                    {compat.also.items.map((b) => (
+                      <li
+                        key={b.label}
+                        className={`flex items-center gap-2 ${
+                          highlighted ? "text-white/70" : "text-slate-500"
+                        }`}
+                      >
+                        <span className="shrink-0 text-sm">{b.emoji}</span>
+                        {b.label}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {/* Próximamente / no recomendado */}
+              {compat.soon && compat.soon.items.length > 0 && (
+                <>
+                  <p className={`mb-2 font-bold uppercase tracking-wider ${sectionTitle}`}>
+                    🔜 Mejor en plan superior
+                  </p>
+                  <ul className="space-y-1.5">
+                    {compat.soon.items.map((b) => (
+                      <li
+                        key={b.label}
+                        className={`flex items-center gap-2 opacity-60 ${
+                          highlighted ? "text-white/60" : "text-slate-400"
+                        }`}
+                      >
+                        <span className="shrink-0 text-sm">{b.emoji}</span>
+                        {b.label}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              <p
+                className={`mt-3 border-t pt-3 text-[10px] leading-relaxed opacity-70 ${
+                  highlighted
+                    ? "border-white/10 text-white"
+                    : "border-slate-200 text-slate-500"
+                }`}
+              >
+                ¿No ves tu negocio? Escríbenos — si existe en LATAM, Blexi
+                puede atenderlo.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Rest of section data
+// ---------------------------------------------------------------------------
+
 const allPlansInclude = [
   {
     icon: Clock,
@@ -130,6 +371,10 @@ const comparisonStats = [
   },
   { label: "Aprende de cada venta", sub: "Mejora solo con el tiempo" },
 ];
+
+// ---------------------------------------------------------------------------
+// Main component
+// ---------------------------------------------------------------------------
 
 export function Pricing() {
   return (
@@ -284,6 +529,12 @@ export function Pricing() {
                       <ArrowRight className="size-4" aria-hidden />
                     )}
                   </a>
+
+                  {/* ── Business type compatibility toggle ── */}
+                  <PlanBusinessTypes
+                    planName={plan.name}
+                    highlighted={plan.highlighted}
+                  />
 
                   {/* Features */}
                   <ul className="mt-8 flex-1 space-y-3 border-t border-slate-100 pt-6">
