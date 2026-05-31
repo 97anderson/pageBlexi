@@ -216,13 +216,18 @@ function PlanBusinessTypes({
   const compat = planCompat[planName];
   if (!compat) return null;
 
+  // All plan cards share a white background. Oro (highlighted) gets a
+  // cyan accent; Plata/Platino get a neutral slate style.
   const toggleBg = highlighted
-    ? "border-white/20 bg-white/10 text-white hover:bg-white/15"
+    ? "border-cyan-300 bg-cyan-50 text-cyan-700 hover:bg-cyan-100"
     : "border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100";
 
-  const sectionTitle = highlighted
-    ? "text-white/60"
-    : "text-slate-400";
+  const panelBorder = highlighted ? "border-cyan-100 bg-cyan-50/40" : "border-slate-100 bg-slate-50";
+  const sectionTitle = highlighted ? "text-cyan-600/70" : "text-slate-400";
+  const itemColor    = "text-slate-700";
+  const alsoColor    = "text-slate-500";
+  const soonColor    = "text-slate-400 opacity-60";
+  const footerColor  = highlighted ? "border-cyan-100 text-slate-500" : "border-slate-200 text-slate-500";
 
   return (
     <div className="mt-4">
@@ -250,25 +255,14 @@ function PlanBusinessTypes({
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div
-              className={`mt-2 rounded-xl border p-4 text-xs ${
-                highlighted
-                  ? "border-white/15 bg-white/8"
-                  : "border-slate-100 bg-slate-50"
-              }`}
-            >
+            <div className={`mt-2 rounded-xl border p-4 text-xs ${panelBorder}`}>
               {/* Ideal para */}
               <p className={`mb-2 font-bold uppercase tracking-wider ${sectionTitle}`}>
                 ✅ Ideal para
               </p>
               <ul className="mb-3 space-y-1.5">
                 {compat.ideal.items.map((b) => (
-                  <li
-                    key={b.label}
-                    className={`flex items-center gap-2 ${
-                      highlighted ? "text-white/80" : "text-slate-700"
-                    }`}
-                  >
+                  <li key={b.label} className={`flex items-center gap-2 ${itemColor}`}>
                     <span className="shrink-0 text-sm">{b.emoji}</span>
                     {b.label}
                   </li>
@@ -283,12 +277,7 @@ function PlanBusinessTypes({
                   </p>
                   <ul className="mb-3 space-y-1.5">
                     {compat.also.items.map((b) => (
-                      <li
-                        key={b.label}
-                        className={`flex items-center gap-2 ${
-                          highlighted ? "text-white/70" : "text-slate-500"
-                        }`}
-                      >
+                      <li key={b.label} className={`flex items-center gap-2 ${alsoColor}`}>
                         <span className="shrink-0 text-sm">{b.emoji}</span>
                         {b.label}
                       </li>
@@ -305,12 +294,7 @@ function PlanBusinessTypes({
                   </p>
                   <ul className="space-y-1.5">
                     {compat.soon.items.map((b) => (
-                      <li
-                        key={b.label}
-                        className={`flex items-center gap-2 opacity-60 ${
-                          highlighted ? "text-white/60" : "text-slate-400"
-                        }`}
-                      >
+                      <li key={b.label} className={`flex items-center gap-2 ${soonColor}`}>
                         <span className="shrink-0 text-sm">{b.emoji}</span>
                         {b.label}
                       </li>
@@ -319,13 +303,7 @@ function PlanBusinessTypes({
                 </>
               )}
 
-              <p
-                className={`mt-3 border-t pt-3 text-[10px] leading-relaxed opacity-70 ${
-                  highlighted
-                    ? "border-white/10 text-white"
-                    : "border-slate-200 text-slate-500"
-                }`}
-              >
+              <p className={`mt-3 border-t pt-3 text-[10px] leading-relaxed ${footerColor}`}>
                 ¿No ves tu negocio? Escríbenos — si existe en LATAM, Blexi
                 puede atenderlo.
               </p>
