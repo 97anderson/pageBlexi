@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── BlexiMark animations ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .bm-breathe {
+    animation: bm-breathe 5s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  .bm-glow           { animation: bm-pulse   5s   ease-in-out infinite; }
+  .bm-comet          { animation: bm-travel  3.2s linear      infinite; }
+  .bm-comet-fast     { animation: bm-travel  1.6s linear      infinite; }
+  .bm-atom:hover .bm-comet { animation-duration: 1.4s; }
+  .bm-atom:hover .bm-glow  { opacity: .6 !important; }
+  .bm-dot-bounce              { animation: bm-bob  1.2s ease-in-out infinite; }
+  .bm-dot-bounce:nth-child(2) { animation-delay: .15s; }
+  .bm-dot-bounce:nth-child(3) { animation-delay: .30s; }
+  .bm-live-dot       { animation: bm-ping 1.6s ease-out infinite; }
+}
+
+@keyframes bm-breathe { 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.035) } }
+@keyframes bm-pulse   { 0%,100%{ opacity:.28 } 50%{ opacity:.55 } }
+@keyframes bm-travel  { to{ stroke-dashoffset:-386 } }
+@keyframes bm-bob     { 0%,100%{ transform:translateY(3px);opacity:.5 } 50%{ transform:translateY(-3px);opacity:1 } }
+@keyframes bm-ping    { 0%{ box-shadow:0 0 0 0 rgba(0,216,240,.5) } 100%{ box-shadow:0 0 0 10px rgba(0,216,240,0) } }
+
 @layer base {
   :root {
     /* BLEXI 2026 — Tech / AI palette (slate base + cyan primary) */
