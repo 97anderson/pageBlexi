@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight, MessageCircle, ShieldCheck, Sparkles, Zap } from "lucide-react";
 
 import { LiveChatSimulation } from "./LiveChatSimulation";
+import { BlexiMark } from "@/components/brand/BlexiMark";
 
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -72,10 +73,7 @@ export function Hero() {
         >
           <motion.div variants={fadeUp}>
             <span className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/70 px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-sm shadow-slate-200/60 backdrop-blur-md">
-              <Sparkles
-                className="size-3.5 text-brand-aiMagic"
-                aria-hidden
-              />
+              <BlexiMark state="loader" height={14} />
               IA entrenada para ventas en LATAM
             </span>
           </motion.div>

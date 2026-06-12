@@ -21,8 +21,8 @@ export function Navbar() {
     >
       <div className="container-page flex h-16 items-center justify-between gap-6">
         <a href="#hero" className="flex items-center gap-2.5">
-          <span className="relative flex size-9 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-lg shadow-slate-200/70 ring-1 ring-black/[0.06]">
-            <BlexiMark state="static" height={20} />
+          <span className="relative flex size-9 items-center justify-center overflow-visible rounded-2xl bg-white shadow-lg shadow-slate-200/70 ring-1 ring-black/[0.06]">
+            <BlexiMark state="loader" height={20} />
           </span>
           <span className="font-grotesk text-lg font-extrabold tracking-tight text-brand-textDark">
             BLEXI
