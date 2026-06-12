@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
-import blexiLogo from "@/app/img/blexi_logo.png";
+import { BlexiMark } from "@/components/brand/BlexiMark";
 
 const links = [
   { label: "Producto", href: "#flujo" },
@@ -23,14 +22,7 @@ export function Navbar() {
       <div className="container-page flex h-16 items-center justify-between gap-6">
         <a href="#hero" className="flex items-center gap-2.5">
           <span className="relative flex size-9 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-lg shadow-slate-200/70 ring-1 ring-black/[0.06]">
-            <Image
-              src={blexiLogo}
-              alt="BLEXI"
-              width={28}
-              height={28}
-              priority
-              className="select-none"
-            />
+            <BlexiMark state="static" height={20} />
           </span>
           <span className="font-grotesk text-lg font-extrabold tracking-tight text-brand-textDark">
             BLEXI

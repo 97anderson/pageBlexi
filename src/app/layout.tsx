@@ -26,6 +26,26 @@ export const metadata: Metadata = {
   title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
   description:
     "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+  },
+  openGraph: {
+    title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
+    description:
+      "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
+    siteName: "BLEXI",
+    locale: "es_CO",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
+    description:
+      "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
+  },
 };
 
 export default function RootLayout({

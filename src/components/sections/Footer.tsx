@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
-
-import blexiLogo from "@/app/img/blexi_logo.png";
+import { BlexiMark } from "@/components/brand/BlexiMark";
 
 const groups = [
   {
@@ -38,13 +36,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2.5">
               <span className="flex size-9 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-md shadow-slate-200/70 ring-1 ring-black/[0.06]">
-                <Image
-                  src={blexiLogo}
-                  alt="BLEXI"
-                  width={28}
-                  height={28}
-                  className="select-none"
-                />
+                <BlexiMark state="static" height={20} />
               </span>
               <span className="font-grotesk text-lg font-extrabold tracking-tight text-brand-textDark">
                 BLEXI
