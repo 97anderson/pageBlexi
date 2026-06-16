@@ -77,7 +77,7 @@ export function Features() {
       {/* Background glows */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
         <div className="absolute left-0 top-1/4 size-[500px] -translate-x-1/2 rounded-full bg-cyan-100/40 blur-3xl" />
-        <div className="absolute bottom-0 right-0 size-[400px] translate-x-1/3 rounded-full bg-purple-100/40 blur-3xl" />
+        <div className="absolute bottom-0 right-0 size-[400px] rounded-full bg-purple-100/40 blur-3xl" />
       </div>
 
       <div className="container-page">
