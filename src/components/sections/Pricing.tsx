@@ -356,7 +356,7 @@ const comparisonStats = [
 
 export function Pricing() {
   return (
-    <section id="precios" className="relative bg-slate-50 py-24 lg:py-32">
+    <section id="precios" className="relative overflow-hidden bg-slate-50 py-24 lg:py-32">
       {/* Background glows */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
         <div className="absolute left-1/2 top-0 size-[700px] -translate-x-1/2 rounded-full bg-cyan-200/20 blur-3xl" />

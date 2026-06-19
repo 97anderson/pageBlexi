@@ -73,7 +73,7 @@ const features: Feature[] = [
 
 export function Features() {
   return (
-    <section id="producto" className="relative bg-slate-50/60 py-24 lg:py-32">
+    <section id="producto" className="relative overflow-hidden bg-slate-50/60 py-24 lg:py-32">
       {/* Background glows */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
         <div className="absolute left-0 top-1/4 size-[500px] -translate-x-1/2 rounded-full bg-cyan-100/40 blur-3xl" />
