@@ -111,7 +111,6 @@ const plans: Plan[] = [
     ctaHref: "https://wa.me/573222393582",
     features: [
       "4.000 conversaciones al mes",
-      "Hasta 3 líneas de WhatsApp",
       "Todo lo del plan Oro incluido",
       "Catálogo hasta 2.000 productos o servicios",
       "Domiciliarios ilimitados",
