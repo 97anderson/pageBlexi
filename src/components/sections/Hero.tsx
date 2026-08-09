@@ -6,6 +6,7 @@ import { ArrowRight, MessageCircle, ShieldCheck, Sparkles, Zap } from "lucide-re
 
 import { LiveChatSimulation } from "./LiveChatSimulation";
 import { BlexiMark } from "@/components/brand/BlexiMark";
+import { REGISTER_URL, SALES_WHATSAPP_URL } from "@/lib/links";
 
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -106,7 +107,7 @@ export function Hero() {
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
           >
             <motion.a
-              href="#free-trial"
+              href={REGISTER_URL}
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 450, damping: 22 }}
@@ -117,7 +118,7 @@ export function Hero() {
               <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
             </motion.a>
             <motion.a
-              href="https://wa.me/573222393582"
+              href={SALES_WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
               whileHover={{ scale: 1.02, y: -1 }}

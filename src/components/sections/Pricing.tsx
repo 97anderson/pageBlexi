@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+import { registerUrlForPlan, SALES_WHATSAPP_URL } from "@/lib/links";
+
 import { Reveal } from "@/components/ui/Reveal";
 
 // ---------------------------------------------------------------------------
@@ -58,7 +60,7 @@ const plans: Plan[] = [
       "Tu primer asesor de IA en WhatsApp. Atiende, responde y cierra pedidos mientras descansas.",
     savingsBadge: "Menos que un asesor de medio tiempo",
     cta: "Empezar con Plata",
-    ctaHref: "https://wa.me/573222393582",
+    ctaHref: registerUrlForPlan("plata"),
     features: [
       "500 conversaciones al mes",
       "1 línea de WhatsApp activa",
@@ -81,7 +83,7 @@ const plans: Plan[] = [
       "Más volumen, memoria de clientes, analíticas y notas de voz. El favorito de quienes quieren crecer sin contratar más.",
     savingsBadge: "Ahorra +$1.1M vs. asesor full-time",
     cta: "Quiero el plan Oro",
-    ctaHref: "https://wa.me/15055787905",
+    ctaHref: registerUrlForPlan("oro"),
     highlighted: true,
     badge: "Más popular",
     features: [
@@ -108,7 +110,7 @@ const plans: Plan[] = [
       "Múltiples sucursales, alto volumen, notas de voz ilimitadas e integración total. Para negocios que ya crecieron.",
     savingsBadge: "10× la capacidad al costo de 1 empleado",
     cta: "Escalar con Platino",
-    ctaHref: "https://wa.me/573222393582",
+    ctaHref: registerUrlForPlan("platino"),
     features: [
       "4.000 conversaciones al mes",
       "Todo lo del plan Oro incluido",
@@ -594,7 +596,7 @@ export function Pricing() {
               </div>
               <div className="shrink-0">
                 <a
-                  href="https://wa.me/573222393582"
+                  href={SALES_WHATSAPP_URL}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex h-12 items-center gap-2 rounded-2xl bg-white px-7 text-sm font-semibold text-slate-900 shadow-md transition hover:bg-slate-100"
@@ -637,7 +639,7 @@ export function Pricing() {
             Sin contratos eternos · Cancela cuando quieras · Pymes en toda
             Colombia y LATAM ·{" "}
             <a
-              href="https://wa.me/573222393582"
+              href={SALES_WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
               className="font-semibold text-brand-primary hover:underline"

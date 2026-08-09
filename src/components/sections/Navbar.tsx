@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 
 import { BlexiMark } from "@/components/brand/BlexiMark";
+import { DEMO_WHATSAPP_URL, REGISTER_URL } from "@/lib/links";
 
 const links = [
   { label: "Producto", href: "#flujo" },
@@ -43,12 +44,18 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://wa.me/15055787905"
+            href={DEMO_WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-cyan-500/40 transition hover:bg-brand-primaryHover hover:shadow-lg hover:shadow-cyan-500/50"
+            className="hidden items-center justify-center rounded-full border border-slate-200 bg-white/80 px-5 py-2.5 text-sm font-semibold text-brand-textDark backdrop-blur-md transition hover:border-slate-300 hover:bg-white sm:inline-flex"
           >
             Probar en WhatsApp
+          </a>
+          <a
+            href={REGISTER_URL}
+            className="inline-flex items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-cyan-500/40 transition hover:bg-brand-primaryHover hover:shadow-lg hover:shadow-cyan-500/50"
+          >
+            Crear cuenta
           </a>
         </div>
       </div>
