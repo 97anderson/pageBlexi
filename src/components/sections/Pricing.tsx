@@ -9,6 +9,7 @@ import {
   Clock,
   Shield,
   Sparkles,
+  Store,
   Star,
   Users,
 } from "lucide-react";
@@ -64,11 +65,12 @@ const plans: Plan[] = [
       "1 línea de WhatsApp activa",
       "Catálogo hasta 100 productos o servicios",
       "Pedidos y citas automáticas 24/7",
-      "Domicilios con control de entregas y hasta 3 domiciliarios",
-      "Cobros por link de pago y comprobantes",
-      "CRM básico con historial de pedidos",
-      "Atención sin intervención humana",
-      "Configuración inicial incluida",
+      "Punto de venta para el mostrador",
+            "Domicilios con hasta 3 domiciliarios",
+      "Cobros desde la conversación",
+      "CRM de pedidos, clientes y conversaciones",
+      "Hasta 3 usuarios en el panel",
+            "Configuración inicial incluida",
       "Soporte por WhatsApp",
     ],
   },
@@ -76,7 +78,7 @@ const plans: Plan[] = [
     name: "Oro",
     tagline: "La opción inteligente",
     price: "$990.000",
-    conversations: "1.500 conversaciones / mes",
+    conversations: "1.000 conversaciones / mes",
     description:
       "Más volumen, memoria de clientes, analíticas y notas de voz. El favorito de quienes quieren crecer sin contratar más.",
     savingsBadge: "Ahorra +$1.1M vs. asesor full-time",
@@ -85,17 +87,17 @@ const plans: Plan[] = [
     highlighted: true,
     badge: "Más popular",
     features: [
-      "1.500 conversaciones al mes",
+      "1.000 conversaciones al mes",
       "1 línea de WhatsApp activa",
       "Catálogo hasta 500 productos o servicios",
       "Pedidos, citas y pagos online integrados",
-      "Domicilios con liquidación y hasta 10 domiciliarios",
-      "Notas de voz — Blexi entiende audios reales",
-      "CRM completo con seguimiento en tiempo real",
-      "Memoria personalizada por cliente",
-      "Panel de analíticas y tasa de conversión",
-      "Lenguaje regional LATAM adaptado",
-      "Optimización mensual del agente incluida",
+      "Domicilios con hasta 10 domiciliarios",
+      "Notas de voz (500/mes)",
+      "Búsqueda por foto (500/mes)",
+      "Hasta 10 usuarios en el panel",
+      "CRM con seguimiento en tiempo real",
+            "Panel de analíticas y tasa de conversión",
+            "Optimización mensual incluida",
       "Soporte prioritario — respuesta en 1 día hábil",
     ],
   },
@@ -103,22 +105,22 @@ const plans: Plan[] = [
     name: "Platino",
     tagline: "Para escalar",
     price: "$1.990.000",
-    conversations: "4.000 conversaciones / mes",
+    conversations: "2.200 conversaciones / mes",
     description:
-      "Múltiples sucursales, alto volumen, notas de voz ilimitadas e integración total. Para negocios que ya crecieron.",
+      "Alto volumen, marketing sobre tu base de clientes y el conocimiento del agente en tus manos. Para negocios que ya crecieron.",
     savingsBadge: "10× la capacidad al costo de 1 empleado",
     cta: "Escalar con Platino",
     ctaHref: "https://wa.me/573222393582",
     features: [
-      "4.000 conversaciones al mes",
+      "2.200 conversaciones al mes",
       "Todo lo del plan Oro incluido",
       "Catálogo hasta 2.000 productos o servicios",
-      "Domiciliarios ilimitados",
+      "Notas de voz e imágenes: 2.000 de cada una al mes",
+      "Domiciliarios y usuarios del panel ilimitados",
       "Segmentos de clientes y campañas por WhatsApp",
-      "Insights con IA sobre tus conversaciones y ventas",
-      "Conocimiento Blexi — entrena al agente con tu información",
-      "Múltiples sucursales o tipos de negocio",
-      "Integración de pagos (Nequi, PSE, links)",
+      "Insights sobre tus ventas",
+      "Entrena al agente con tu información",
+      "Todos los medios de pago",
       "Reportes semanales de conversión",
       "Onboarding personalizado con tu equipo",
       "Soporte dedicado — respuesta en 12 h",
@@ -186,16 +188,15 @@ const planCompat: Record<string, PlanCompat> = {
   Platino: {
     ideal: {
       items: [
-        { emoji: "🏪", label: "Cadenas y franquicias (multi-sucursal)" },
-        { emoji: "🍔", label: "Cadenas de restaurantes" },
-        { emoji: "💊", label: "Cadenas de farmacias" },
+        { emoji: "🍔", label: "Restaurantes de muy alto volumen" },
+        { emoji: "💊", label: "Farmacias y droguerías grandes" },
         { emoji: "🛋️", label: "Muebles, decoración y diseño de interiores" },
         { emoji: "🚗", label: "Concesionarios y grandes talleres" },
-        { emoji: "🏥", label: "Grupos médicos o redes de clínicas" },
+        { emoji: "🏥", label: "Centros médicos con agenda intensa" },
         { emoji: "🌺", label: "Distribuidoras de perfumes y cosméticos" },
-        { emoji: "👗", label: "Multi-tiendas de moda" },
+        { emoji: "👗", label: "Tiendas de moda con catálogo amplio" },
         { emoji: "🎨", label: "Galerías y tiendas de arte" },
-        { emoji: "🏋️", label: "Cadenas de gimnasios o bienestar" },
+        { emoji: "🏋️", label: "Gimnasios y centros de bienestar" },
       ],
     },
     also: {
@@ -337,9 +338,14 @@ const allPlansInclude = [
     desc: "Sin importar el volumen",
   },
   {
+    icon: Store,
+    label: "Punto de venta incluido",
+    desc: "El mostrador y el chat, un solo inventario",
+  },
+  {
     icon: Shield,
-    label: "Sin contratos eternos",
-    desc: "Cancela cuando quieras",
+    label: "Sin permanencia",
+    desc: "Cancelas cuando quieras y corre hasta el fin del mes pagado",
   },
 ];
 
@@ -351,7 +357,7 @@ const comparisonStats = [
   { label: "50+ chats a la vez", sub: "Un humano solo atiende 1 a la vez" },
   {
     label: "Sin vacaciones ni licencias",
-    sub: "Disponibilidad garantizada siempre",
+    sub: "No pide días libres ni se incapacita",
   },
   { label: "Aprende de cada venta", sub: "Mejora solo con el tiempo" },
 ];
@@ -561,21 +567,21 @@ export function Pricing() {
                       Enterprise
                     </h3>
                     <span className="rounded-full bg-white/10 px-3 py-0.5 text-xs font-semibold text-white/80">
-                      Franquicias · Cadenas · Alto volumen
+                      Alto volumen · A la medida
                     </span>
                   </div>
                   <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/70">
-                    Conversaciones ilimitadas, múltiples sucursales,
-                    integraciones con tu ERP o POS, SLA garantizado &gt;99.5%
-                    y un gestor de cuenta dedicado. Precio a la medida.
+                    ¿Tu operación se sale de Platino? Hablemos. Armamos el
+                    alcance y el precio contigo, sin cuotas que te queden
+                    cortas. Nos sentamos, miramos tus números y te decimos qué
+                    podemos hacer hoy y qué no.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {[
-                      "Conversaciones ilimitadas",
-                      "Multi-sucursal",
-                      "Integraciones a la medida",
-                      "SLA 99.5%",
-                      "Gestor dedicado",
+                      "Conversaciones sin tope",
+                      "Notas de voz e imágenes sin tope",
+                      "Catálogo, domiciliarios y usuarios sin tope",
+                      "Alcance y precio acordados contigo",
                     ].map((tag) => (
                       <span
                         key={tag}
@@ -599,7 +605,7 @@ export function Pricing() {
                   rel="noreferrer"
                   className="inline-flex h-12 items-center gap-2 rounded-2xl bg-white px-7 text-sm font-semibold text-slate-900 shadow-md transition hover:bg-slate-100"
                 >
-                  Cotizar ahora
+                  Hablemos
                   <ArrowRight className="size-4" aria-hidden />
                 </a>
               </div>
@@ -613,7 +619,7 @@ export function Pricing() {
             <p className="mb-6 text-center text-xs font-semibold uppercase tracking-widest text-brand-textMuted">
               Incluido en todos los planes
             </p>
-            <div className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-3">
+            <div className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {allPlansInclude.map(({ icon: Icon, label, desc }) => (
                 <div key={label} className="flex items-start gap-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-white">
