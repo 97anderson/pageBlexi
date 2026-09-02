@@ -13,7 +13,7 @@ import {
   Star,
   Users,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -21,9 +21,26 @@ import { Reveal } from "@/components/ui/Reveal";
 // Types
 // ---------------------------------------------------------------------------
 
+/** Un plan tal como lo publica la base, a través de /api/planes. */
+type PlanDeLaBase = {
+  slug: string;
+  monthlyPriceCop: number;
+  annualPriceCop: number;
+  annualSavingsCop: number;
+  annualDiscountPct: number;
+};
+
+type Ciclo = "mensual" | "anual";
+
 type Plan = {
   name: string;
   tagline: string;
+  /**
+   * Ya no se enseña: el bloque de precio se rellena con lo que diga la base.
+   * Queda como identidad de la tarjeta. Si la base no responde, la tarjeta sale
+   * sin cifra — un número que no se puede confirmar es peor que ninguno, porque
+   * quien llega al registro se encuentra otro.
+   */
   price: string;
   conversations: string;
   description: string;
@@ -366,7 +383,55 @@ const comparisonStats = [
 // Main component
 // ---------------------------------------------------------------------------
 
+/** El nombre de la tarjeta contra el identificador del plan en la base. */
+const SLUG_POR_NOMBRE: Record<string, string> = {
+  Plata: "plata",
+  Oro: "oro",
+  Platino: "platino",
+};
+
+const pesos = (cop: number) =>
+  new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    maximumFractionDigits: 0,
+  }).format(cop);
+
 export function Pricing() {
+  const [ciclo, setCiclo] = useState<Ciclo>("mensual");
+  const [deLaBase, setDeLaBase] = useState<Record<string, PlanDeLaBase>>({});
+
+  useEffect(() => {
+    // Los precios salen de la base, no de esta página: el que se anuncia y el
+    // que se cobra tienen que venir del mismo sitio.
+    let vigente = true;
+    fetch("/api/planes")
+      .then((r) => r.json())
+      .then((datos: { planes?: PlanDeLaBase[] }) => {
+        if (!vigente) return;
+        const porSlug: Record<string, PlanDeLaBase> = {};
+        for (const p of datos.planes ?? []) porSlug[p.slug] = p;
+        setDeLaBase(porSlug);
+      })
+      .catch(() => undefined);
+    return () => {
+      vigente = false;
+    };
+  }, []);
+
+  const descuento = Math.max(
+    0,
+    // Sólo cuentan los planes que traen precio anual: con un API una versión
+    // por detrás, el interruptor aparecería sin nada que conmutar.
+    ...Object.values(deLaBase)
+      .filter((p) => Number.isFinite(p.annualPriceCop))
+      .map((p) => p.annualDiscountPct ?? 0),
+  );
+
+  /** El plan más barato, para el «desde». Nulo mientras no haya datos. */
+  const precios = Object.values(deLaBase).map((p) => p.monthlyPriceCop);
+  const desdeCop = precios.length ? Math.min(...precios) : null;
+
   return (
     <section id="precios" className="relative overflow-hidden bg-slate-50 py-24 lg:py-32">
       {/* Background glows */}
@@ -397,12 +462,52 @@ export function Pricing() {
             <strong className="font-semibold text-brand-textDark">
               $1.400.000 y $2.100.000 COP/mes
             </strong>{" "}
-            con prestaciones. Blexi trabaja 24/7 desde{" "}
-            <strong className="font-semibold text-brand-textDark">
-              $490.000/mes
-            </strong>
+            con prestaciones. Blexi trabaja 24/7{" "}
+            {desdeCop !== null ? (
+              <>
+                desde{" "}
+                <strong className="font-semibold text-brand-textDark">
+                  {pesos(desdeCop)}/mes
+                </strong>
+              </>
+            ) : (
+              "por una fracción de eso"
+            )}
             .
           </p>
+
+          {/* Mes a mes o un año. El ahorro sale de la base: si el descuento
+              cambia en la consola, esta página ya lo dice sin que nadie la
+              toque. Sin datos no se pinta — un interruptor que no cambia
+              ninguna cifra sólo confunde. */}
+          {descuento > 0 && (
+            <div
+              className="mx-auto mt-8 inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white p-1"
+              role="group"
+              aria-label="Cada cuánto pagas"
+            >
+              {(["mensual", "anual"] as const).map((opcion) => (
+                <button
+                  key={opcion}
+                  type="button"
+                  onClick={() => setCiclo(opcion)}
+                  aria-pressed={ciclo === opcion}
+                  className={
+                    ciclo === opcion
+                      ? "inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
+                      : "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900"
+                  }
+                >
+                  {opcion === "mensual" ? "Mes a mes" : "Un año"}
+                  {opcion === "anual" && (
+                    <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-700">
+                      −{descuento}%
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
         </Reveal>
 
         {/* ── Value comparison bar ── */}
@@ -471,14 +576,38 @@ export function Pricing() {
 
                   {/* Price block */}
                   <div className="mt-6">
-                    <div className="flex items-end gap-1.5">
-                      <span className="font-grotesk text-[2.75rem] font-extrabold leading-none tracking-tight text-brand-textDark">
-                        {plan.price}
-                      </span>
-                      <span className="mb-1 text-sm font-medium text-brand-textMuted">
-                        COP / mes
-                      </span>
-                    </div>
+                    {(() => {
+                      const dato = deLaBase[SLUG_POR_NOMBRE[plan.name] ?? ""];
+                      // Sin precio válido no se pinta cifra. El API puede ir una
+                      // versión por detrás y no traer todavía el precio anual:
+                      // pintar «NaN» o «$0» sería peor que decir que se consulte.
+                      if (!dato || !Number.isFinite(dato.monthlyPriceCop)) {
+                        return (
+                          <p className="text-sm font-medium text-brand-textMuted">
+                            Consulta el precio actual — te lo confirmamos al registrarte.
+                          </p>
+                        );
+                      }
+                      const anual =
+                        ciclo === "anual" && Number.isFinite(dato.annualPriceCop);
+                      return (
+                        <>
+                          <div className="flex items-end gap-1.5">
+                            <span className="font-grotesk text-[2.75rem] font-extrabold leading-none tracking-tight text-brand-textDark">
+                              {pesos(anual ? dato.annualPriceCop : dato.monthlyPriceCop)}
+                            </span>
+                            <span className="mb-1 text-sm font-medium text-brand-textMuted">
+                              COP / {anual ? "año" : "mes"}
+                            </span>
+                          </div>
+                          {anual && dato.annualSavingsCop > 0 && (
+                            <p className="mt-1 text-xs font-semibold text-emerald-700">
+                              Ahorras {pesos(dato.annualSavingsCop)} frente a doce meses
+                            </p>
+                          )}
+                        </>
+                      );
+                    })()}
                     <p className="mt-1.5 text-xs font-medium text-brand-textMuted">
                       {plan.conversations}
                     </p>
