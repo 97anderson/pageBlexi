@@ -132,7 +132,7 @@ const plans: Plan[] = [
       "2.200 conversaciones al mes",
       "Todo lo del plan Oro incluido",
       "Catálogo hasta 2.000 productos o servicios",
-      "Notas de voz e imágenes: 2.000 de cada una al mes",
+      "Notas de voz: 2.000 al mes",
       "Domiciliarios y usuarios del panel ilimitados",
       "Segmentos de clientes y campañas por WhatsApp",
       "Insights sobre tus ventas",
@@ -168,7 +168,7 @@ const planCompat: Record<string, PlanCompat> = {
     also: {
       items: [
         { emoji: "👗", label: "Ropa y accesorios (catálogo básico)" },
-        { emoji: "💐", label: "Florería (sin imágenes)" },
+        { emoji: "💐", label: "Florería" },
         { emoji: "🐶", label: "Grooming y spas para mascotas" },
       ],
     },
@@ -708,7 +708,7 @@ export function Pricing() {
                   <div className="mt-4 flex flex-wrap gap-2">
                     {[
                       "Conversaciones sin tope",
-                      "Notas de voz e imágenes sin tope",
+                      "Notas de voz sin tope",
                       "Catálogo, domiciliarios y usuarios sin tope",
                       "Alcance y precio acordados contigo",
                     ].map((tag) => (
