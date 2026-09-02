@@ -1,3 +1,4 @@
+import { leerPlanes } from "@/lib/planes";
 import { BottomCTA } from "@/components/sections/BottomCTA";
 import { CRMShowcase } from "@/components/sections/CRMShowcase";
 import { Features } from "@/components/sections/Features";
@@ -10,7 +11,12 @@ import { Pricing } from "@/components/sections/Pricing";
 import { Workflow } from "@/components/sections/Workflow";
 import { StickyWhatsAppCTA } from "@/components/StickyWhatsAppCTA";
 
-export default function Home() {
+export default async function Home() {
+  // Los precios se leen aquí, en el servidor, para que estén en el primer
+  // pintado: sin esto la página abría con «consulta el precio» y saltaba a la
+  // cifra, y los buscadores no veían ninguna.
+  const planes = await leerPlanes();
+
   return (
     <>
       <Navbar />
@@ -20,7 +26,7 @@ export default function Home() {
         <Workflow />
         <Features />
         <CRMShowcase />
-        <Pricing />
+        <Pricing planes={planes} />
         <FreeTrial />
         <BottomCTA />
       </main>

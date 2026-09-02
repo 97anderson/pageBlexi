@@ -14,21 +14,13 @@ import {
   Users,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import type { PlanDeLaBase } from "@/lib/planes";
 
 import { Reveal } from "@/components/ui/Reveal";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
-
-/** Un plan tal como lo publica la base, a través de /api/planes. */
-type PlanDeLaBase = {
-  slug: string;
-  monthlyPriceCop: number;
-  annualPriceCop: number;
-  annualSavingsCop: number;
-  annualDiscountPct: number;
-};
 
 type Ciclo = "mensual" | "anual";
 
@@ -397,27 +389,39 @@ const pesos = (cop: number) =>
     maximumFractionDigits: 0,
   }).format(cop);
 
-export function Pricing() {
+const porSlug = (planes: PlanDeLaBase[]) => {
+  const mapa: Record<string, PlanDeLaBase> = {};
+  for (const p of planes) mapa[p.slug] = p;
+  return mapa;
+};
+
+/**
+ * `planes` llega del componente de servidor, así que el precio está en el
+ * primer pintado. Con el `fetch` sólo en el navegador, la página abría diciendo
+ * «consulta el precio» y saltaba a la cifra medio segundo después —y los
+ * buscadores, que no siempre ejecutan JS, no veían precio ninguno—.
+ */
+export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
   const [ciclo, setCiclo] = useState<Ciclo>("mensual");
-  const [deLaBase, setDeLaBase] = useState<Record<string, PlanDeLaBase>>({});
+  const [deLaBase, setDeLaBase] = useState<Record<string, PlanDeLaBase>>(
+    porSlug(planes),
+  );
 
   useEffect(() => {
-    // Los precios salen de la base, no de esta página: el que se anuncia y el
-    // que se cobra tienen que venir del mismo sitio.
+    // Sólo si el servidor no los trajo: una página cacheada mucho tiempo puede
+    // quedarse con precios viejos, y esto la pone al día sin recargar.
+    if (planes.length > 0) return;
     let vigente = true;
     fetch("/api/planes")
       .then((r) => r.json())
       .then((datos: { planes?: PlanDeLaBase[] }) => {
-        if (!vigente) return;
-        const porSlug: Record<string, PlanDeLaBase> = {};
-        for (const p of datos.planes ?? []) porSlug[p.slug] = p;
-        setDeLaBase(porSlug);
+        if (vigente) setDeLaBase(porSlug(datos.planes ?? []));
       })
       .catch(() => undefined);
     return () => {
       vigente = false;
     };
-  }, []);
+  }, [planes.length]);
 
   const descuento = Math.max(
     0,
