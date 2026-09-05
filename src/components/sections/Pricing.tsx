@@ -24,6 +24,32 @@ import { Reveal } from "@/components/ui/Reveal";
 
 type Ciclo = "mensual" | "anual";
 
+/**
+ * Una línea del pliego que lleva una cifra del sistema.
+ *
+ * `clave` es la del API público de planes; `defecto` es lo que se pinta si el
+ * API no responde; `ilimitado` es el texto cuando la base dice `-1`.
+ */
+type LineaConCifra = {
+  clave: string;
+  texto: (n: string) => string;
+  defecto: number;
+  ilimitado?: string;
+};
+
+type Linea = string | LineaConCifra;
+
+const numero = (n: number) => n.toLocaleString("es-CO");
+
+/** La línea, con la cifra de la base si llegó y con la escrita si no. */
+function lineaDe(linea: Linea, features: Record<string, number> | undefined): string {
+  if (typeof linea === "string") return linea;
+  const deLaBase = features?.[linea.clave];
+  const n = Number.isFinite(deLaBase) ? (deLaBase as number) : linea.defecto;
+  if (n < 0 && linea.ilimitado) return linea.ilimitado;
+  return linea.texto(numero(n));
+}
+
 type Plan = {
   name: string;
   tagline: string;
@@ -41,7 +67,7 @@ type Plan = {
   ctaHref: string;
   highlighted?: boolean;
   badge?: string;
-  features: string[];
+  features: Linea[];
 };
 
 type CompatGroup = {
@@ -70,16 +96,17 @@ const plans: Plan[] = [
     cta: "Empezar con Plata",
     ctaHref: "https://wa.me/573222393582",
     features: [
-      "500 conversaciones al mes",
+      { clave: "monthly_conversations", defecto: 500, texto: (n) => `${n} conversaciones al mes` },
       "1 línea de WhatsApp activa",
-      "Catálogo hasta 100 productos o servicios",
+      { clave: "max_catalog_products", defecto: 100, texto: (n) => `Catálogo hasta ${n} productos o servicios`, ilimitado: "Catálogo sin tope de productos" },
       "Pedidos y citas automáticas 24/7",
       "Punto de venta para el mostrador",
-            "Domicilios con hasta 3 domiciliarios",
+      { clave: "max_couriers", defecto: 3, texto: (n) => `Domicilios con hasta ${n} domiciliarios`, ilimitado: "Domiciliarios ilimitados" },
       "Cobros desde la conversación",
       "CRM de pedidos, clientes y conversaciones",
-      "Hasta 3 usuarios en el panel",
-            "Configuración inicial incluida",
+      { clave: "max_crm_users", defecto: 3, texto: (n) => `Hasta ${n} usuarios en el panel`, ilimitado: "Usuarios del panel ilimitados" },
+      "Amplía cuando lo necesites: paquetes de 100, 200 o 500 conversaciones",
+      "Configuración inicial incluida",
       "Soporte por WhatsApp",
     ],
   },
@@ -96,17 +123,18 @@ const plans: Plan[] = [
     highlighted: true,
     badge: "Más popular",
     features: [
-      "1.000 conversaciones al mes",
+      { clave: "monthly_conversations", defecto: 1000, texto: (n) => `${n} conversaciones al mes` },
       "1 línea de WhatsApp activa",
-      "Catálogo hasta 500 productos o servicios",
+      { clave: "max_catalog_products", defecto: 500, texto: (n) => `Catálogo hasta ${n} productos o servicios`, ilimitado: "Catálogo sin tope de productos" },
       "Pedidos, citas y pagos online integrados",
-      "Domicilios con hasta 10 domiciliarios",
-      "Notas de voz (500/mes)",
-      "Búsqueda por foto (500/mes)",
-      "Hasta 10 usuarios en el panel",
+      { clave: "max_couriers", defecto: 10, texto: (n) => `Domicilios con hasta ${n} domiciliarios`, ilimitado: "Domiciliarios ilimitados" },
+      { clave: "voice_notes_limit", defecto: 500, texto: (n) => `Notas de voz (${n}/mes)`, ilimitado: "Notas de voz sin tope" },
+      { clave: "vision_monthly_limit", defecto: 500, texto: (n) => `Búsqueda por foto (${n}/mes)`, ilimitado: "Búsqueda por foto sin tope" },
+      { clave: "max_crm_users", defecto: 10, texto: (n) => `Hasta ${n} usuarios en el panel`, ilimitado: "Usuarios del panel ilimitados" },
       "CRM con seguimiento en tiempo real",
-            "Panel de analíticas y tasa de conversión",
-            "Optimización mensual incluida",
+      "Panel de analíticas y tasa de conversión",
+      "Amplía cuando lo necesites: paquetes de 100, 200 o 500 conversaciones",
+      "Optimización mensual incluida",
       "Soporte prioritario — respuesta en 1 día hábil",
     ],
   },
@@ -121,11 +149,13 @@ const plans: Plan[] = [
     cta: "Escalar con Platino",
     ctaHref: "https://wa.me/573222393582",
     features: [
-      "2.200 conversaciones al mes",
+      { clave: "monthly_conversations", defecto: 2200, texto: (n) => `${n} conversaciones al mes` },
       "Todo lo del plan Oro incluido",
-      "Catálogo hasta 2.000 productos o servicios",
-      "Notas de voz: 2.000 al mes",
-      "Domiciliarios y usuarios del panel ilimitados",
+      { clave: "max_catalog_products", defecto: 2000, texto: (n) => `Catálogo hasta ${n} productos o servicios`, ilimitado: "Catálogo sin tope de productos" },
+      { clave: "voice_notes_limit", defecto: 2000, texto: (n) => `Notas de voz: ${n} al mes`, ilimitado: "Notas de voz sin tope" },
+      { clave: "vision_monthly_limit", defecto: 2000, texto: (n) => `Búsqueda por foto: ${n} al mes`, ilimitado: "Búsqueda por foto sin tope" },
+      { clave: "max_couriers", defecto: -1, texto: (n) => `Domicilios con hasta ${n} domiciliarios`, ilimitado: "Domiciliarios ilimitados" },
+      { clave: "max_crm_users", defecto: -1, texto: (n) => `Hasta ${n} usuarios en el panel`, ilimitado: "Usuarios del panel ilimitados" },
       "Segmentos de clientes por valor y recencia",
       "Alertas de tu negocio: stock que se acaba, clientes que se enfrían, ventas que bajan",
       "Entrena al agente con tu información",
@@ -612,7 +642,12 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
                       );
                     })()}
                     <p className="mt-1.5 text-xs font-medium text-brand-textMuted">
-                      {plan.conversations}
+                      {(() => {
+                        const n = deLaBase[SLUG_POR_NOMBRE[plan.name] ?? ""]?.features?.monthly_conversations;
+                        return Number.isFinite(n) && (n as number) > 0
+                          ? `${numero(n as number)} conversaciones / mes`
+                          : plan.conversations;
+                      })()}
                     </p>
                     {/* Savings badge */}
                     <div
@@ -660,7 +695,7 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
 
                   {/* Features */}
                   <ul className="mt-8 flex-1 space-y-3 border-t border-slate-100 pt-6">
-                    {plan.features.map((f) => (
+                    {plan.features.map((linea) => lineaDe(linea, deLaBase[SLUG_POR_NOMBRE[plan.name] ?? ""]?.features)).map((f) => (
                       <li key={f} className="flex items-start gap-3 text-sm">
                         <span
                           className={

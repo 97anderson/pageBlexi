@@ -14,6 +14,14 @@ export type PlanDeLaBase = {
   annualPriceCop: number;
   annualSavingsCop: number;
   annualDiscountPct: number;
+  /**
+   * Los topes públicos del plan tal como los aplica el sistema —conversaciones,
+   * catálogo, usuarios, domiciliarios, notas de voz, fotos—. La página los
+   * pinta desde aquí para que lo prometido y lo que corta el sistema sean el
+   * mismo número; escritos a mano se desviaron (3 usuarios en la página, 2 en
+   * la base) sin que nadie lo notara.
+   */
+  features?: Record<string, number>;
 };
 
 const API =
