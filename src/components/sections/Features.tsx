@@ -26,8 +26,8 @@ const features: Feature[] = [
     headline: "Los audios no quedan sin responder",
     description:
       "En LATAM la mayoría habla por nota de voz. Blexi las transcribe, entiende el contexto y responde igual que si fuera texto. Ningún cliente sin atención.",
-    badge: "Plan Oro y Platino",
-    premium: true,
+    badge: "Todos los planes",
+    premium: false,
   },
   {
     icon: RefreshCw,
