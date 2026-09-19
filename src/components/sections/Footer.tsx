@@ -14,7 +14,7 @@ const groups = [
   {
     title: "Compañía",
     links: [
-      { label: "BlueCode Solutions", href: "https://bluecodesolution.com" },
+      { label: "BlueCodeSolutions", href: "https://bluecodesolution.com" },
       { label: "Contacto", href: "#cta" },
     ],
   },
@@ -54,7 +54,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="font-semibold text-slate-600 hover:underline"
               >
-                BlueCode Solutions
+                BlueCodeSolutions
               </a>
             </p>
           </div>
