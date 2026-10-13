@@ -220,6 +220,12 @@ export default function PrivacidadPage() {
             conforme a sus propias políticas de privacidad, sobre las que te
             recomendamos informarte.
           </LLI>
+          <LLI>
+            Si conectaste tu cuenta de Meta con BLEXI, en{" "}
+            <LA href="/eliminacion-de-datos">Eliminación de datos</LA> explicamos
+            qué datos de la integración guardamos, cómo pedir que los borremos y
+            cómo quitarle el acceso a la app desde Facebook.
+          </LLI>
         </LUL>
       </LegalSection>
 
@@ -340,6 +346,12 @@ export default function PrivacidadPage() {
           , indicando tu nombre, el derecho que deseas ejercer y la información
           que permita atender tu petición. Responderemos dentro de los plazos
           establecidos por la ley colombiana.
+        </LP>
+        <LP>
+          Para pedir la eliminación de los datos de tu cuenta o de tu conexión
+          con Meta (WhatsApp, Facebook o Instagram), sigue las{" "}
+          <LA href="/eliminacion-de-datos">instrucciones de eliminación de datos</LA>
+          .
         </LP>
         <LP>
           Si eres un usuario final y tus datos fueron tratados por cuenta de un

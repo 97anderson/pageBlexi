@@ -41,6 +41,7 @@ npm run start
 - `/terminos`
 - `/privacidad`
 - `/tratamiento-de-datos`
+- `/eliminacion-de-datos` (instrucciones de eliminación de datos que pide Meta para la app)
 
 ## Deploy
 
