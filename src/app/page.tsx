@@ -10,6 +10,7 @@ import { PainVsSolution } from "@/components/sections/PainVsSolution";
 import { Pricing } from "@/components/sections/Pricing";
 import { Workflow } from "@/components/sections/Workflow";
 import { StickyWhatsAppCTA } from "@/components/StickyWhatsAppCTA";
+import { WHATSAPP_PRUEBA, enlaceWhatsApp } from "@/lib/contacto";
 
 export default async function Home() {
   // Los precios se leen aquí, en el servidor, para que estén en el primer
@@ -30,7 +31,7 @@ export default async function Home() {
         <FreeTrial />
         <BottomCTA />
       </main>
-      <StickyWhatsAppCTA href="https://wa.me/15055787905" />
+      <StickyWhatsAppCTA href={enlaceWhatsApp(WHATSAPP_PRUEBA)} />
       <Footer />
     </>
   );

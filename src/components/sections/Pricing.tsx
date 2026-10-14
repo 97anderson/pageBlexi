@@ -9,14 +9,20 @@ import {
   Clock,
   Shield,
   Sparkles,
-  Store,
   Star,
   Users,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { PlanDeLaBase } from "@/lib/planes";
+import {
+  CIERRE_DE_LANZAMIENTO,
+  DESCUENTO_DE_LANZAMIENTO_PCT,
+  MESES_DE_LANZAMIENTO,
+  PRECIO_DE_LANZAMIENTO_COP,
+} from "@/lib/lanzamiento";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { WHATSAPP_VENTAS, enlaceRegistro, enlaceWhatsApp } from "@/lib/contacto";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -94,13 +100,12 @@ const plans: Plan[] = [
       "Tu primer asesor de IA en WhatsApp. Atiende, responde y cierra pedidos mientras descansas.",
     savingsBadge: "Menos que un asesor de medio tiempo",
     cta: "Empezar con Plata",
-    ctaHref: "https://wa.me/573222393582",
+    ctaHref: enlaceRegistro("plata"),
     features: [
       { clave: "monthly_conversations", defecto: 500, texto: (n) => `${n} conversaciones al mes` },
       "1 línea de WhatsApp activa",
       { clave: "max_catalog_products", defecto: 100, texto: (n) => `Catálogo hasta ${n} productos o servicios`, ilimitado: "Catálogo sin tope de productos" },
       "Pedidos y citas automáticas 24/7",
-      "Punto de venta para el mostrador",
       { clave: "max_couriers", defecto: 3, texto: (n) => `Domicilios con hasta ${n} domiciliarios`, ilimitado: "Domiciliarios ilimitados" },
       { clave: "voice_notes_limit", defecto: 100, texto: (n) => `Notas de voz (${n}/mes)`, ilimitado: "Notas de voz sin tope" },
       "Cobros desde la conversación",
@@ -120,7 +125,7 @@ const plans: Plan[] = [
       "Más volumen, analíticas y cinco veces más audios y fotos de tus clientes. El favorito de quienes quieren crecer sin contratar más.",
     savingsBadge: "Ahorra +$1.1M vs. asesor full-time",
     cta: "Quiero el plan Oro",
-    ctaHref: "https://wa.me/15055787905",
+    ctaHref: enlaceRegistro("oro"),
     highlighted: true,
     badge: "Más popular",
     features: [
@@ -135,20 +140,19 @@ const plans: Plan[] = [
       "CRM con seguimiento en tiempo real",
       "Panel de analíticas y tasa de conversión",
       "Amplía cuando lo necesites: paquetes de 100, 200 o 500 que suman conversaciones, notas de voz y fotos",
-      "Optimización mensual incluida",
-      "Soporte prioritario — respuesta en 1 día hábil",
+      "Soporte por WhatsApp",
     ],
   },
   {
-    name: "Platino",
+    name: "Diamante",
     tagline: "Para escalar",
     price: "$1.990.000",
     conversations: "2.200 conversaciones / mes",
     description:
       "Alto volumen, tu base de clientes ordenada por valor y el conocimiento del agente en tus manos. Para negocios que ya crecieron.",
     savingsBadge: "10× la capacidad al costo de 1 empleado",
-    cta: "Escalar con Platino",
-    ctaHref: "https://wa.me/573222393582",
+    cta: "Escalar con Diamante",
+    ctaHref: enlaceRegistro("platino"),
     features: [
       { clave: "monthly_conversations", defecto: 2200, texto: (n) => `${n} conversaciones al mes` },
       "Todo lo del plan Oro incluido",
@@ -159,10 +163,9 @@ const plans: Plan[] = [
       { clave: "max_crm_users", defecto: 10, texto: (n) => `Hasta ${n} usuarios en el panel`, ilimitado: "Usuarios del panel ilimitados" },
       "Segmentos de clientes por valor y recencia",
       "Alertas de tu negocio: stock que se acaba, clientes que se enfrían, ventas que bajan",
-      "Entrena al agente con tu información",
       "Amplía cuando lo necesites: paquetes de 100, 200 o 500 que suman conversaciones, notas de voz y fotos",
       "Onboarding personalizado con tu equipo",
-      "Soporte dedicado — respuesta en 12 h",
+      "Soporte por WhatsApp",
     ],
   },
 ];
@@ -224,7 +227,7 @@ const planCompat: Record<string, PlanCompat> = {
       ],
     },
   },
-  Platino: {
+  Diamante: {
     ideal: {
       items: [
         { emoji: "🍔", label: "Restaurantes de muy alto volumen" },
@@ -263,7 +266,7 @@ function PlanBusinessTypes({
   if (!compat) return null;
 
   // All plan cards share a white background. Oro (highlighted) gets a
-  // cyan accent; Plata/Platino get a neutral slate style.
+  // cyan accent; Plata/Diamante get a neutral slate style.
   const toggleBg = highlighted
     ? "border-cyan-300 bg-cyan-50 text-cyan-700 hover:bg-cyan-100"
     : "border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100";
@@ -377,9 +380,9 @@ const allPlansInclude = [
     desc: "Sin importar el volumen",
   },
   {
-    icon: Store,
-    label: "Punto de venta incluido",
-    desc: "El mostrador y el chat, un solo inventario",
+    icon: Sparkles,
+    label: "15 días gratis",
+    desc: "Sin tarjeta. Luego pagas por transferencia o Nequi",
   },
   {
     icon: Shield,
@@ -409,7 +412,8 @@ const comparisonStats = [
 const SLUG_POR_NOMBRE: Record<string, string> = {
   Plata: "plata",
   Oro: "oro",
-  Platino: "platino",
+  // «Diamante» es el nombre que se ve; el identificador en la base sigue siendo «platino».
+  Diamante: "platino",
 };
 
 const pesos = (cop: number) =>
@@ -463,7 +467,9 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
   );
 
   /** El plan más barato, para el «desde». Nulo mientras no haya datos. */
-  const precios = Object.values(deLaBase).map((p) => p.monthlyPriceCop);
+  const precios = Object.values(deLaBase).map(
+    (p) => PRECIO_DE_LANZAMIENTO_COP[p.slug] ?? p.monthlyPriceCop,
+  );
   const desdeCop = precios.length ? Math.min(...precios) : null;
 
   return (
@@ -480,6 +486,9 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
           <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
             Planes Pyme · Colombia · LATAM
           </span>
+          <p className="mx-auto mt-4 w-fit rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 px-4 py-1.5 text-xs font-semibold text-white shadow-md shadow-cyan-500/30">
+            Lanzamiento: {DESCUENTO_DE_LANZAMIENTO_PCT}% menos los primeros {MESES_DE_LANZAMIENTO} meses
+          </p>
           <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-textDark sm:text-5xl">
             Menos que pagar{" "}
             <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
@@ -624,16 +633,39 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
                       }
                       const anual =
                         ciclo === "anual" && Number.isFinite(dato.annualPriceCop);
+                      const lanzamiento = anual
+                        ? undefined
+                        : PRECIO_DE_LANZAMIENTO_COP[dato.slug];
                       return (
                         <>
-                          <div className="flex items-end gap-1.5">
+                          {lanzamiento !== undefined && (
+                            <p className="text-sm font-medium text-brand-textMuted">
+                              <span className="line-through">
+                                {pesos(dato.monthlyPriceCop)}
+                              </span>{" "}
+                              <span className="ml-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-700">
+                                −{DESCUENTO_DE_LANZAMIENTO_PCT}%
+                              </span>
+                            </p>
+                          )}
+                          <div className="mt-1 flex items-end gap-1.5">
                             <span className="font-grotesk text-[2.75rem] font-extrabold leading-none tracking-tight text-brand-textDark">
-                              {pesos(anual ? dato.annualPriceCop : dato.monthlyPriceCop)}
+                              {pesos(
+                                anual
+                                  ? dato.annualPriceCop
+                                  : (lanzamiento ?? dato.monthlyPriceCop),
+                              )}
                             </span>
                             <span className="mb-1 text-sm font-medium text-brand-textMuted">
                               COP / {anual ? "año" : "mes"}
                             </span>
                           </div>
+                          {lanzamiento !== undefined && (
+                            <p className="mt-1 text-xs font-semibold text-emerald-700">
+                              Los primeros {MESES_DE_LANZAMIENTO} meses · IVA incluido. Luego{" "}
+                              {pesos(dato.monthlyPriceCop)}/mes.
+                            </p>
+                          )}
                           {anual && dato.annualSavingsCop > 0 && (
                             <p className="mt-1 text-xs font-semibold text-emerald-700">
                               Ahorras {pesos(dato.annualSavingsCop)} frente a doce meses
@@ -717,6 +749,22 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
           ))}
         </div>
 
+        {/* ── Adicionales y letra pequeña del lanzamiento ── */}
+        <Reveal delay={0.25} className="mx-auto mt-8 max-w-4xl space-y-3 text-center text-xs leading-relaxed text-brand-textMuted">
+          <p>
+            <strong className="font-semibold text-brand-textDark">Adicionales, con costo aparte:</strong>{" "}
+            Ana, la asistente del dueño, $50.000 / $90.000 / $150.000 al mes según el plan (el
+            primer mes es gratis) · Sofía, de marketing, $55.000 / $99.000 / $169.000 al mes según
+            el plan.
+          </p>
+          <p>
+            Precio de lanzamiento temporal: aplica a los primeros {MESES_DE_LANZAMIENTO} meses de
+            pago para negocios que se registren hasta el {CIERRE_DE_LANZAMIENTO}. Valores en pesos
+            colombianos con IVA incluido. Después rige el precio de lista vigente. Los precios y
+            condiciones pueden cambiar.
+          </p>
+        </Reveal>
+
         {/* ── Enterprise card ── */}
         <Reveal delay={0.3} className="mt-6">
           <div className="overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-800 p-8 shadow-lg">
@@ -739,7 +787,7 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
                     </span>
                   </div>
                   <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/70">
-                    ¿Tu operación se sale de Platino? Hablemos. Armamos el
+                    ¿Tu operación se sale de Diamante? Hablemos. Armamos el
                     alcance y el precio contigo, sin cuotas que te queden
                     cortas. Nos sentamos, miramos tus números y te decimos qué
                     podemos hacer hoy y qué no.
@@ -768,7 +816,7 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
               </div>
               <div className="shrink-0">
                 <a
-                  href="https://wa.me/573222393582"
+                  href={enlaceWhatsApp(WHATSAPP_VENTAS)}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex h-12 items-center gap-2 rounded-2xl bg-white px-7 text-sm font-semibold text-slate-900 shadow-md transition hover:bg-slate-100"
@@ -811,7 +859,7 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
             Sin contratos eternos · Cancela cuando quieras · Pymes en toda
             Colombia y LATAM ·{" "}
             <a
-              href="https://wa.me/573222393582"
+              href={enlaceWhatsApp(WHATSAPP_VENTAS)}
               target="_blank"
               rel="noreferrer"
               className="font-semibold text-brand-primary hover:underline"

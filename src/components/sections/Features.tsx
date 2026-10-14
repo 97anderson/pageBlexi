@@ -17,7 +17,7 @@ type Feature = {
   headline: string;
   description: string;
   badge: string;
-  premium: boolean; // true = solo Oro/Platino  |  false = todos los planes
+  premium: boolean; // true = solo Oro/Diamante  |  false = todos los planes
 };
 
 const features: Feature[] = [
@@ -50,7 +50,7 @@ const features: Feature[] = [
     headline: "El cliente paga sin salir de WhatsApp",
     description:
       "Genera link de pago, recibe el comprobante y confirma la orden automáticamente. Nequi, PSE o tarjeta. El pedido queda cerrado.",
-    badge: "Plan Oro y Platino",
+    badge: "Plan Oro y Diamante",
     premium: true,
   },
   {

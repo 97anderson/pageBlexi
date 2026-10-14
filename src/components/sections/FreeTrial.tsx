@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, MessageCircle, Sparkles, Zap } from "lucide-react";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
 
 const trialSteps = [
   {
@@ -19,7 +20,7 @@ const trialSteps = [
   {
     step: "03",
     title: "Blexi entra en acción",
-    desc: "En menos de 24h tu agente está atendiendo WhatsApp y cerrando ventas.",
+    desc: "Te acompañamos a dejarlo listo: catálogo, horarios y tu WhatsApp.",
   },
 ];
 
@@ -52,14 +53,14 @@ export function FreeTrial() {
             Sin riesgo · Sin tarjeta · Sin compromisos
           </span>
           <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-textDark sm:text-5xl">
-            14 días gratis.{" "}
+            15 días gratis.{" "}
             <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
               Prueba Blexi
             </span>{" "}
             con tu propio negocio.
           </h2>
           <p className="mt-5 text-lg text-brand-textMuted">
-            Configura tu agente, carga tu catálogo y déjalo trabajar. Si en 14 días no ves resultados, no pagas nada.
+            Configura tu agente, carga tu catálogo y déjalo trabajar. Si en 15 días no ves resultados, no pagas nada.
           </p>
         </Reveal>
 
@@ -94,7 +95,7 @@ export function FreeTrial() {
                 <div className="flex items-center gap-2">
                   <Zap className="size-5 text-brand-primary" strokeWidth={2.5} aria-hidden />
                   <h3 className="font-grotesk text-xl font-bold text-brand-textDark">
-                    Incluido en los 14 días gratis
+                    Incluido en los 15 días gratis
                   </h3>
                 </div>
                 <ul className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -118,13 +119,11 @@ export function FreeTrial() {
               <div className="flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-slate-900 to-slate-800 p-8 lg:min-w-[280px] lg:p-10">
                 <div className="text-center">
                   <p className="text-4xl font-extrabold text-white font-grotesk">$0</p>
-                  <p className="mt-1 text-sm text-slate-400">durante 14 días</p>
+                  <p className="mt-1 text-sm text-slate-400">durante 15 días</p>
                 </div>
 
                 <motion.a
-                  href="https://wa.me/573222393582?text=Hola!%20Quiero%20empezar%20mi%20prueba%20gratuita%20de%2014%20d%C3%ADas%20de%20Blexi"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="#precios"
                   whileHover={{ scale: 1.03, y: -1 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 450, damping: 22 }}
@@ -136,7 +135,7 @@ export function FreeTrial() {
                 </motion.a>
 
                 <motion.a
-                  href="https://wa.me/573222393582"
+                  href={enlaceWhatsApp(WHATSAPP_VENTAS)}
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ scale: 1.02 }}

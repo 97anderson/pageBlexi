@@ -273,14 +273,14 @@ export function CRMShowcase() {
                   </div>
                   <div className="mt-4 flex items-center gap-3">
                     <div className="flex -space-x-2.5">
-                      {[12, 33, 47, 68, 5].map((id) => (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          key={id}
-                          src={`https://i.pravatar.cc/64?img=${id}`}
-                          alt=""
-                          className="size-9 rounded-full border-2 border-slate-900 object-cover"
-                        />
+                      {["MC", "JR", "LP", "AS", "DG"].map((iniciales) => (
+                        <span
+                          key={iniciales}
+                          aria-hidden
+                          className="flex size-9 items-center justify-center rounded-full border-2 border-slate-900 bg-gradient-to-tr from-cyan-500 to-purple-500 text-[10px] font-bold text-white"
+                        >
+                          {iniciales}
+                        </span>
                       ))}
                     </div>
                     <p className="text-xs text-slate-300">
