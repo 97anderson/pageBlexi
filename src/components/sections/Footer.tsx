@@ -24,6 +24,7 @@ const groups = [
       { label: "Términos", href: "/terminos" },
       { label: "Privacidad", href: "/privacidad" },
       { label: "Tratamiento de datos", href: "/tratamiento-de-datos" },
+      { label: "Eliminación de datos", href: "/eliminacion-de-datos" },
     ],
   },
 ];
