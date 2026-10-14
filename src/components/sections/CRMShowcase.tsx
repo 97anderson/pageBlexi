@@ -13,9 +13,9 @@ import {
 import { Reveal } from "@/components/ui/Reveal";
 
 const stats = [
-  { label: "Ejemplo: ventas hoy", value: "$2.350.000", trend: "+18.4%" },
-  { label: "Ejemplo: pedidos activos", value: "27", trend: "+6" },
-  { label: "Ejemplo: clientes nuevos", value: "12", trend: "+3" },
+  { label: "Ventas hoy", value: "$2.350.000", trend: "+18.4%" },
+  { label: "Pedidos activos", value: "27", trend: "+6" },
+  { label: "Clientes nuevos", value: "12", trend: "+3" },
 ];
 
 const orders = [

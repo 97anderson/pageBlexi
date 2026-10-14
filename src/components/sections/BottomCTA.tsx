@@ -60,6 +60,9 @@ export function BottomCTA() {
                   Empezar gratis — 15 días
                   <ArrowRight className="size-5" strokeWidth={2.4} />
                 </motion.a>
+                <p className="text-center text-xs text-white/60 lg:text-right">
+                  Sin tarjeta · cancelas cuando quieras
+                </p>
                 <motion.a
                   href={enlaceWhatsApp(WHATSAPP_VENTAS)}
                   target="_blank"

@@ -719,6 +719,9 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
                       <ArrowRight className="size-4" aria-hidden />
                     )}
                   </a>
+                  <p className="mt-2 text-center text-[11px] font-medium text-brand-textMuted">
+                    15 días gratis · sin tarjeta · cancelas cuando quieras
+                  </p>
 
                   {/* ── Business type compatibility toggle ── */}
                   <PlanBusinessTypes

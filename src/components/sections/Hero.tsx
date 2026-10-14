@@ -7,6 +7,7 @@ import { LiveChatSimulation } from "./LiveChatSimulation";
 import { BlexiMark } from "@/components/brand/BlexiMark";
 import { WHATSAPP_PRUEBA, WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
 import {
+  CIERRE_DE_LANZAMIENTO,
   MESES_DE_LANZAMIENTO,
   PRECIO_DE_LANZAMIENTO_COP,
 } from "@/lib/lanzamiento";
@@ -129,7 +130,8 @@ export function Hero() {
             <span className="font-semibold text-brand-textDark">
               Desde {desde}/mes
             </span>{" "}
-            los primeros {MESES_DE_LANZAMIENTO} meses ·{" "}
+            los primeros {MESES_DE_LANZAMIENTO} meses, para quien se registre hasta el{" "}
+            {CIERRE_DE_LANZAMIENTO} ·{" "}
             <span className="font-semibold text-brand-textDark">15 días gratis</span>, sin
             tarjeta ·{" "}
             <a

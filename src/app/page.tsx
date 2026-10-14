@@ -1,5 +1,6 @@
 import { leerPlanes } from "@/lib/planes";
 import { BottomCTA } from "@/components/sections/BottomCTA";
+import { Faq } from "@/components/sections/Faq";
 import { CRMShowcase } from "@/components/sections/CRMShowcase";
 import { Features } from "@/components/sections/Features";
 import { Footer } from "@/components/sections/Footer";
@@ -29,6 +30,7 @@ export default async function Home() {
         <CRMShowcase />
         <Pricing planes={planes} />
         <FreeTrial />
+        <Faq />
         <BottomCTA />
       </main>
       <StickyWhatsAppCTA href={enlaceWhatsApp(WHATSAPP_PRUEBA)} />

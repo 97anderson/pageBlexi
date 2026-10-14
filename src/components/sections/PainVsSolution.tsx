@@ -55,6 +55,14 @@ const winPoints = [
   },
 ];
 
+const teSuena = [
+  "Contesto a las 11 de la noche y el cliente ya compró en otro lado",
+  "Todo el día me preguntan lo mismo: ¿precio?, ¿hacen domicilio?",
+  "Mientras atiendo el mostrador se me acumulan los chats",
+  "Me mandan un audio de dos minutos y no tengo cómo escucharlo",
+  "Pedidos que quedan a medias y nunca vuelvo a escribirles",
+];
+
 export function PainVsSolution() {
   return (
     <section className="relative py-24 lg:py-32">
@@ -74,6 +82,24 @@ export function PainVsSolution() {
           <p className="mt-5 text-lg text-brand-textMuted">
             Dos formas de vivir tu negocio. Tú eliges cuál mereces.
           </p>
+        </Reveal>
+
+        {/* ¿Te suena? Frases en la voz del dueño: lo que se vive vendiendo por
+            chat, no testimonios de clientes. */}
+        <Reveal delay={0.03} className="mx-auto mt-10 max-w-4xl">
+          <p className="text-center text-sm font-bold uppercase tracking-wider text-brand-textMuted">
+            ¿Te suena?
+          </p>
+          <ul className="mt-4 flex flex-wrap justify-center gap-2.5">
+            {teSuena.map((frase) => (
+              <li
+                key={frase}
+                className="rounded-2xl rounded-bl-md border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-700 shadow-sm"
+              >
+                «{frase}»
+              </li>
+            ))}
+          </ul>
         </Reveal>
 
         <Reveal delay={0.05} className="mx-auto mt-14 max-w-5xl">
@@ -121,7 +147,7 @@ export function PainVsSolution() {
 
                 <div className="mt-8 flex items-center gap-3 text-xs font-semibold text-red-600">
                   <Clock className="size-4" aria-hidden />
-                  Tiempo perdido: 4–6 h/día · Ventas sin recuperar: hasta el 30%
+                  Cada mensaje sin responder es una venta que se va a la competencia
                 </div>
               </div>
             </motion.div>
