@@ -8,6 +8,7 @@ import {
   DESCUENTO_DE_LANZAMIENTO_PCT,
   MESES_DE_LANZAMIENTO,
 } from "@/lib/lanzamiento";
+import { WHATSAPP_PRUEBA, enlaceWhatsApp } from "@/lib/contacto";
 
 const links = [
   { label: "Producto", href: "#flujo" },
@@ -58,7 +59,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://wa.me/573222393582"
+            href={enlaceWhatsApp(WHATSAPP_PRUEBA)}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-cyan-500/40 transition hover:bg-brand-primaryHover hover:shadow-lg hover:shadow-cyan-500/50"

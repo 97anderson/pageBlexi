@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, MessageCircle, Sparkles, Zap } from "lucide-react";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
 
 const trialSteps = [
   {
@@ -122,7 +123,7 @@ export function FreeTrial() {
                 </div>
 
                 <motion.a
-                  href="https://wa.me/573222393582?text=Hola!%20Quiero%20empezar%20mi%20prueba%20gratuita%20de%2014%20d%C3%ADas%20de%20Blexi"
+                  href={enlaceWhatsApp(WHATSAPP_VENTAS, "¡Hola! Quiero empezar mi prueba gratuita de 15 días de Blexi")}
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ scale: 1.03, y: -1 }}
@@ -136,7 +137,7 @@ export function FreeTrial() {
                 </motion.a>
 
                 <motion.a
-                  href="https://wa.me/573222393582"
+                  href={enlaceWhatsApp(WHATSAPP_VENTAS)}
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ scale: 1.02 }}

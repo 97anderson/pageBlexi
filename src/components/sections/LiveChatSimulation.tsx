@@ -25,30 +25,47 @@ type Message = {
   time?: string;
 };
 
-const PHASE_MS = 3200;
+const PHASE_MS = 2800;
 
+// Un domicilio de comida: el tipo de negocio que más escribe por WhatsApp.
+// La conversación arranca ya empezada para que el primer vistazo no sea un
+// chat vacío.
 const customer1: Message = {
   id: "c1",
   sender: "customer",
-  text: "Hola, ¿tienen disponibles los AirPods Pro?",
-  time: "10:42",
+  text: "Hola! Me mandas 2 hamburguesas dobles y una gaseosa? 🍔",
+  time: "9:41 p. m.",
 };
-
-const typing: Message = { id: "typing", sender: "typing", text: "" };
 
 const blexi1: Message = {
   id: "b1",
   sender: "blexi",
-  text: "¡Hola! Sí, te los tengo en $850.000 con envío gratis a Bogotá. ¿Te genero el link de pago? 💳",
-  time: "10:42",
+  text: "¡Claro! 2 Doble Carne + Coca-Cola 1.5 L = $54.000, domicilio $5.000. ¿Pagas por Nequi o en efectivo? 🛵",
+  time: "9:41 p. m.",
 };
 
 const customer2: Message = {
   id: "c2",
   sender: "customer",
-  text: "¡Sí, gracias!",
-  time: "10:43",
+  text: "Nequi porfa",
+  time: "9:42 p. m.",
 };
+
+const typing: Message = { id: "typing", sender: "typing", text: "" };
+
+const blexi2: Message = {
+  id: "b2",
+  sender: "blexi",
+  text: "Listo ✅ Te dejo el pago aquí. Tu pedido sale en 25 minutos.",
+  time: "9:42 p. m.",
+};
+
+/** Otros clientes escribiendo a la vez: entran por fuera del celular. */
+const notificaciones = [
+  { id: "n1", nombre: "Laura", texto: "¿Tienen domicilio hoy?" },
+  { id: "n2", nombre: "Andrés", texto: "🎤 Nota de voz (0:12)" },
+  { id: "n3", nombre: "Camila", texto: "¿Me reservas para el sábado?" },
+];
 
 function TypingDots() {
   return (
@@ -89,23 +106,57 @@ export function LiveChatSimulation() {
   const messages: Message[] = (() => {
     switch (phase) {
       case 0:
-        return [customer1];
-      case 1:
-        return [customer1, typing];
-      case 2:
         return [customer1, blexi1];
-      case 3:
+      case 1:
         return [customer1, blexi1, customer2];
+      case 2:
+        return [customer1, blexi1, customer2, typing];
       default:
-        return [customer1];
+        return [customer1, blexi1, customer2, blexi2];
     }
   })();
 
   return (
-    <div className="relative mx-auto w-full max-w-[380px]">
+    <div className="relative mx-auto mt-20 w-full max-w-[400px] lg:mt-16 lg:rotate-[-2deg]">
+      {/* Otro cliente escribiendo a la vez: el aviso entra por arriba y queda
+          respondido, uno distinto en cada fase. */}
+      <div className="pointer-events-none absolute inset-x-6 -top-[4.5rem] z-20 h-14" aria-hidden>
+        <AnimatePresence mode="wait">
+          {(() => {
+            const n = notificaciones[phase % notificaciones.length];
+            return (
+              <motion.div
+                key={n.id}
+                initial={{ opacity: 0, y: -16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ type: "spring", stiffness: 300, damping: 26 }}
+                className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/90 px-3 py-2 text-xs shadow-lg shadow-slate-300/50 backdrop-blur-md"
+              >
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-[11px] font-bold text-white">
+                  {n.nombre[0]}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-slate-800">{n.nombre}</p>
+                  <p className="truncate text-slate-500">{n.texto}</p>
+                </div>
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.7 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.2 }}
+                  className="flex shrink-0 items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700"
+                >
+                  <CheckCheck className="size-3" /> Respondido
+                </motion.span>
+              </motion.div>
+            );
+          })()}
+        </AnimatePresence>
+      </div>
+
       {/* Floating side toast: AI thinking */}
       <AnimatePresence>
-        {phase === 1 ? (
+        {phase === 2 ? (
           <motion.div
             key="toast-ai"
             initial={{ opacity: 0, x: -12, y: -4 }}
@@ -135,9 +186,9 @@ export function LiveChatSimulation() {
               <Zap className="size-3.5" strokeWidth={2.5} aria-hidden />
             </span>
             <span className="leading-tight">
-              Venta cerrada
+              Pedido en tu CRM
               <span className="block text-[11px] font-medium text-slate-500">
-                $850.000 COP
+                #1042 · $59.000
               </span>
             </span>
           </motion.div>
@@ -193,7 +244,7 @@ export function LiveChatSimulation() {
         </div>
 
         {/* Messages */}
-        <div className="relative flex max-h-[360px] min-h-[300px] flex-col gap-2.5 overflow-y-auto bg-[#ECE5DD] px-3 py-4">
+        <div className="relative flex max-h-[400px] min-h-[380px] flex-col gap-2.5 overflow-y-auto bg-[#ECE5DD] px-3 py-4">
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.28]"
             aria-hidden
@@ -264,13 +315,13 @@ export function LiveChatSimulation() {
               >
                 <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50/60 px-3 py-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                   <CreditCard className="size-3.5 text-brand-primary" />
-                  Link de pago
+                  Pago por Nequi
                 </div>
                 <div className="flex items-center justify-between gap-3 p-3">
                   <div>
-                    <p className="text-xs text-slate-500">AirPods Pro · 1u</p>
+                    <p className="text-xs text-slate-500">Pedido #1042 · 3 productos</p>
                     <p className="font-grotesk text-base font-bold text-brand-textDark">
-                      $850.000
+                      $59.000
                     </p>
                   </div>
                   <span className="rounded-full bg-brand-primary px-3 py-1.5 text-xs font-semibold text-white">
