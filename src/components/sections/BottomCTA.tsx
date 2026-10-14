@@ -26,20 +26,15 @@ export function BottomCTA() {
               className="pointer-events-none absolute -right-32 -bottom-32 size-[28rem] rounded-full bg-purple-500/25 blur-3xl"
               aria-hidden
             />
-            <div
-              className="pointer-events-none absolute inset-0 bg-grid-dark opacity-50"
-              aria-hidden
-            />
 
             <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-cyan-300 backdrop-blur-md">
-                  <Sparkles className="size-3.5" aria-hidden />
+                <span className="etiqueta etiqueta-clara">
                   El futuro ya llegó
                 </span>
                 <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                   El futuro de las Pymes está aquí.{" "}
-                  <span className="bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
+                  <span className="acento acento-claro">
                     Prueba Blexi 15 días gratis.
                   </span>
                 </h2>

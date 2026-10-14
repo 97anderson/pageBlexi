@@ -17,7 +17,7 @@ const config: Config = {
           aiMagic: "#A855F7",
           aiMagicSoft: "#C084FC",
           whatsapp: "#25D366",
-          bgMain: "#F8FAFC",
+          bgMain: "#F6F4EF",
           surface: "#FFFFFF",
           textDark: "#0F172A",
           textMuted: "#475569",
@@ -82,6 +82,8 @@ const config: Config = {
           "system-ui",
           "sans-serif",
         ],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
         grotesk: [
           "var(--font-grotesk)",
           "Space Grotesk",

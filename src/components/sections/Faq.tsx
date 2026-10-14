@@ -69,12 +69,12 @@ export function Faq() {
     <section id="preguntas" className="relative py-24 lg:py-32">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+          <span className="etiqueta">
             Tú mandas
           </span>
           <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-textDark sm:text-5xl">
             Blexi vende por ti,{" "}
-            <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="acento">
               pero el negocio es tuyo
             </span>
             .

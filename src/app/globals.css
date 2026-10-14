@@ -90,6 +90,55 @@
     @apply bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent;
   }
 
+  /* Acento de un título: una o dos palabras en cursiva serif, en morado de
+     marca. Reemplaza al texto en degradé. */
+  .acento {
+    font-family: var(--font-serif), Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #9030f0;
+  }
+  .acento-claro {
+    color: #67e8f9;
+  }
+
+  /* Resaltador: trazo cian detrás de las palabras, como marcador. */
+  .resaltado {
+    background-image: linear-gradient(
+      transparent 58%,
+      rgba(0, 216, 240, 0.5) 58%,
+      rgba(0, 216, 240, 0.5) 92%,
+      transparent 92%
+    );
+    padding: 0 0.06em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Etiqueta de sección: mayúsculas monoespaciadas con un punto. */
+  .etiqueta {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500;
+  }
+  .etiqueta::before {
+    content: "";
+    @apply size-1.5 rounded-full bg-[#00D8F0];
+  }
+  .etiqueta-clara {
+    @apply text-slate-300;
+  }
+
+  /* Botón principal: píldora negra con el circulito cian y la flecha. */
+  .btn-negro {
+    @apply inline-flex items-center justify-center gap-3 rounded-full bg-slate-950 py-2 pl-7 pr-2 text-base font-semibold text-white shadow-lg shadow-slate-900/20 transition hover:bg-slate-800;
+  }
+  .btn-negro__chip {
+    @apply flex size-10 items-center justify-center rounded-full bg-[#00D8F0] text-slate-950;
+  }
+  .btn-blanco {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-slate-200 bg-white px-7 py-3.5 text-base font-semibold text-slate-900 transition hover:border-slate-300;
+  }
+
   .container-page {
     @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
   }

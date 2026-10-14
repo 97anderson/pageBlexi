@@ -48,13 +48,12 @@ export function FreeTrial() {
       <div className="container-page">
         {/* Header */}
         <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-4 py-1.5 text-xs font-semibold text-cyan-700">
-            <Sparkles className="size-3.5" aria-hidden />
+          <span className="etiqueta">
             Sin riesgo · Sin tarjeta · Sin compromisos
           </span>
           <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-textDark sm:text-5xl">
             15 días gratis.{" "}
-            <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="acento">
               Prueba Blexi
             </span>{" "}
             con tu propio negocio.

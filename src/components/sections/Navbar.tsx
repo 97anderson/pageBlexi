@@ -14,7 +14,7 @@ const links = [
   { label: "Producto", href: "#flujo" },
   { label: "CRM", href: "#crm" },
   { label: "Precios", href: "#precios" },
-  { label: "Demo", href: "#hero" },
+  { label: "Preguntas", href: "#preguntas" },
 ];
 
 export function Navbar() {
@@ -23,46 +23,45 @@ export function Navbar() {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="sticky top-0 z-50 w-full border-b border-white/40 bg-white/70 backdrop-blur-xl"
+      className="sticky top-0 z-50 w-full"
     >
       <a
         href="#precios"
-        className="block bg-gradient-to-r from-cyan-500 to-purple-500 px-4 py-1.5 text-center text-xs font-semibold text-white transition hover:opacity-90"
+        className="block bg-slate-950 px-4 py-1.5 text-center font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-slate-300 transition hover:text-white"
       >
-        Precio de lanzamiento: {DESCUENTO_DE_LANZAMIENTO_PCT}% menos los primeros{" "}
-        {MESES_DE_LANZAMIENTO} meses
+        <span className="text-[#00D8F0]">●</span> Lanzamiento: {DESCUENTO_DE_LANZAMIENTO_PCT}% menos los
+        primeros {MESES_DE_LANZAMIENTO} meses
         <span className="hidden sm:inline">
-          {" "}· para negocios que se registren hasta el {CIERRE_DE_LANZAMIENTO}
+          {" "}· registros hasta el {CIERRE_DE_LANZAMIENTO}
         </span>
       </a>
-      <div className="container-page flex h-16 items-center justify-between gap-6">
-        <a href="#hero" className="flex items-center gap-2.5">
-          <span className="relative flex size-9 items-center justify-center overflow-visible rounded-2xl bg-white shadow-lg shadow-slate-200/70 ring-1 ring-black/[0.06]">
+      {/* Menú en cápsula flotante, separado del borde. */}
+      <div className="container-page pt-3">
+        <div className="flex h-14 items-center justify-between gap-4 rounded-full border border-slate-200/80 bg-white/85 pl-4 pr-2 shadow-sm shadow-slate-900/5 backdrop-blur-xl">
+          <a href="#hero" className="flex items-center gap-2.5">
             <BlexiMark state="loader" height={20} />
-          </span>
-          <span className="font-grotesk text-lg font-extrabold tracking-tight text-brand-textDark">
-            BLEXI
-          </span>
-        </a>
+            <span className="font-grotesk text-lg font-extrabold tracking-tight text-brand-textDark">
+              BLEXI
+            </span>
+          </a>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-brand-textMuted transition-colors hover:bg-slate-100 hover:text-brand-textDark"
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
+          <nav className="hidden items-center gap-1 md:flex">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="rounded-full px-4 py-2 text-sm font-medium text-brand-textMuted transition-colors hover:bg-slate-100 hover:text-brand-textDark"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
 
-        <div className="flex items-center gap-2">
           <a
             href={enlaceWhatsApp(WHATSAPP_PRUEBA)}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-cyan-500/40 transition hover:bg-brand-primaryHover hover:shadow-lg hover:shadow-cyan-500/50"
+            className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
           >
             Probar en WhatsApp
           </a>

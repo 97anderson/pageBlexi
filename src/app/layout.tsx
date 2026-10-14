@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Instrument_Serif, Inter, JetBrains_Mono, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,21 @@ const grotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-grotesk",
   weight: ["500", "600", "700"],
+});
+
+// Acento editorial: una palabra en cursiva serif dentro de cada título.
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: "400",
+  style: ["italic"],
+});
+
+// Etiquetas pequeñas en mayúsculas sobre cada sección.
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["500"],
 });
 
 const inter = Inter({
@@ -56,7 +71,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn(jakarta.variable, grotesk.variable, inter.variable)}
+      className={cn(jakarta.variable, grotesk.variable, inter.variable, serif.variable, mono.variable)}
     >
       <body className="bg-brand-bgMain font-sans text-brand-textDark">
         {/* Blexi shared SVG defs — disponibles para todos los BlexiMark de la página */}
