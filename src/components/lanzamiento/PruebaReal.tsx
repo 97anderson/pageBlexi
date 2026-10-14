@@ -2,43 +2,43 @@ import { PRUEBA_REAL } from "@/lib/config";
 
 /**
  * Prueba social sin inventar: tres cifras medidas en producción en un
- * negocio cliente, con su periodo. Sin nombre, sin logo, sin testimonio.
+ * negocio cliente, con su periodo. Sin nombre, sin ciudad, sin logo.
+ * Una sola métrica fuerte manda (la mediana de respuesta); las otras dos la
+ * acompañan.
  */
 export function PruebaReal() {
-  const cifras = [
-    { valor: String(PRUEBA_REAL.conversaciones), unidad: "conversaciones", texto: `atendidas en ${PRUEBA_REAL.dias} días` },
-    { valor: PRUEBA_REAL.medianaSegundos, unidad: "segundos", texto: "de respuesta (mediana)" },
-    { valor: `${PRUEBA_REAL.fueraDeHorarioPct} %`, unidad: "fuera de horario", texto: "llegaron de noche, en domingo o en festivo" },
-  ];
-
   return (
-    <section className="bg-blx-tinta py-20 text-white sm:py-24">
-      <div className="container-page">
-        <p className="text-sm font-bold uppercase tracking-[0.14em] text-blx-sol">Medido, no prometido</p>
-        <h2 className="mt-3 max-w-3xl font-display text-3xl font-extrabold leading-tight tracking-tight [text-wrap:balance] sm:text-[2.6rem]">
-          Así le fue a {PRUEBA_REAL.quien}.
-        </h2>
+    <section className="relative overflow-hidden bg-blx-noche py-20 text-white sm:py-24">
+      <div className="pointer-events-none absolute -right-40 -top-40 h-[480px] w-[480px] rounded-full bg-[radial-gradient(closest-side,rgba(72,144,240,0.18),transparent)]" aria-hidden />
+      <div className="container-page relative grid items-end gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="min-w-0">
+          <p className="font-display text-sm font-bold uppercase tracking-[0.12em] text-blx-cian">Medido, no prometido</p>
+          <p className="mt-6 font-grotesk text-[5.5rem] font-bold leading-none tracking-[-0.04em] sm:text-[8rem]">
+            <span className="bg-blexi bg-clip-text text-transparent">{PRUEBA_REAL.medianaSegundos}</span>
+            <span className="ml-2 text-3xl font-semibold text-blx-textoNoche sm:text-4xl">segundos</span>
+          </p>
+          <h2 className="mt-4 max-w-xl font-grotesk text-2xl font-bold leading-snug sm:text-3xl">
+            Tiempo de respuesta (mediana) en {PRUEBA_REAL.quien}.
+          </h2>
+        </div>
 
-        <dl className="mt-12 grid gap-px overflow-hidden rounded-3xl bg-white/10 sm:grid-cols-3">
-          {cifras.map((c) => (
-            <div key={c.unidad} className="bg-blx-tinta p-7 sm:p-8">
-              <dt className="sr-only">{c.unidad}</dt>
-              <dd>
-                <span className="block font-display text-6xl font-extrabold leading-none tracking-tight text-blx-sol sm:text-7xl">
-                  {c.valor}
-                </span>
-                <span className="mt-3 block text-lg font-bold">{c.unidad}</span>
-                <span className="block text-[15px] text-white/70">{c.texto}</span>
-              </dd>
-            </div>
-          ))}
+        <dl className="grid grid-cols-2 gap-4">
+          <div className="rounded-2xl bg-blx-tarjeta p-6 ring-1 ring-blx-borde">
+            <dt className="text-sm text-blx-apagadoNoche">Conversaciones atendidas</dt>
+            <dd className="mt-1 font-grotesk text-4xl font-bold tabular-nums">{PRUEBA_REAL.conversaciones}</dd>
+            <dd className="text-sm text-blx-apagadoNoche">en {PRUEBA_REAL.dias} días</dd>
+          </div>
+          <div className="rounded-2xl bg-blx-tarjeta p-6 ring-1 ring-blx-borde">
+            <dt className="text-sm text-blx-apagadoNoche">Fuera de horario</dt>
+            <dd className="mt-1 font-grotesk text-4xl font-bold tabular-nums">{PRUEBA_REAL.fueraDeHorarioPct} %</dd>
+            <dd className="text-sm text-blx-apagadoNoche">de noche, en domingo o festivo</dd>
+          </div>
         </dl>
-
-        <p className="mt-6 max-w-3xl text-sm text-white/60">
-          Datos de las conversaciones del {PRUEBA_REAL.desde} al {PRUEBA_REAL.hasta}, medidos en el sistema de
-          Blexi. Ese casi un tercio de clientes que escribe fuera de horario es el que hoy suele quedar en visto.
-        </p>
       </div>
+      <p className="container-page relative mt-8 text-sm text-blx-apagadoNoche">
+        Conversaciones del {PRUEBA_REAL.desde} al {PRUEBA_REAL.hasta}, medidas en el sistema de Blexi. Ese casi un tercio
+        que escribe fuera de horario es el que hoy suele quedar en visto.
+      </p>
     </section>
   );
 }

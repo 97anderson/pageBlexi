@@ -36,6 +36,35 @@ export const PROMO = {
   } as Record<string, number>,
 };
 
+/**
+ * Texto legal del precio de lanzamiento, visible junto a los precios
+ * (Ley 1480: información clara sobre duración y precio posterior).
+ */
+export const TEXTO_LEGAL_LANZAMIENTO =
+  "Precio de lanzamiento: aplica a tus primeros 3 meses si te registras antes del 31 de diciembre de 2026. Después pagas el precio de lista vigente del plan. Los precios pueden cambiar; el precio que pactas al registrarte se respeta durante su vigencia.";
+
+/**
+ * Hero y primer pantallazo: «claro» (claro primero, con vitrina oscura del
+ * producto) u «oscuro» (oscuro primero, estilo producto de IA). Por defecto
+ * claro: dueños de pyme que entran desde el celular, muchas veces a pleno sol.
+ */
+export const VARIANTE_HERO: "claro" | "oscuro" =
+  process.env.NEXT_PUBLIC_VARIANTE_HERO === "oscuro" ? "oscuro" : "claro";
+
+/**
+ * Agentes ADICIONALES: no vienen en el plan, tienen costo aparte. Precios por
+ * plan sembrados en la base del CRM:
+ * - Ana: `platform_addon_plan_prices` (`20260930_01_master_precio_del_empleado_por_plan.py:49`),
+ *   editable desde la consola (`20261001_01_master_precio_del_empleado_editable.py`).
+ *   Todo negocio nuevo la recibe sin costo el primer mes (alta del CRM).
+ * - Sofía (Marketing con IA, adicional `marketing_ia`): `20261105_01_master_marketing_datos.py`.
+ * Si la consola cambia un precio, hay que cambiarlo aquí.
+ */
+export const ADICIONALES = {
+  ana: { plata: 50_000, oro: 90_000, platino: 150_000 } as Record<string, number>,
+  sofia: { plata: 55_000, oro: 99_000, platino: 169_000 } as Record<string, number>,
+};
+
 /** Días de prueba gratis antes del primer cobro. */
 export const PRUEBA_DIAS = 15;
 

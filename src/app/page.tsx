@@ -5,6 +5,7 @@ import { BannerDeLanzamiento } from "@/components/lanzamiento/BannerDeLanzamient
 import { Calculadora } from "@/components/lanzamiento/Calculadora";
 import { Comparacion } from "@/components/lanzamiento/Comparacion";
 import { Dolores } from "@/components/lanzamiento/Dolores";
+import { FranjaDeConfianza } from "@/components/lanzamiento/FranjaDeConfianza";
 import { Preguntas } from "@/components/lanzamiento/Preguntas";
 import { PruebaReal } from "@/components/lanzamiento/PruebaReal";
 import { QueIncluye } from "@/components/lanzamiento/QueIncluye";
@@ -29,7 +30,7 @@ function datosEstructurados(planes: PlanDeLaBase[]) {
       priceValidUntil: PROMO.hasta,
       description: `Primeros ${PROMO.meses} meses, IVA incluido; luego ${p.monthlyPriceCop} COP al mes. ${PRUEBA_DIAS} días gratis.`,
       availability: "https://schema.org/InStock",
-      areaServed: "Cali y Valle del Cauca, Colombia",
+      areaServed: { "@type": "Country", name: "Colombia" },
     }));
 
   return {
@@ -64,13 +65,14 @@ export default async function Home() {
       <Navbar />
       <main className="relative">
         <Hero />
+        <FranjaDeConfianza />
         <Dolores />
         <UnMartes />
         <AsiVende />
+        <QueIncluye />
         <PruebaReal />
         <Calculadora />
         <Comparacion />
-        <QueIncluye />
         <SigueTuWhatsApp />
         <Pricing planes={planes} />
         <Preguntas />

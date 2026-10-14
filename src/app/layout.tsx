@@ -1,30 +1,35 @@
 import type { Metadata } from "next";
-import { Figtree, Unbounded } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
-// Unbounded para los titulares: ancha, con carácter, se usa poco y grande.
-// Figtree para leer: redonda y clara en un celular barato.
-const display = Unbounded({
+// La familia del producto (CRM): Space Grotesk para titulares y cifras,
+// Plus Jakarta Sans para rótulos y display secundario, Inter para leer.
+const grotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["500", "700", "800"],
+  variable: "--font-grotesk",
+  weight: ["500", "600", "700"],
 });
 
-const body = Figtree({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+  weight: ["500", "600", "700", "800"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://soyblexi.com"),
-  keywords: ["vendedor con IA", "WhatsApp", "Cali", "Valle del Cauca", "pymes", "chatbot de ventas", "Nequi"],
-  title: "Blexi | Vendedor con IA para WhatsApp en Cali y el Valle del Cauca",
+  keywords: ["vendedor con IA", "WhatsApp Business", "agente de IA", "pymes Colombia", "ventas por WhatsApp", "Nequi", "CRM"],
+  title: "Blexi | Vendedor con IA para WhatsApp para pymes en Colombia",
   description:
-    "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Cali: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
+    "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Colombia: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -32,18 +37,18 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Blexi | Vendedor con IA para WhatsApp en Cali y el Valle del Cauca",
+    title: "Blexi | Vendedor con IA para WhatsApp para pymes en Colombia",
     description:
-      "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Cali: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
+      "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Colombia: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
     siteName: "BLEXI",
     locale: "es_CO",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blexi | Vendedor con IA para WhatsApp en Cali y el Valle del Cauca",
+    title: "Blexi | Vendedor con IA para WhatsApp para pymes en Colombia",
     description:
-      "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Cali: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
+      "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Colombia: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
   },
 };
 
@@ -55,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn(display.variable, body.variable)}
+      className={cn(grotesk.variable, jakarta.variable, inter.variable)}
     >
       <body className="bg-brand-bgMain font-sans text-brand-textDark">
         {/* Blexi shared SVG defs — disponibles para todos los BlexiMark de la página */}

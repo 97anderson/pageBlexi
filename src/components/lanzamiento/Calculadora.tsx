@@ -96,11 +96,11 @@ export function Calculadora() {
 
   const campo = (c: Campo, oscuro = false) => (
     <label key={c.id} htmlFor={`calc-${c.id}`} className="block">
-      <span className={oscuro ? "block text-sm font-semibold text-blx-tinta" : "block text-[15px] font-bold text-blx-tinta"}>
+      <span className={oscuro ? "block text-sm font-semibold text-blx-tinta" : "block font-display text-[15px] font-bold text-blx-tinta"}>
         {c.etiqueta}
       </span>
-      {c.ayuda && <span className="block text-xs text-blx-gris">{c.ayuda}</span>}
-      <span className="mt-2 flex items-center rounded-xl border border-blx-tinta/20 bg-white focus-within:border-blx-sol">
+      {c.ayuda && <span className="block text-xs text-blx-apagado">{c.ayuda}</span>}
+      <span className="mt-2 flex items-center rounded-xl border border-blx-linea bg-white focus-within:border-blx-azul focus-within:ring-2 focus-within:ring-blx-azul/30">
         <input
           id={`calc-${c.id}`}
           type="number"
@@ -110,9 +110,9 @@ export function Calculadora() {
           step={c.paso}
           value={texto[c.id]}
           onChange={cambiar(c)}
-          className="w-full min-w-0 rounded-xl bg-transparent px-4 py-3 text-lg font-bold tabular-nums text-blx-tinta outline-none"
+          className="w-full min-w-0 rounded-xl bg-transparent px-4 py-3 font-grotesk text-lg font-bold tabular-nums text-blx-tinta outline-none"
         />
-        {c.sufijo && <span className="pr-4 text-sm font-semibold text-blx-gris">{c.sufijo}</span>}
+        {c.sufijo && <span className="pr-4 text-sm font-semibold text-blx-apagado">{c.sufijo}</span>}
       </span>
     </label>
   );
@@ -124,48 +124,49 @@ export function Calculadora() {
     `Quiero ver cómo lo atendería Blexi.`;
 
   return (
-    <section id="calculadora" className="bg-blx-papel py-20 sm:py-28">
+    <section id="calculadora" className="bg-blx-claro py-20 sm:py-28">
       <div className="container-page">
         <div className="max-w-2xl">
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-blx-solTexto">Haz la cuenta</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight tracking-tight text-blx-tinta [text-wrap:balance] sm:text-[2.6rem]">
+          <p className="font-display text-sm font-bold uppercase tracking-[0.12em] text-blx-violetaTexto">Haz la cuenta</p>
+          <h2 className="mt-3 font-grotesk text-3xl font-bold leading-tight tracking-[-0.02em] text-blx-tinta [text-wrap:balance] sm:text-[2.6rem]">
             ¿Cuánto se te escapa cuando nadie contesta?
           </h2>
-          <p className="mt-4 text-lg text-blx-gris">Pon los números de tu negocio. Es una estimación, no una promesa.</p>
+          <p className="mt-4 text-lg text-blx-apagado">Pon los números de tu negocio. Es una estimación, no una promesa.</p>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1.1fr]">
-          <div className="min-w-0 rounded-3xl bg-white p-6 ring-1 ring-blx-tinta/10 sm:p-8">
+          <div className="min-w-0 rounded-2xl bg-white p-6 ring-1 ring-blx-linea sm:p-8">
             <div className="grid gap-5">{entradas.map((c) => campo(c))}</div>
 
-            <details className="mt-6 rounded-2xl bg-blx-papel p-4">
+            <details className="mt-6 rounded-xl bg-blx-claro p-4">
               <summary className="cursor-pointer text-sm font-bold text-blx-tinta">Supuestos (puedes cambiarlos)</summary>
               <div className="mt-4 grid gap-4">{supuestos.map((c) => campo(c, true))}</div>
             </details>
           </div>
 
-          <div className="min-w-0 rounded-3xl bg-blx-tinta p-6 text-white sm:p-8" aria-live="polite">
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-blx-sol">Tu estimación al mes</p>
+          <div className="relative min-w-0 overflow-hidden rounded-2xl bg-blx-noche p-6 text-white ring-1 ring-blx-borde sm:p-8" aria-live="polite">
+            <div className="absolute inset-x-0 top-0 h-0.5 bg-blexi" aria-hidden />
+            <p className="font-display text-sm font-bold uppercase tracking-[0.12em] text-blx-cian">Tu estimación al mes</p>
 
             <dl className="mt-6 space-y-6">
               <div>
-                <dt className="text-[15px] text-white/70">Conversaciones que llegan cuando nadie contesta</dt>
-                <dd className="font-display text-4xl font-extrabold tabular-nums sm:text-5xl">{r.sinRespuesta.toLocaleString("es-CO")}</dd>
-                <dd className="text-sm text-white/60">
+                <dt className="text-[15px] text-blx-apagadoNoche">Conversaciones que llegan cuando nadie contesta</dt>
+                <dd className="font-grotesk text-4xl font-bold tabular-nums sm:text-5xl">{r.sinRespuesta.toLocaleString("es-CO")}</dd>
+                <dd className="text-sm text-blx-apagadoNoche">
                   {Math.round(r.fraccion * 100)} % de tus {r.mes.toLocaleString("es-CO")} conversaciones del mes
                 </dd>
               </div>
               <div>
-                <dt className="text-[15px] text-white/70">Ventas en juego en esas conversaciones</dt>
-                <dd className="font-display text-4xl font-extrabold tabular-nums text-blx-sol sm:text-5xl">{pesos(r.ventas)}</dd>
+                <dt className="text-[15px] text-blx-apagadoNoche">Ventas en juego en esas conversaciones</dt>
+                <dd className="bg-blexi bg-clip-text font-grotesk text-4xl font-bold tabular-nums text-transparent sm:text-5xl">{pesos(r.ventas)}</dd>
               </div>
               <div>
-                <dt className="text-[15px] text-white/70">Horas al mes respondiendo por WhatsApp</dt>
-                <dd className="font-display text-4xl font-extrabold tabular-nums sm:text-5xl">{r.horasMes.toLocaleString("es-CO")} h</dd>
+                <dt className="text-[15px] text-blx-apagadoNoche">Horas al mes respondiendo por WhatsApp</dt>
+                <dd className="font-grotesk text-4xl font-bold tabular-nums sm:text-5xl">{r.horasMes.toLocaleString("es-CO")} h</dd>
               </div>
             </dl>
 
-            <p className="mt-6 text-sm leading-relaxed text-white/60">
+            <p className="mt-6 text-sm leading-relaxed text-blx-apagadoNoche">
               Estimación propia de Blexi con tus números y los supuestos de la izquierda. No incluye las ventas que
               hoy sí cierras ni garantiza un resultado.
             </p>
@@ -176,9 +177,9 @@ export function Calculadora() {
               className="mt-6 w-full"
               datos={{ ventas: Math.round(r.ventas) }}
             >
-              Enviar mis números por WhatsApp
+              Enviar mi cuenta por WhatsApp
             </BotonWhatsApp>
-            <p className="mt-3 text-sm text-white/60">Se abre WhatsApp con tus números en el mensaje.</p>
+            <p className="mt-3 text-sm text-blx-apagadoNoche">Se abre WhatsApp con tus números en el mensaje.</p>
           </div>
         </div>
       </div>

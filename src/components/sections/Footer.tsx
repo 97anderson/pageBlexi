@@ -43,8 +43,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-brand-textMuted">
-              Blexi responde, toma el pedido, lo cobra y te avisa. Para pymes
-              de Cali, el Valle del Cauca y Colombia.
+              Blexi responde, toma el pedido, lo cobra y te avisa. Vendedor con
+              IA para el WhatsApp de las pymes de Colombia.
             </p>
             <p className="mt-6 text-xs text-slate-400">
               Powered by{" "}
@@ -86,7 +86,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:items-center">
           <p className="text-xs text-brand-textMuted">
-            © {new Date().getFullYear()} Blexi · BlueCode Solutions · Hecho en Cali.
+            © {new Date().getFullYear()} Blexi · BlueCode Solutions · Hecho en Colombia.
           </p>
         </div>
       </div>

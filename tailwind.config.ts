@@ -11,19 +11,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Paleta del lanzamiento: tinta azul noche, papel frío, sol caleño para
-        // la acción y el cian de la marca para los acentos.
+        // Marca Blexi (sale del logo y del CRM). El degradado violeta→azul→cian
+        // es la firma; «noche» es la paleta oscura Noche Cobalto del CRM.
+        // El verde de WhatsApp es SOLO para el botón de acción.
         blx: {
-          tinta: "#0B1724",
-          tintaSuave: "#16283A",
-          linea: "#2A3E52",
-          papel: "#F2F5F7",
-          sol: "#FF6A1A",
-          solTexto: "#B83D06",
-          cian: "#00B4D8",
-          cianClaro: "#7FE3F5",
+          violeta: "#9030F0",
+          azul: "#4890F0",
+          cobalto: "#3060F0",
+          cian: "#00D8F0",
+          violetaTexto: "#7C22D9",
+          azulTexto: "#1F5FD6",
+          cianTexto: "#0A7E99",
+          noche: "#161D32",
+          tarjeta: "#222C48",
+          elevada: "#2E3B5D",
+          borde: "#404F73",
+          bordeFuerte: "#56678F",
+          textoNoche: "#C9D8FF",
+          apagadoNoche: "#A0AFC7",
+          claro: "#F8FAFC",
+          tinta: "#0F172A",
+          apagado: "#475569",
+          linea: "#E2E8F0",
           wa: "#25D366",
-          gris: "#4A5B6B",
+          waHover: "#1EBE5B",
         },
         brand: {
           primary: "#06B6D4",
@@ -82,9 +93,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
-        grotesk: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-jakarta)", "Plus Jakarta Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+        grotesk: ["var(--font-grotesk)", "Space Grotesk", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -100,6 +111,10 @@ const config: Config = {
       },
       backgroundImage: {
         "ai-grad": "linear-gradient(135deg, #06B6D4 0%, #A855F7 100%)",
+        "blexi": "linear-gradient(135deg, #9030F0 0%, #4890F0 50%, #00D8F0 100%)",
+        // Para texto sobre fondo claro: los mismos tonos oscurecidos para que
+        // el titular en degradado pase AA de texto grande (≥ 3:1).
+        "blexi-texto": "linear-gradient(135deg, #7C22D9 0%, #1F5FD6 55%, #0A7E99 100%)",
       },
       keyframes: {
         "accordion-down": {

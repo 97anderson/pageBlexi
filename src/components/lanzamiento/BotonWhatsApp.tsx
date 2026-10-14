@@ -6,18 +6,22 @@ import { enlaceWhatsApp } from "@/lib/config";
 import { track } from "@/lib/medicion";
 
 /**
- * El único objetivo de la página: abrir WhatsApp con un mensaje listo. Cada
- * sección manda su propio texto y su nombre, para saber desde dónde se tocó.
+ * El único objetivo de la página: abrir WhatsApp con un mensaje listo.
+ *
+ * El botón principal es VERDE WhatsApp con texto oscuro (#0F172A sobre
+ * #25D366 ≈ 9:1) y es lo único verde de la página: se aísla del degradado de
+ * marca (efecto Von Restorff) y anticipa el destino, porque es el verde que
+ * esta audiencia ya toca todos los días. El degradado no sirve de botón: su
+ * extremo cian no alcanza contraste con texto blanco.
  */
 
-type Variante = "sol" | "tinta" | "contorno" | "contornoClaro" | "wa";
+type Variante = "accion" | "secundarioClaro" | "secundarioOscuro";
 
 const estilos: Record<Variante, string> = {
-  sol: "bg-blx-sol text-blx-tinta shadow-[0_14px_40px_-12px_rgba(255,106,26,0.8)] hover:brightness-105",
-  tinta: "bg-blx-tinta text-white hover:bg-blx-tintaSuave",
-  contorno: "border border-white/25 text-white hover:bg-white/10",
-  contornoClaro: "border border-blx-tinta/20 text-blx-tinta hover:bg-blx-tinta/5",
-  wa: "bg-blx-wa text-blx-tinta hover:brightness-95",
+  accion:
+    "bg-blx-wa text-blx-tinta shadow-[0_10px_30px_-10px_rgba(37,211,102,0.7)] hover:bg-blx-waHover",
+  secundarioClaro: "border border-blx-tinta/20 bg-white text-blx-tinta hover:border-blx-tinta/40",
+  secundarioOscuro: "border border-blx-bordeFuerte text-white hover:bg-white/5",
 };
 
 type Props = {
@@ -33,7 +37,7 @@ export function BotonWhatsApp({
   seccion,
   mensaje,
   children,
-  variante = "sol",
+  variante = "accion",
   className = "",
   datos,
 }: Props) {
@@ -43,7 +47,7 @@ export function BotonWhatsApp({
       target="_blank"
       rel="noreferrer"
       onClick={() => track("cta_clic", { seccion, ...datos })}
-      className={`inline-flex min-h-14 items-center justify-center gap-2 rounded-full px-7 text-center text-base font-extrabold transition active:translate-y-px ${estilos[variante]} ${className}`}
+      className={`inline-flex min-h-14 items-center justify-center gap-2 rounded-xl px-6 text-center font-display text-base font-bold transition active:translate-y-px ${estilos[variante]} ${className}`}
     >
       <MessageCircle className="size-5 shrink-0" strokeWidth={2.4} aria-hidden />
       {children}
@@ -52,9 +56,9 @@ export function BotonWhatsApp({
 }
 
 /** Lo que pasa al tocar: se dice debajo de cada botón principal. */
-export function QuePasaAlTocar({ claro = false }: { claro?: boolean }) {
+export function QuePasaAlTocar({ oscuro = false, className = "" }: { oscuro?: boolean; className?: string }) {
   return (
-    <p className={claro ? "mt-3 text-sm text-blx-gris" : "mt-3 text-sm text-white/60"}>
+    <p className={`mt-3 text-sm ${oscuro ? "text-blx-apagadoNoche" : "text-blx-apagado"} ${className}`}>
       Se abre WhatsApp con el mensaje listo. Tú decides si lo envías.
     </p>
   );

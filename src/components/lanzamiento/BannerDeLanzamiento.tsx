@@ -1,16 +1,8 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import {
-  CUPOS_LANZAMIENTO,
-  PROMO,
-  enlaceWhatsApp,
-  finDeLaPromoEnPalabras,
-  pesos,
-} from "@/lib/config";
-import { track } from "@/lib/medicion";
+import { CUPOS_LANZAMIENTO, PROMO, finDeLaPromoEnPalabras, pesos } from "@/lib/config";
 
 /** Días enteros que faltan hasta el fin de la promoción, contados en Bogotá. */
 export function diasQueFaltan(ahora: Date): number {
@@ -27,6 +19,10 @@ export function useDiasQueFaltan(): number | null {
   return dias;
 }
 
+/**
+ * Franja superior: escasez real (la fecha) y el precio de entrada. No es un
+ * botón: el único botón de esta pantalla es el del hero (ley de Hick).
+ */
 export function BannerDeLanzamiento({ listaPlata }: { listaPlata?: number }) {
   const dias = useDiasQueFaltan();
   if (!PROMO.activo || dias === 0) return null;
@@ -34,27 +30,23 @@ export function BannerDeLanzamiento({ listaPlata }: { listaPlata?: number }) {
   const ahorro = listaPlata ? (listaPlata - PROMO.precios.plata) * PROMO.meses : null;
 
   return (
-    <div className="relative z-[60] bg-blx-sol text-blx-tinta">
+    <div className="relative z-[60] bg-blx-noche text-white">
+      <div className="h-0.5 bg-blexi" aria-hidden />
       <a
-        href={enlaceWhatsApp("Hola, quiero el precio de lanzamiento de Blexi para mi negocio")}
-        target="_blank"
-        rel="noreferrer"
-        onClick={() => track("cta_clic", { seccion: "banner" })}
-        className="container-page flex min-h-11 flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-[13px] font-semibold leading-snug sm:text-sm"
+        href="#precios"
+        className="container-page flex min-h-10 flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-[13px] leading-snug sm:text-sm"
       >
         <span>
-          <strong className="font-extrabold">Lanzamiento en Cali y el Valle:</strong> Plata a{" "}
-          {pesos(PROMO.precios.plata)}/mes tus primeros {PROMO.meses} meses
-          {ahorro ? ` (ahorras ${pesos(ahorro)})` : ""} · IVA incluido
+          <strong className="font-semibold">Precio de lanzamiento:</strong> Plata a {pesos(PROMO.precios.plata)}/mes tus
+          primeros {PROMO.meses} meses{ahorro ? `, ahorras ${pesos(ahorro)}` : ""}
           {CUPOS_LANZAMIENTO.activo ? ` · ${CUPOS_LANZAMIENTO.total} cupos` : ""}
         </span>
-        <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-blx-tinta px-3 py-0.5 text-xs font-bold text-white">
+        <span className="whitespace-nowrap rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-blx-textoNoche ring-1 ring-white/15">
           {dias === null
             ? `Hasta el ${finDeLaPromoEnPalabras()}`
             : dias === 1
               ? "Último día"
               : `Quedan ${dias} días`}
-          <ArrowRight className="size-3.5" aria-hidden />
         </span>
       </a>
     </div>

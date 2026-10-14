@@ -23,13 +23,13 @@ export function SigueTuWhatsApp() {
           <Smartphone className="size-8 lg:size-10" aria-hidden />
         </div>
         <div className="min-w-0">
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-blx-tinta sm:text-4xl">
+          <h2 className="font-grotesk text-3xl font-bold tracking-tight text-blx-tinta sm:text-4xl">
             Sigue usando tu WhatsApp.
           </h2>
-          <ul className="mt-6 space-y-3 text-lg text-blx-gris">
+          <ul className="mt-6 space-y-3 text-lg text-blx-apagado">
             {puntos.map((p) => (
               <li key={p} className="flex gap-3">
-                <span className="mt-2.5 size-2 shrink-0 rounded-full bg-blx-sol" aria-hidden />
+                <span className="mt-2.5 size-2 shrink-0 rounded-full bg-blexi" aria-hidden />
                 {p}
               </li>
             ))}
