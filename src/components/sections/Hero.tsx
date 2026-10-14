@@ -1,224 +1,82 @@
-"use client";
+import { ArrowDown, MessageCircle } from "lucide-react";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { ArrowRight, MessageCircle, ShieldCheck, Sparkles, Zap } from "lucide-react";
-
-import { LiveChatSimulation } from "./LiveChatSimulation";
-import { BlexiMark } from "@/components/brand/BlexiMark";
-
-const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.11, delayChildren: 0.08 },
-  },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: easeOutExpo },
-  },
-};
-
-const avatarIds = [12, 33, 47, 68];
-
-const trustItems = [
-  {
-    icon: Zap,
-    title: "Responde 24/7",
-    desc: "Sin dejar leads en visto.",
-  },
-  {
-    icon: Sparkles,
-    title: "Entrenada con tu catálogo",
-    desc: "Tu info, tu tono.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "CRM incluido",
-    desc: "Pedidos y seguimiento.",
-  },
-  {
-    icon: MessageCircle,
-    title: "En WhatsApp",
-    desc: "Donde ya están tus clientes.",
-  },
-];
+import { CelularDeVenta } from "@/components/lanzamiento/CelularDeVenta";
+import { PROMO, enlaceWhatsApp, pesos } from "@/lib/config";
 
 export function Hero() {
   return (
     <section
-      id="hero"
-      className="relative overflow-hidden pt-20 pb-24 sm:pt-24 lg:pt-28 lg:pb-32"
+      id="inicio"
+      className="relative overflow-hidden bg-blx-tinta pb-20 pt-14 text-white sm:pt-20 lg:pb-28"
     >
-      {/* Aurora glow background */}
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-        <div className="absolute left-[-10%] top-[-20%] h-[520px] w-[520px] animate-aurora rounded-full bg-purple-400/30 blur-3xl" />
-        <div className="absolute right-[-15%] top-[20%] h-[600px] w-[600px] animate-aurora rounded-full bg-cyan-400/30 blur-3xl [animation-delay:-3s]" />
-        <div className="absolute inset-0 bg-grid-soft opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-bgMain/40 to-brand-bgMain" />
-      </div>
+      {/* Franja de sol: un solo gesto de color detrás del celular. */}
+      <div
+        className="pointer-events-none absolute -right-24 top-24 hidden h-[520px] w-[520px] rotate-12 rounded-[5rem] bg-blx-sol/90 lg:block"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-10 top-48 hidden h-[420px] w-[420px] rotate-12 rounded-[4rem] border-2 border-blx-cian/50 lg:block"
+        aria-hidden
+      />
 
-      <div className="container-page grid gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-20">
-        <motion.div
-          className="flex flex-col"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
-          <motion.div variants={fadeUp}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/70 px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-sm shadow-slate-200/60 backdrop-blur-md">
-              <BlexiMark state="loader" height={14} />
-              IA entrenada para ventas en LATAM
-            </span>
-          </motion.div>
+      <div className="container-page relative grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
+        <div className="min-w-0">
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-blx-cianClaro">
+            Vendedor con IA para WhatsApp
+          </p>
 
-          <motion.h1
-            variants={fadeUp}
-            className="mt-6 font-grotesk text-5xl font-extrabold leading-[1.04] tracking-tight text-brand-textDark sm:text-6xl lg:text-[4.5rem] lg:leading-[1.02]"
-          >
-            Tú descansa,{" "}
-            <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-              BLEXI
-            </span>{" "}
-            atiende{" "}
-            <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-              WhatsApp
-            </span>{" "}
-            y vende por ti.
-          </motion.h1>
+          <h1 className="mt-6 font-display text-[2.6rem] font-extrabold leading-[1.02] tracking-tight [text-wrap:balance] sm:text-6xl lg:text-[4.6rem]">
+            Tu WhatsApp
+            <br />
+            <span className="text-blx-sol">vende solo.</span>
+          </h1>
 
-          <motion.p
-            variants={fadeUp}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-brand-textMuted"
-          >
-            El asistente inteligente y CRM que organiza tu negocio en Colombia
-            sin que sepas de tecnología.
-          </motion.p>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl">
+            Blexi responde a tus clientes con fotos y precios, toma el pedido,
+            lo cobra por Nequi y te avisa. Tú solo despachas.
+          </p>
 
-          <motion.div
-            variants={fadeUp}
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
-          >
-            <motion.a
-              href="#free-trial"
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 450, damping: 22 }}
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-primary px-8 text-base font-semibold text-white shadow-lg shadow-cyan-500/50 transition-shadow hover:bg-brand-primaryHover hover:shadow-xl hover:shadow-cyan-500/60"
-            >
-              <Sparkles className="size-4" strokeWidth={2.2} aria-hidden />
-              Prueba gratis 14 días
-              <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
-            </motion.a>
-            <motion.a
-              href="https://wa.me/573222393582"
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a
+              href={enlaceWhatsApp(
+                "Hola, quiero mi descuento de lanzamiento de Blexi para mi negocio",
+              )}
               target="_blank"
               rel="noreferrer"
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 450, damping: 22 }}
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/80 px-7 text-base font-semibold text-brand-textDark backdrop-blur-md transition hover:border-slate-300 hover:bg-white"
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-blx-sol px-7 text-base font-extrabold text-blx-tinta shadow-[0_14px_40px_-12px_rgba(255,106,26,0.8)] transition hover:brightness-105 active:translate-y-px"
             >
-              <MessageCircle
-                className="size-5 text-brand-whatsapp"
-                strokeWidth={2.2}
-                aria-hidden
-              />
-              Hablar por WhatsApp
-            </motion.a>
-          </motion.div>
-          <motion.p
-            variants={fadeUp}
-            className="mt-2 text-xs text-brand-textMuted"
-          >
-            Sin tarjeta de crédito · Cancela cuando quieras · Activo en 24h
-          </motion.p>
+              <MessageCircle className="size-5" strokeWidth={2.4} aria-hidden />
+              Quiero el precio de lanzamiento
+            </a>
+            <a
+              href="#como-vende"
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-full border border-white/25 px-7 text-base font-semibold text-white transition hover:bg-white/10"
+            >
+              Ver cómo vende
+              <ArrowDown className="size-4" aria-hidden />
+            </a>
+          </div>
 
-          <motion.div
-            variants={fadeUp}
-            className="mt-12 flex items-center gap-4"
-          >
-            <div className="flex -space-x-2.5">
-              {avatarIds.map((imgId, i) => (
-                <motion.div
-                  key={imgId}
-                  initial={{ opacity: 0, scale: 0.6 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 22,
-                    delay: 0.55 + i * 0.06,
-                  }}
-                  className="relative size-10 overflow-hidden rounded-full border-2 border-white shadow-md shadow-slate-300/60 ring-1 ring-black/[0.04]"
-                >
-                  <Image
-                    src={`https://i.pravatar.cc/128?img=${imgId}`}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="size-full object-cover"
-                  />
-                </motion.div>
-              ))}
+          <dl className="mt-10 flex max-w-lg flex-wrap gap-x-8 gap-y-4 border-t border-white/15 pt-6">
+            <div>
+              <dt className="text-xs text-white/60">Desde</dt>
+              <dd className="whitespace-nowrap font-display text-base font-bold sm:text-xl">{pesos(PROMO.precios.plata)}</dd>
             </div>
-            <p className="max-w-[260px] text-sm leading-snug text-brand-textMuted sm:max-w-none">
-              <span className="font-semibold text-brand-textDark">
-                Responde en segundos
-              </span>{" "}
-              con tu catálogo y registra todo en el CRM
-            </p>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="mt-10">
-            <div className="grid gap-3 sm:grid-cols-2">
-              {trustItems.map((t) => (
-                <div
-                  key={t.title}
-                  className="group flex items-start gap-3 rounded-3xl border border-slate-200/70 bg-white/70 p-4 shadow-sm shadow-slate-200/50 backdrop-blur-md transition hover:border-slate-300 hover:bg-white"
-                >
-                  <span className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-sm transition group-hover:bg-gradient-to-tr group-hover:from-cyan-500 group-hover:to-purple-500">
-                    <t.icon className="size-5" strokeWidth={2.2} aria-hidden />
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold text-brand-textDark">
-                      {t.title}
-                    </p>
-                    <p className="mt-0.5 text-xs text-brand-textMuted">
-                      {t.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div>
+              <dt className="text-xs text-white/60">Por</dt>
+              <dd className="whitespace-nowrap font-display text-base font-bold sm:text-xl">{PROMO.meses} meses</dd>
             </div>
-          </motion.div>
-        </motion.div>
+            <div>
+              <dt className="text-xs text-white/60">IVA</dt>
+              <dd className="whitespace-nowrap font-display text-base font-bold sm:text-xl">incluido</dd>
+            </div>
+          </dl>
+          <p className="mt-4 text-sm text-white/60">Hecho en Cali para pymes de Colombia.</p>
+        </div>
 
-        <motion.div
-          className="relative flex justify-center lg:justify-end"
-          initial={{ opacity: 0, scale: 0.96, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 0.85, delay: 0.25, ease: easeOutExpo }}
-        >
-          {/* Aura IA: gradient blur */}
-          <motion.div
-            className="pointer-events-none absolute -inset-12 -z-10 rounded-[3rem] bg-gradient-to-tr from-purple-400/30 to-cyan-400/30 blur-3xl"
-            aria-hidden
-            animate={{
-              opacity: [0.55, 0.85, 0.55],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          />
-
-          <LiveChatSimulation />
-        </motion.div>
+        <div className="min-w-0 pt-6 lg:pt-0">
+          <CelularDeVenta />
+        </div>
       </div>
     </section>
   );

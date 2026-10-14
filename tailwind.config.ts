@@ -11,6 +11,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Paleta del lanzamiento: tinta azul noche, papel frío, sol caleño para
+        // la acción y el cian de la marca para los acentos.
+        blx: {
+          tinta: "#0B1724",
+          tintaSuave: "#16283A",
+          linea: "#2A3E52",
+          papel: "#F2F5F7",
+          sol: "#FF6A1A",
+          solTexto: "#B83D06",
+          cian: "#00B4D8",
+          cianClaro: "#7FE3F5",
+          wa: "#25D366",
+          gris: "#4A5B6B",
+        },
         brand: {
           primary: "#06B6D4",
           primaryHover: "#0891B2",
@@ -68,27 +82,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: [
-          "var(--font-inter)",
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
-        display: [
-          "var(--font-jakarta)",
-          "Plus Jakarta Sans",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
-        grotesk: [
-          "var(--font-grotesk)",
-          "Space Grotesk",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-        ],
+        sans: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
+        grotesk: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -10,6 +10,9 @@
 
 export type PlanDeLaBase = {
   slug: string;
+  /** Nombre que guarda la base; la página puede presentarlo con otro (config). */
+  name?: string;
+  isRecommended?: boolean;
   monthlyPriceCop: number;
   annualPriceCop: number;
   annualSavingsCop: number;

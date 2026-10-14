@@ -1,31 +1,28 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Figtree, Unbounded } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
+// Unbounded para los titulares: ancha, con carácter, se usa poco y grande.
+// Figtree para leer: redonda y clara en un celular barato.
+const display = Unbounded({
   subsets: ["latin"],
-  variable: "--font-jakarta",
-  weight: ["500", "600", "700", "800"],
+  variable: "--font-display",
+  weight: ["500", "700", "800"],
 });
 
-const grotesk = Space_Grotesk({
+const body = Figtree({
   subsets: ["latin"],
-  variable: "--font-grotesk",
-  weight: ["500", "600", "700"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
+  title: "Blexi — Tu WhatsApp vende solo",
   description:
-    "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
+    "Blexi responde a tus clientes en WhatsApp, toma el pedido, lo cobra por Nequi y te avisa. Para pymes de Cali y el Valle del Cauca.",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -33,18 +30,18 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
+    title: "Blexi — Tu WhatsApp vende solo",
     description:
-      "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
+      "Blexi responde a tus clientes en WhatsApp, toma el pedido, lo cobra por Nequi y te avisa. Para pymes de Cali y el Valle del Cauca.",
     siteName: "BLEXI",
     locale: "es_CO",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
+    title: "Blexi — Tu WhatsApp vende solo",
     description:
-      "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
+      "Blexi responde a tus clientes en WhatsApp, toma el pedido, lo cobra por Nequi y te avisa. Para pymes de Cali y el Valle del Cauca.",
   },
 };
 
@@ -56,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn(jakarta.variable, grotesk.variable, inter.variable)}
+      className={cn(display.variable, body.variable)}
     >
       <body className="bg-brand-bgMain font-sans text-brand-textDark">
         {/* Blexi shared SVG defs — disponibles para todos los BlexiMark de la página */}

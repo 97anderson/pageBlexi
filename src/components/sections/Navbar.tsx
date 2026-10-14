@@ -1,57 +1,45 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 import { BlexiMark } from "@/components/brand/BlexiMark";
+import { enlaceWhatsApp } from "@/lib/config";
 
 const links = [
-  { label: "Producto", href: "#flujo" },
-  { label: "CRM", href: "#crm" },
+  { label: "Cómo vende", href: "#como-vende" },
+  { label: "Qué incluye", href: "#incluye" },
   { label: "Precios", href: "#precios" },
-  { label: "Demo", href: "#hero" },
+  { label: "Preguntas", href: "#preguntas" },
 ];
 
 export function Navbar() {
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="sticky top-0 z-50 w-full border-b border-white/40 bg-white/70 backdrop-blur-xl"
-    >
-      <div className="container-page flex h-16 items-center justify-between gap-6">
-        <a href="#hero" className="flex items-center gap-2.5">
-          <span className="relative flex size-9 items-center justify-center overflow-visible rounded-2xl bg-white shadow-lg shadow-slate-200/70 ring-1 ring-black/[0.06]">
-            <BlexiMark state="loader" height={20} />
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-blx-tinta/90 text-white backdrop-blur-xl">
+      <div className="container-page flex h-16 items-center justify-between gap-4">
+        <a href="#inicio" className="flex items-center gap-2.5" aria-label="Blexi, inicio">
+          <span className="flex size-9 items-center justify-center rounded-xl bg-white">
+            <BlexiMark state="static" height={20} />
           </span>
-          <span className="font-grotesk text-lg font-extrabold tracking-tight text-brand-textDark">
-            BLEXI
-          </span>
+          <span className="font-display text-base font-bold tracking-tight">blexi</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Secciones">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-brand-textMuted transition-colors hover:bg-slate-100 hover:text-brand-textDark"
+              className="rounded-full px-4 py-2 text-sm font-medium text-white/75 transition-colors hover:bg-white/10 hover:text-white"
             >
               {l.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <a
-            href="https://wa.me/15055787905"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-cyan-500/40 transition hover:bg-brand-primaryHover hover:shadow-lg hover:shadow-cyan-500/50"
-          >
-            Probar en WhatsApp
-          </a>
-        </div>
+        <a
+          href={enlaceWhatsApp("Hola, quiero ver cómo vende Blexi en mi negocio")}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex h-10 items-center justify-center rounded-full bg-blx-wa px-4 text-sm font-bold text-blx-tinta transition hover:brightness-95"
+        >
+          Hablar por WhatsApp
+        </a>
       </div>
-    </motion.header>
+    </header>
   );
 }

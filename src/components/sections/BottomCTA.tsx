@@ -1,86 +1,30 @@
-"use client";
+import { MessageCircle } from "lucide-react";
 
-import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
-
-
-import { Reveal } from "@/components/ui/Reveal";
+import { PROMO, enlaceWhatsApp, finDeLaPromoEnPalabras, pesos } from "@/lib/config";
 
 export function BottomCTA() {
   return (
-    <section id="cta" className="relative px-4 py-20 sm:px-8 lg:py-28">
-      <Reveal y={28}>
-        <div className="container-page">
-          <motion.div
-            whileHover={{ y: -3 }}
-            transition={{ type: "spring", stiffness: 240, damping: 24 }}
-            className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-r from-slate-900 to-slate-800 p-10 sm:p-14 lg:p-20"
-          >
-            {/* Aurora glows */}
-            <div
-              className="pointer-events-none absolute -left-32 -top-32 size-96 rounded-full bg-cyan-500/30 blur-3xl"
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute -right-32 -bottom-32 size-[28rem] rounded-full bg-purple-500/25 blur-3xl"
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute inset-0 bg-grid-dark opacity-50"
-              aria-hidden
-            />
-
-            <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-cyan-300 backdrop-blur-md">
-                  <Sparkles className="size-3.5" aria-hidden />
-                  El futuro ya llegó
-                </span>
-                <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  El futuro de las Pymes está aquí.{" "}
-                  <span className="bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
-                    Prueba Blexi 14 días gratis.
-                  </span>
-                </h2>
-                <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
-                  Sin tarjeta de crédito. Sin contratos. En menos de 24h tu agente está atendiendo WhatsApp, registrando pedidos y cerrando ventas mientras descansas.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-3 lg:items-end">
-                <motion.a
-                  href="https://wa.me/573222393582?text=Hola!%20Quiero%20empezar%20mi%20prueba%20gratuita%20de%2014%20d%C3%ADas%20de%20Blexi"
-                  target="_blank"
-                  rel="noreferrer"
-                  whileHover={{ scale: 1.03, y: -1 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 450, damping: 22 }}
-                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-cyan-500 px-8 text-base font-bold text-slate-900 shadow-xl shadow-cyan-500/40 transition hover:bg-cyan-400 lg:w-auto"
-                >
-                  <Sparkles className="size-5" strokeWidth={2.2} />
-                  Empezar gratis — 14 días
-                  <ArrowRight className="size-5" strokeWidth={2.4} />
-                </motion.a>
-                <motion.a
-                  href="https://wa.me/573222393582"
-                  target="_blank"
-                  rel="noreferrer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 450, damping: 22 }}
-                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/10 lg:w-auto"
-                >
-                  <MessageCircle
-                    className="size-4 text-emerald-400"
-                    strokeWidth={2.2}
-                  />
-                  Hablar por WhatsApp
-                </motion.a>
-              </div>
-            </div>
-          </motion.div>
+    <section id="empezar" className="bg-blx-sol py-20 text-blx-tinta sm:py-24">
+      <div className="container-page grid items-end gap-10 lg:grid-cols-[1.3fr_0.7fr]">
+        <div className="min-w-0">
+          <h2 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight [text-wrap:balance] sm:text-6xl">
+            Que tu próximo pedido lo tome Blexi.
+          </h2>
+          <p className="mt-5 max-w-xl text-lg font-medium">
+            Escríbenos, te mostramos Blexi vendiendo con tus productos y lo dejamos funcionando en tu negocio.
+            Desde {pesos(PROMO.precios.plata)} al mes los primeros {PROMO.meses} meses, hasta el {finDeLaPromoEnPalabras()}.
+          </p>
         </div>
-      </Reveal>
+        <a
+          href={enlaceWhatsApp("Hola, quiero que Blexi venda en mi negocio")}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex min-h-16 items-center justify-center gap-3 rounded-full bg-blx-tinta px-8 text-lg font-extrabold text-white transition hover:bg-blx-tintaSuave active:translate-y-px"
+        >
+          <MessageCircle className="size-6" aria-hidden />
+          Empezar por WhatsApp
+        </a>
+      </div>
     </section>
   );
 }

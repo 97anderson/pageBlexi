@@ -6,16 +6,16 @@ const groups = [
   {
     title: "Producto",
     links: [
-      { label: "Cómo funciona", href: "#flujo" },
-      { label: "CRM en vivo", href: "#crm" },
-      { label: "Precios", href: "#precios" },
+      { label: "Cómo vende", href: "/#como-vende" },
+      { label: "Qué incluye", href: "/#incluye" },
+      { label: "Precios", href: "/#precios" },
     ],
   },
   {
     title: "Compañía",
     links: [
       { label: "BlueCode Solutions", href: "https://bluecodesolution.com" },
-      { label: "Contacto", href: "#cta" },
+      { label: "Contacto", href: "/#empezar" },
     ],
   },
   {
@@ -43,8 +43,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-brand-textMuted">
-              IA y CRM para Pymes en Colombia. Atendemos WhatsApp, cerramos
-              ventas y organizamos tu negocio mientras tú descansas.
+              Blexi responde, toma el pedido, lo cobra y te avisa. Para pymes
+              de Cali, el Valle del Cauca y Colombia.
             </p>
             <p className="mt-6 text-xs text-slate-400">
               Powered by{" "}
@@ -86,11 +86,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:items-center">
           <p className="text-xs text-brand-textMuted">
-            © {new Date().getFullYear()} BLEXI · Hecho con cariño desde
-            Colombia.
-          </p>
-          <p className="text-xs text-brand-textMuted">
-            Diseñado para que descanses.
+            © {new Date().getFullYear()} Blexi · BlueCode Solutions · Hecho en Cali.
           </p>
         </div>
       </div>

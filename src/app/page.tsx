@@ -1,14 +1,14 @@
 import { leerPlanes } from "@/lib/planes";
+import { AsiVende } from "@/components/lanzamiento/AsiVende";
+import { BannerDeLanzamiento } from "@/components/lanzamiento/BannerDeLanzamiento";
+import { Preguntas } from "@/components/lanzamiento/Preguntas";
+import { QueIncluye } from "@/components/lanzamiento/QueIncluye";
+import { SigueTuWhatsApp } from "@/components/lanzamiento/SigueTuWhatsApp";
 import { BottomCTA } from "@/components/sections/BottomCTA";
-import { CRMShowcase } from "@/components/sections/CRMShowcase";
-import { Features } from "@/components/sections/Features";
 import { Footer } from "@/components/sections/Footer";
-import { FreeTrial } from "@/components/sections/FreeTrial";
 import { Hero } from "@/components/sections/Hero";
 import { Navbar } from "@/components/sections/Navbar";
-import { PainVsSolution } from "@/components/sections/PainVsSolution";
 import { Pricing } from "@/components/sections/Pricing";
-import { Workflow } from "@/components/sections/Workflow";
 import { StickyWhatsAppCTA } from "@/components/StickyWhatsAppCTA";
 
 export default async function Home() {
@@ -19,18 +19,18 @@ export default async function Home() {
 
   return (
     <>
+      <BannerDeLanzamiento />
       <Navbar />
       <main className="relative pb-24 sm:pb-0">
         <Hero />
-        <PainVsSolution />
-        <Workflow />
-        <Features />
-        <CRMShowcase />
+        <AsiVende />
+        <SigueTuWhatsApp />
+        <QueIncluye />
         <Pricing planes={planes} />
-        <FreeTrial />
+        <Preguntas />
         <BottomCTA />
       </main>
-      <StickyWhatsAppCTA href="https://wa.me/15055787905" />
+      <StickyWhatsAppCTA />
       <Footer />
     </>
   );
