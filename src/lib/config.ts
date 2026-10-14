@@ -1,10 +1,10 @@
 /**
  * Lo que cambia por decisión comercial, en un solo sitio.
  *
- * El número de ventas, la promoción de lanzamiento, el nombre visible de cada
- * plan y lo que todavía no se puede prometer. Antes cada sección traía su
- * número de WhatsApp escrito a mano y la página llegó a tener tres distintos,
- * uno de ellos de prueba en Estados Unidos.
+ * El número de ventas, la promoción de lanzamiento, la prueba gratis, el
+ * nombre visible de cada plan y lo que todavía no se puede prometer. Antes
+ * cada sección traía su número de WhatsApp escrito a mano y la página llegó
+ * a tener tres distintos, uno de ellos de prueba en Estados Unidos.
  */
 
 /**
@@ -23,17 +23,52 @@ export function enlaceWhatsApp(texto?: string): string {
  * Precio de lanzamiento: las tres primeras mensualidades a este valor, IVA
  * incluido, para negocios que se registren hasta `hasta` (inclusive). Desde la
  * cuarta se cobra el precio de lista que diga la base. Las claves son los
- * `slug` del API de planes.
+ * `slug` del API de planes. Decisión del dueño del 13-oct-2026.
  */
 export const PROMO = {
   activo: true,
   hasta: "2026-12-31",
   meses: 3,
   precios: {
-    plata: 199_000,
-    oro: 399_000,
-    platino: 799_000,
+    plata: 299_000,
+    oro: 599_000,
+    platino: 1_199_000,
   } as Record<string, number>,
+};
+
+/** Días de prueba gratis antes del primer cobro. */
+export const PRUEBA_DIAS = 15;
+
+/**
+ * Cupos del lanzamiento. APAGADO hasta que el dueño confirme el número: un
+ * contador de cupos que no corresponde a nada real es publicidad engañosa.
+ */
+export const CUPOS_LANZAMIENTO = { activo: false, total: 30 };
+
+/**
+ * «Te lo dejamos funcionando»: el equipo carga el catálogo, conecta el
+ * WhatsApp y hace la primera venta de prueba con el dueño. Encendida; el
+ * dueño debe confirmar que el equipo puede cumplirla con cada alta.
+ */
+export const PROMESA_ALTA_ASISTIDA = {
+  activo: true,
+  corta: "Te lo dejamos funcionando",
+  larga:
+    "Cargamos tu catálogo, conectamos tu WhatsApp y hacemos contigo la primera venta de prueba.",
+};
+
+/**
+ * Datos medidos en producción en una perfumería cliente (sin nombre ni
+ * ciudad, por privacidad). Fuente: conversaciones del 27-sep al 13-oct-2026.
+ */
+export const PRUEBA_REAL = {
+  quien: "una perfumería que ya usa Blexi",
+  desde: "27 de septiembre",
+  hasta: "13 de octubre de 2026",
+  dias: 17,
+  conversaciones: 36,
+  medianaSegundos: "4,5",
+  fueraDeHorarioPct: 31,
 };
 
 /**
@@ -56,7 +91,7 @@ export const MOSTRAR_COEXISTENCIA = false;
 
 /** Formato de pesos colombianos sin decimales: $199.000. */
 export function pesos(n: number): string {
-  return `$${n.toLocaleString("es-CO", { maximumFractionDigits: 0 })}`;
+  return `$${Math.round(n).toLocaleString("es-CO", { maximumFractionDigits: 0 })}`;
 }
 
 /** Fecha final de la promoción en palabras: «31 de diciembre». */
@@ -68,4 +103,13 @@ export function finDeLaPromoEnPalabras(): string {
     month: "long",
     timeZone: "America/Bogota",
   });
+}
+
+/**
+ * Porcentaje de descuento redondeado al entero más cercano (299/490 = 38,98 %
+ * → 39 %). Nunca se anuncia una cifra mayor que la real redondeada.
+ */
+export function descuentoPct(promo: number, lista?: number): number | null {
+  if (!lista || lista <= promo) return null;
+  return Math.round((1 - promo / lista) * 100);
 }

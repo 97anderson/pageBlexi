@@ -7,7 +7,7 @@ const groups = [
     title: "Producto",
     links: [
       { label: "Cómo vende", href: "/#como-vende" },
-      { label: "Qué incluye", href: "/#incluye" },
+      { label: "Haz la cuenta", href: "/#calculadora" },
       { label: "Precios", href: "/#precios" },
     ],
   },
@@ -30,7 +30,7 @@ const groups = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="border-t border-slate-200 bg-white pb-28 sm:pb-0">
       <div className="container-page py-14">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr]">
           <div>

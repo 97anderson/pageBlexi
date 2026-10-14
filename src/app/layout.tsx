@@ -20,9 +20,11 @@ const body = Figtree({
 });
 
 export const metadata: Metadata = {
-  title: "Blexi — Tu WhatsApp vende solo",
+  metadataBase: new URL("https://soyblexi.com"),
+  keywords: ["vendedor con IA", "WhatsApp", "Cali", "Valle del Cauca", "pymes", "chatbot de ventas", "Nequi"],
+  title: "Blexi | Vendedor con IA para WhatsApp en Cali y el Valle del Cauca",
   description:
-    "Blexi responde a tus clientes en WhatsApp, toma el pedido, lo cobra por Nequi y te avisa. Para pymes de Cali y el Valle del Cauca.",
+    "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Cali: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -30,18 +32,18 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Blexi — Tu WhatsApp vende solo",
+    title: "Blexi | Vendedor con IA para WhatsApp en Cali y el Valle del Cauca",
     description:
-      "Blexi responde a tus clientes en WhatsApp, toma el pedido, lo cobra por Nequi y te avisa. Para pymes de Cali y el Valle del Cauca.",
+      "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Cali: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
     siteName: "BLEXI",
     locale: "es_CO",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blexi — Tu WhatsApp vende solo",
+    title: "Blexi | Vendedor con IA para WhatsApp en Cali y el Valle del Cauca",
     description:
-      "Blexi responde a tus clientes en WhatsApp, toma el pedido, lo cobra por Nequi y te avisa. Para pymes de Cali y el Valle del Cauca.",
+      "Blexi es el vendedor con IA para el WhatsApp de tu negocio en Cali: responde con fotos y precios, toma el pedido, lo cobra por Nequi y te avisa. 15 días gratis.",
   },
 };
 

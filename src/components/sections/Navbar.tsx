@@ -1,9 +1,9 @@
 import { BlexiMark } from "@/components/brand/BlexiMark";
-import { enlaceWhatsApp } from "@/lib/config";
+import { BotonWhatsApp } from "@/components/lanzamiento/BotonWhatsApp";
 
 const links = [
   { label: "Cómo vende", href: "#como-vende" },
-  { label: "Qué incluye", href: "#incluye" },
+  { label: "Haz la cuenta", href: "#calculadora" },
   { label: "Precios", href: "#precios" },
   { label: "Preguntas", href: "#preguntas" },
 ];
@@ -31,14 +31,15 @@ export function Navbar() {
           ))}
         </nav>
 
-        <a
-          href={enlaceWhatsApp("Hola, quiero ver cómo vende Blexi en mi negocio")}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex h-10 items-center justify-center rounded-full bg-blx-wa px-4 text-sm font-bold text-blx-tinta transition hover:brightness-95"
+        <BotonWhatsApp
+          seccion="navegacion"
+          variante="wa"
+          mensaje="Hola, quiero ver cómo vende Blexi en mi negocio"
+          className="min-h-10 px-4 text-sm"
         >
-          Hablar por WhatsApp
-        </a>
+          <span className="hidden sm:inline">Hablar por WhatsApp</span>
+          <span className="sm:hidden">WhatsApp</span>
+        </BotonWhatsApp>
       </div>
     </header>
   );

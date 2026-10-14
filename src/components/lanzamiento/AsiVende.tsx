@@ -1,5 +1,7 @@
 import { Bell, Images, Receipt, ShoppingBag } from "lucide-react";
 
+import { BotonWhatsApp, QuePasaAlTocar } from "@/components/lanzamiento/BotonWhatsApp";
+
 /** La venta en el orden en que pasa. La numeración es el orden real. */
 const pasos = [
   {
@@ -51,6 +53,13 @@ export function AsiVende() {
             </li>
           ))}
         </ol>
+
+        <div className="mt-10">
+          <BotonWhatsApp seccion="como_vende" mensaje="Hola, quiero ver una demo de Blexi con mis productos">
+            Quiero verlo con mis productos
+          </BotonWhatsApp>
+          <QuePasaAlTocar claro />
+        </div>
       </div>
     </section>
   );
