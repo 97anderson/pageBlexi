@@ -30,7 +30,7 @@ export default async function Home() {
         <FreeTrial />
         <BottomCTA />
       </main>
-      <StickyWhatsAppCTA href="https://wa.me/15055787905" />
+      <StickyWhatsAppCTA href="https://wa.me/573222393582" />
       <Footer />
     </>
   );

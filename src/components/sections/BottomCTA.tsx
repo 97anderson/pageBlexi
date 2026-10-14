@@ -39,11 +39,11 @@ export function BottomCTA() {
                 <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                   El futuro de las Pymes está aquí.{" "}
                   <span className="bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">
-                    Prueba Blexi 14 días gratis.
+                    Prueba Blexi 15 días gratis.
                   </span>
                 </h2>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
-                  Sin tarjeta de crédito. Sin contratos. En menos de 24h tu agente está atendiendo WhatsApp, registrando pedidos y cerrando ventas mientras descansas.
+                  Sin tarjeta de crédito. Sin contratos. Te acompañamos a dejarlo listo, y desde ahí tu agente atiende WhatsApp, registra pedidos y cierra ventas mientras descansas.
                 </p>
               </div>
 
@@ -58,7 +58,7 @@ export function BottomCTA() {
                   className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-cyan-500 px-8 text-base font-bold text-slate-900 shadow-xl shadow-cyan-500/40 transition hover:bg-cyan-400 lg:w-auto"
                 >
                   <Sparkles className="size-5" strokeWidth={2.2} />
-                  Empezar gratis — 14 días
+                  Empezar gratis — 15 días
                   <ArrowRight className="size-5" strokeWidth={2.4} />
                 </motion.a>
                 <motion.a
