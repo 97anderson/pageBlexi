@@ -71,24 +71,29 @@ const features: Feature[] = [
   },
 ];
 
+/** Tamaño y color de cada bloque del mosaico, en orden. */
+const MOSAICO = [
+  { span: "lg:col-span-2", fondo: "bg-slate-950", icono: "bg-[#00D8F0] text-slate-950", titulo: "text-white", texto: "text-slate-300", etiqueta: "text-[#00D8F0]" },
+  { span: "", fondo: "bg-[#EADCFD]", icono: "bg-white text-[#9030F0]", titulo: "text-slate-950", texto: "text-slate-700", etiqueta: "text-[#7C22D6]" },
+  { span: "", fondo: "bg-white border border-slate-200/80", icono: "bg-slate-950 text-white", titulo: "text-slate-950", texto: "text-slate-600", etiqueta: "text-slate-500" },
+  { span: "lg:col-span-2", fondo: "bg-[#CFF6FB]", icono: "bg-white text-cyan-700", titulo: "text-slate-950", texto: "text-slate-700", etiqueta: "text-cyan-800" },
+  { span: "", fondo: "bg-white border border-slate-200/80", icono: "bg-slate-950 text-white", titulo: "text-slate-950", texto: "text-slate-600", etiqueta: "text-slate-500" },
+  { span: "lg:col-span-2", fondo: "bg-[#EADCFD]", icono: "bg-white text-[#9030F0]", titulo: "text-slate-950", texto: "text-slate-700", etiqueta: "text-[#7C22D6]" },
+];
+
 export function Features() {
   return (
-    <section id="producto" className="relative overflow-hidden bg-slate-50/60 py-24 lg:py-32">
-      {/* Background glows */}
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-        <div className="absolute left-0 top-1/4 size-[500px] -translate-x-1/2 rounded-full bg-cyan-100/40 blur-3xl" />
-        <div className="absolute bottom-0 right-0 size-[400px] rounded-full bg-purple-100/40 blur-3xl" />
-      </div>
+    <section id="producto" className="relative overflow-hidden py-24 lg:py-32">
 
       <div className="container-page">
         {/* Header */}
         <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+          <span className="etiqueta">
             Por qué Blexi
           </span>
           <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-textDark sm:text-5xl">
             Recupera ventas que{" "}
-            <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="acento">
               antes se perdían
             </span>
             .
@@ -99,63 +104,34 @@ export function Features() {
           </p>
         </Reveal>
 
-        {/* Feature grid */}
-        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {features.map((f, i) => (
-            <Reveal key={f.headline} delay={i * 0.07}>
-              <motion.article
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 320, damping: 24 }}
-                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white p-7 shadow-sm transition-all hover:border-cyan-200 hover:shadow-md hover:shadow-cyan-500/10"
-              >
-                {/* Hover glow */}
-                <div
-                  className="pointer-events-none absolute -right-12 -top-12 size-40 rounded-full bg-gradient-to-tr from-cyan-100/0 to-purple-100/0 blur-2xl transition-all duration-500 group-hover:from-cyan-100/60 group-hover:to-purple-100/50"
-                  aria-hidden
-                />
-
-                <div className="relative flex flex-1 flex-col">
-                  {/* Icon */}
-                  <div
-                    className={
-                      f.premium
-                        ? "flex size-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-cyan-500 to-purple-500 text-white shadow-md shadow-cyan-500/30"
-                        : "flex size-12 items-center justify-center rounded-2xl bg-cyan-50 text-brand-primary ring-1 ring-cyan-100 transition-all group-hover:bg-gradient-to-tr group-hover:from-cyan-500 group-hover:to-purple-500 group-hover:text-white group-hover:ring-transparent"
-                    }
-                  >
+        {/* Mosaico: bloques de distinto tamaño y color, en vez de seis
+            tarjetas iguales. */}
+        <div className="mt-16 grid gap-4 lg:grid-cols-3 lg:gap-5">
+          {features.map((f, i) => {
+            const t = MOSAICO[i % MOSAICO.length];
+            return (
+              <Reveal key={f.headline} delay={i * 0.06} className={t.span}>
+                <motion.article
+                  whileHover={{ y: -4 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 24 }}
+                  className={`relative flex h-full min-h-[240px] flex-col overflow-hidden rounded-[1.75rem] p-7 sm:p-8 ${t.fondo}`}
+                >
+                  <span className={`flex size-11 items-center justify-center rounded-2xl ${t.icono}`}>
                     <f.icon className="size-5" strokeWidth={2.2} />
-                  </div>
-
-                  {/* Text */}
-                  <h3 className="mt-5 font-grotesk text-lg font-bold leading-snug text-brand-textDark">
+                  </span>
+                  <h3 className={`mt-6 font-grotesk text-xl font-bold leading-snug sm:text-2xl ${t.titulo}`}>
                     {f.headline}
                   </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-textMuted">
+                  <p className={`mt-3 max-w-md flex-1 text-sm leading-relaxed ${t.texto}`}>
                     {f.description}
                   </p>
-
-                  {/* Plan badge */}
-                  <div className="mt-5 pt-4 border-t border-slate-100">
-                    <span
-                      className={
-                        f.premium
-                          ? "inline-flex items-center gap-1.5 rounded-full border border-purple-100 bg-gradient-to-r from-cyan-50 to-purple-50 px-2.5 py-1 text-[11px] font-semibold text-purple-700"
-                          : "inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-600"
-                      }
-                    >
-                      {f.premium && (
-                        <span
-                          className="size-1.5 rounded-full bg-gradient-to-r from-cyan-400 to-purple-400"
-                          aria-hidden
-                        />
-                      )}
-                      {f.badge}
-                    </span>
-                  </div>
-                </div>
-              </motion.article>
-            </Reveal>
-          ))}
+                  <p className={`mt-6 font-grotesk text-[11px] font-bold uppercase tracking-[0.1em] ${t.etiqueta}`}>
+                    {f.badge}
+                  </p>
+                </motion.article>
+              </Reveal>
+            );
+          })}
         </div>
 
         {/* Bottom note */}

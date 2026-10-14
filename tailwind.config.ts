@@ -17,7 +17,7 @@ const config: Config = {
           aiMagic: "#A855F7",
           aiMagicSoft: "#C084FC",
           whatsapp: "#25D366",
-          bgMain: "#F8FAFC",
+          bgMain: "#FFFFFF",
           surface: "#FFFFFF",
           textDark: "#0F172A",
           textMuted: "#475569",

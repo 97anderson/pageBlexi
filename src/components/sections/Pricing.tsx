@@ -416,6 +416,10 @@ const SLUG_POR_NOMBRE: Record<string, string> = {
   Diamante: "platino",
 };
 
+/** Lo que cuesta un asesor de WhatsApp en Colombia con prestaciones (el rango que cita la página). */
+const ASESOR_DESDE_COP = 1_400_000;
+const ASESOR_HASTA_COP = 2_100_000;
+
 const pesos = (cop: number) =>
   new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -473,7 +477,7 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
   const desdeCop = precios.length ? Math.min(...precios) : null;
 
   return (
-    <section id="precios" className="relative overflow-hidden bg-slate-50 py-24 lg:py-32">
+    <section id="precios" className="relative overflow-hidden py-24 lg:py-32">
       {/* Background glows */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
         <div className="absolute left-1/2 top-0 size-[700px] -translate-x-1/2 rounded-full bg-cyan-200/20 blur-3xl" />
@@ -483,27 +487,21 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
       <div className="container-page">
         {/* ── Section header ── */}
         <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+          <span className="etiqueta">
             Planes Pyme · Colombia · LATAM
           </span>
-          <p className="mx-auto mt-4 w-fit rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 px-4 py-1.5 text-xs font-semibold text-white shadow-md shadow-cyan-500/30">
+          <p className="mx-auto mt-4 w-fit rounded-full bg-slate-950 px-4 py-1.5 text-xs font-semibold text-white">
             Lanzamiento: {DESCUENTO_DE_LANZAMIENTO_PCT}% menos los primeros {MESES_DE_LANZAMIENTO} meses
           </p>
           <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.1] tracking-tight text-brand-textDark sm:text-5xl">
             Menos que pagar{" "}
-            <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-              un colaborador
-            </span>
-            .{" "}
-            <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-              El doble
-            </span>{" "}
-            de capacidad.
+            <span className="acento">un colaborador</span>. El doble de
+            capacidad.
           </h2>
           <p className="mt-5 text-lg text-brand-textMuted">
             Un asesor WhatsApp en Colombia cuesta entre{" "}
             <strong className="font-semibold text-brand-textDark">
-              $1.400.000 y $2.100.000 COP/mes
+              {pesos(ASESOR_DESDE_COP)} y {pesos(ASESOR_HASTA_COP)} COP/mes
             </strong>{" "}
             con prestaciones. Blexi trabaja 24/7{" "}
             {desdeCop !== null ? (
@@ -570,6 +568,56 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
             </div>
           </div>
         </Reveal>
+
+        {/* ── Lo que cuesta hacerlo de otra forma ── */}
+        {(() => {
+          const lista = deLaBase.plata?.monthlyPriceCop;
+          const promo = PRECIO_DE_LANZAMIENTO_COP.plata;
+          if (!Number.isFinite(lista) || !promo) return null;
+          const tope = ASESOR_HASTA_COP;
+          const barras = [
+            { etiqueta: "Un asesor de WhatsApp", nota: `entre ${pesos(ASESOR_DESDE_COP)} y ${pesos(ASESOR_HASTA_COP)} con prestaciones`, valor: tope, desde: ASESOR_DESDE_COP, oscuro: false },
+            { etiqueta: "BLEXI a precio de lista", nota: "plan de entrada", valor: lista, oscuro: false },
+            { etiqueta: "BLEXI en lanzamiento", nota: `primeros ${MESES_DE_LANZAMIENTO} meses`, valor: promo, oscuro: true },
+          ];
+          return (
+            <Reveal delay={0.1} className="mx-auto mt-12 max-w-4xl">
+              <div className="rounded-[2rem] border border-slate-200/80 bg-white p-6 sm:p-10">
+                <p className="etiqueta">Lo que cuesta hacerlo de otra forma</p>
+                <div className="mt-8 grid grid-cols-3 items-end gap-4 sm:gap-8" style={{ height: 260 }}>
+                  {barras.map((b) => (
+                    <div key={b.etiqueta} className="flex h-full flex-col justify-end text-center">
+                      <p className="font-grotesk text-sm font-bold text-slate-900 sm:text-lg">
+                        {pesos(b.valor)}
+                        <span className="text-xs font-medium text-slate-500">/mes</span>
+                      </p>
+                      <motion.div
+                        initial={{ height: 0 }}
+                        whileInView={{ height: `${Math.max(8, (b.valor / tope) * 78)}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                        className={`relative mt-2 w-full overflow-hidden rounded-2xl ${b.oscuro ? "bg-slate-950" : "bg-[#CFF6FB]"}`}
+                      >
+                        {b.desde && (
+                          <span
+                            className="absolute inset-x-0 bottom-0 bg-[#9DEBF5]"
+                            style={{ height: `${(b.desde / b.valor) * 100}%` }}
+                            aria-hidden
+                          />
+                        )}
+                        {b.oscuro && (
+                          <span className="absolute inset-x-0 top-0 h-1.5 bg-[#00D8F0]" aria-hidden />
+                        )}
+                      </motion.div>
+                      <p className="mt-3 text-xs font-semibold text-slate-900 sm:text-sm">{b.etiqueta}</p>
+                      <p className="mt-0.5 text-[11px] text-slate-500 sm:text-xs">{b.nota}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          );
+        })()}
 
         {/* ── Plans grid ── */}
         <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
@@ -719,6 +767,9 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
                       <ArrowRight className="size-4" aria-hidden />
                     )}
                   </a>
+                  <p className="mt-2 text-center text-[11px] font-medium text-brand-textMuted">
+                    15 días gratis · sin tarjeta · cancelas cuando quieras
+                  </p>
 
                   {/* ── Business type compatibility toggle ── */}
                   <PlanBusinessTypes

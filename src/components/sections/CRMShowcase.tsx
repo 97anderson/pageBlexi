@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import {
   ArrowUpRight,
-  BarChart3,
   Bell,
   Search,
   Users,
@@ -13,9 +12,9 @@ import {
 import { Reveal } from "@/components/ui/Reveal";
 
 const stats = [
-  { label: "Ejemplo: ventas hoy", value: "$2.350.000", trend: "+18.4%" },
-  { label: "Ejemplo: pedidos activos", value: "27", trend: "+6" },
-  { label: "Ejemplo: clientes nuevos", value: "12", trend: "+3" },
+  { label: "Ventas hoy", value: "$2.350.000", trend: "+18.4%" },
+  { label: "Pedidos activos", value: "27", trend: "+6" },
+  { label: "Clientes nuevos", value: "12", trend: "+3" },
 ];
 
 const orders = [
@@ -66,13 +65,12 @@ export function CRMShowcase() {
 
       <div className="container-page relative">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-cyan-300 backdrop-blur-md">
-            <BarChart3 className="size-3.5" aria-hidden />
+          <span className="etiqueta etiqueta-clara">
             CRM en tiempo real
           </span>
           <h2 className="mt-5 font-grotesk text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl">
             CRM en tiempo real:{" "}
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="acento acento-claro">
               tu negocio bajo control total.
             </span>
           </h2>
