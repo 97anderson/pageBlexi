@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { ArrowRight, MessageCircle, ShieldCheck, Sparkles, Zap } from "lucide-react";
 
 import { LiveChatSimulation } from "./LiveChatSimulation";
@@ -25,7 +24,8 @@ const fadeUp = {
   },
 };
 
-const avatarIds = [12, 33, 47, 68];
+// Iniciales, no fotos: las caras de un banco de imágenes pasaban por clientes.
+const avatarIniciales = ["MC", "JR", "LP", "AS"];
 
 const trustItems = [
   {
@@ -113,7 +113,7 @@ export function Hero() {
               className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-primary px-8 text-base font-semibold text-white shadow-lg shadow-cyan-500/50 transition-shadow hover:bg-brand-primaryHover hover:shadow-xl hover:shadow-cyan-500/60"
             >
               <Sparkles className="size-4" strokeWidth={2.2} aria-hidden />
-              Prueba gratis 14 días
+              Prueba gratis 15 días
               <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
             </motion.a>
             <motion.a
@@ -137,7 +137,7 @@ export function Hero() {
             variants={fadeUp}
             className="mt-2 text-xs text-brand-textMuted"
           >
-            Sin tarjeta de crédito · Cancela cuando quieras · Activo en 24h
+            Sin tarjeta de crédito · Cancela cuando quieras
           </motion.p>
 
           <motion.div
@@ -145,9 +145,9 @@ export function Hero() {
             className="mt-12 flex items-center gap-4"
           >
             <div className="flex -space-x-2.5">
-              {avatarIds.map((imgId, i) => (
+              {avatarIniciales.map((iniciales, i) => (
                 <motion.div
-                  key={imgId}
+                  key={iniciales}
                   initial={{ opacity: 0, scale: 0.6 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
@@ -156,15 +156,10 @@ export function Hero() {
                     damping: 22,
                     delay: 0.55 + i * 0.06,
                   }}
-                  className="relative size-10 overflow-hidden rounded-full border-2 border-white shadow-md shadow-slate-300/60 ring-1 ring-black/[0.04]"
+                  className="relative flex size-10 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-tr from-cyan-500 to-purple-500 text-xs font-bold text-white shadow-md shadow-slate-300/60 ring-1 ring-black/[0.04]"
+                  aria-hidden
                 >
-                  <Image
-                    src={`https://i.pravatar.cc/128?img=${imgId}`}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="size-full object-cover"
-                  />
+                  {iniciales}
                 </motion.div>
               ))}
             </div>
