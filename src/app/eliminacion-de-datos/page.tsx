@@ -50,7 +50,7 @@ export default function EliminacionDeDatosPage() {
     <LegalShell
       title="Instrucciones para eliminar tus datos"
       subtitle="Cómo pedir que BLEXI borre los datos que guarda cuando conectas tu cuenta de Meta, y cómo quitarle el acceso a la app desde Facebook."
-      lastUpdated="Última actualización: 13 de octubre de 2026"
+      lastUpdated="Última actualización: 14 de octubre de 2026"
       toc={toc}
     >
       <LP>
@@ -97,8 +97,9 @@ export default function EliminacionDeDatosPage() {
           </LLI>
           <LLI>
             Cuando conectes una página de Facebook o una cuenta de Instagram
-            para publicar, guardaremos del mismo modo su identificador y su
-            token de acceso.
+            para publicar, guardaremos del mismo modo su identificador, su
+            nombre o usuario y su token de acceso cifrado, y el registro de lo
+            que publiques desde BLEXI (la fecha, la red y el enlace del post).
           </LLI>
         </LUL>
         <LP>
