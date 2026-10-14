@@ -22,6 +22,7 @@ import {
 } from "@/lib/lanzamiento";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { WHATSAPP_VENTAS, enlaceRegistro, enlaceWhatsApp } from "@/lib/contacto";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -99,7 +100,7 @@ const plans: Plan[] = [
       "Tu primer asesor de IA en WhatsApp. Atiende, responde y cierra pedidos mientras descansas.",
     savingsBadge: "Menos que un asesor de medio tiempo",
     cta: "Empezar con Plata",
-    ctaHref: "https://wa.me/573222393582",
+    ctaHref: enlaceRegistro("plata"),
     features: [
       { clave: "monthly_conversations", defecto: 500, texto: (n) => `${n} conversaciones al mes` },
       "1 línea de WhatsApp activa",
@@ -124,7 +125,7 @@ const plans: Plan[] = [
       "Más volumen, analíticas y cinco veces más audios y fotos de tus clientes. El favorito de quienes quieren crecer sin contratar más.",
     savingsBadge: "Ahorra +$1.1M vs. asesor full-time",
     cta: "Quiero el plan Oro",
-    ctaHref: "https://wa.me/573222393582",
+    ctaHref: enlaceRegistro("oro"),
     highlighted: true,
     badge: "Más popular",
     features: [
@@ -151,7 +152,7 @@ const plans: Plan[] = [
       "Alto volumen, tu base de clientes ordenada por valor y el conocimiento del agente en tus manos. Para negocios que ya crecieron.",
     savingsBadge: "10× la capacidad al costo de 1 empleado",
     cta: "Escalar con Diamante",
-    ctaHref: "https://wa.me/573222393582",
+    ctaHref: enlaceRegistro("platino"),
     features: [
       { clave: "monthly_conversations", defecto: 2200, texto: (n) => `${n} conversaciones al mes` },
       "Todo lo del plan Oro incluido",
@@ -815,7 +816,7 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
               </div>
               <div className="shrink-0">
                 <a
-                  href="https://wa.me/573222393582"
+                  href={enlaceWhatsApp(WHATSAPP_VENTAS)}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex h-12 items-center gap-2 rounded-2xl bg-white px-7 text-sm font-semibold text-slate-900 shadow-md transition hover:bg-slate-100"
@@ -858,7 +859,7 @@ export function Pricing({ planes = [] }: { planes?: PlanDeLaBase[] }) {
             Sin contratos eternos · Cancela cuando quieras · Pymes en toda
             Colombia y LATAM ·{" "}
             <a
-              href="https://wa.me/573222393582"
+              href={enlaceWhatsApp(WHATSAPP_VENTAS)}
               target="_blank"
               rel="noreferrer"
               className="font-semibold text-brand-primary hover:underline"

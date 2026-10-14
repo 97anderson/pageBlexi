@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { EscenaAntesDespues } from "./EscenaAntesDespues";
 
 const painPoints = [
   {
@@ -73,6 +74,10 @@ export function PainVsSolution() {
           <p className="mt-5 text-lg text-brand-textMuted">
             Dos formas de vivir tu negocio. Tú eliges cuál mereces.
           </p>
+        </Reveal>
+
+        <Reveal delay={0.05} className="mx-auto mt-14 max-w-5xl">
+          <EscenaAntesDespues />
         </Reveal>
 
         <div className="mt-16 grid gap-6 lg:grid-cols-2 lg:gap-8">

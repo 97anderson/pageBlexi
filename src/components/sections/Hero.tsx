@@ -1,10 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, ShieldCheck, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Clock3, LayoutDashboard, MessageCircle, Sparkles, Zap } from "lucide-react";
 
 import { LiveChatSimulation } from "./LiveChatSimulation";
 import { BlexiMark } from "@/components/brand/BlexiMark";
+import { WHATSAPP_PRUEBA, WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
+import {
+  MESES_DE_LANZAMIENTO,
+  PRECIO_DE_LANZAMIENTO_COP,
+} from "@/lib/lanzamiento";
 
 const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -24,30 +29,14 @@ const fadeUp = {
   },
 };
 
-// Iniciales, no fotos: las caras de un banco de imágenes pasaban por clientes.
-const avatarIniciales = ["MC", "JR", "LP", "AS"];
+const desdeCop = Math.min(...Object.values(PRECIO_DE_LANZAMIENTO_COP));
+const desde = `$${desdeCop.toLocaleString("es-CO")}`;
 
-const trustItems = [
-  {
-    icon: Zap,
-    title: "Responde 24/7",
-    desc: "Sin dejar leads en visto.",
-  },
-  {
-    icon: Sparkles,
-    title: "Entrenada con tu catálogo",
-    desc: "Tu info, tu tono.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "CRM incluido",
-    desc: "Pedidos y seguimiento.",
-  },
-  {
-    icon: MessageCircle,
-    title: "En WhatsApp",
-    desc: "Donde ya están tus clientes.",
-  },
+/** Tres hechos en una línea, en vez de cuatro tarjetas que repetían el título. */
+const hechos = [
+  { icon: Zap, texto: "Responde en segundos" },
+  { icon: Clock3, texto: "24/7, también domingos" },
+  { icon: LayoutDashboard, texto: "Cada pedido queda en tu CRM" },
 ];
 
 export function Hero() {
@@ -80,7 +69,7 @@ export function Hero() {
 
           <motion.h1
             variants={fadeUp}
-            className="mt-6 font-grotesk text-5xl font-extrabold leading-[1.04] tracking-tight text-brand-textDark sm:text-6xl lg:text-[4.5rem] lg:leading-[1.02]"
+            className="mt-6 font-grotesk text-[2.75rem] font-extrabold leading-[1.04] tracking-tight text-brand-textDark sm:text-6xl lg:text-[3.6rem] lg:leading-[1.04] xl:text-[4rem]"
           >
             Tú descansa,{" "}
             <span className="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
@@ -97,8 +86,8 @@ export function Hero() {
             variants={fadeUp}
             className="mt-6 max-w-xl text-lg leading-relaxed text-brand-textMuted"
           >
-            El asistente inteligente y CRM que organiza tu negocio en Colombia
-            sin que sepas de tecnología.
+            Contesta cada mensaje, toma el pedido y lo deja en tu CRM, aunque
+            estés atendiendo, durmiendo o sea domingo.
           </motion.p>
 
           <motion.div
@@ -106,18 +95,18 @@ export function Hero() {
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
           >
             <motion.a
-              href="#free-trial"
+              href="#precios"
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 450, damping: 22 }}
               className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-primary px-8 text-base font-semibold text-white shadow-lg shadow-cyan-500/50 transition-shadow hover:bg-brand-primaryHover hover:shadow-xl hover:shadow-cyan-500/60"
             >
               <Sparkles className="size-4" strokeWidth={2.2} aria-hidden />
-              Prueba gratis 15 días
+              Comienza hoy mismo
               <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
             </motion.a>
             <motion.a
-              href="https://wa.me/573222393582"
+              href={enlaceWhatsApp(WHATSAPP_PRUEBA, "Hola")}
               target="_blank"
               rel="noreferrer"
               whileHover={{ scale: 1.02, y: -1 }}
@@ -130,69 +119,45 @@ export function Hero() {
                 strokeWidth={2.2}
                 aria-hidden
               />
-              Hablar por WhatsApp
+              Pruébalo en WhatsApp
             </motion.a>
           </motion.div>
           <motion.p
             variants={fadeUp}
-            className="mt-2 text-xs text-brand-textMuted"
+            className="mt-4 text-sm text-brand-textMuted"
           >
-            Sin tarjeta de crédito · Cancela cuando quieras
+            <span className="font-semibold text-brand-textDark">
+              Desde {desde}/mes
+            </span>{" "}
+            los primeros {MESES_DE_LANZAMIENTO} meses ·{" "}
+            <span className="font-semibold text-brand-textDark">15 días gratis</span>, sin
+            tarjeta ·{" "}
+            <a
+              href={enlaceWhatsApp(WHATSAPP_VENTAS)}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-brand-primary hover:underline"
+            >
+              ¿Dudas? Habla con un asesor
+            </a>
           </motion.p>
 
-          <motion.div
+          <motion.ul
             variants={fadeUp}
-            className="mt-12 flex items-center gap-4"
+            className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-slate-200/80 pt-6"
           >
-            <div className="flex -space-x-2.5">
-              {avatarIniciales.map((iniciales, i) => (
-                <motion.div
-                  key={iniciales}
-                  initial={{ opacity: 0, scale: 0.6 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 22,
-                    delay: 0.55 + i * 0.06,
-                  }}
-                  className="relative flex size-10 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-tr from-cyan-500 to-purple-500 text-xs font-bold text-white shadow-md shadow-slate-300/60 ring-1 ring-black/[0.04]"
-                  aria-hidden
-                >
-                  {iniciales}
-                </motion.div>
-              ))}
-            </div>
-            <p className="max-w-[260px] text-sm leading-snug text-brand-textMuted sm:max-w-none">
-              <span className="font-semibold text-brand-textDark">
-                Responde en segundos
-              </span>{" "}
-              con tu catálogo y registra todo en el CRM
-            </p>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="mt-10">
-            <div className="grid gap-3 sm:grid-cols-2">
-              {trustItems.map((t) => (
-                <div
-                  key={t.title}
-                  className="group flex items-start gap-3 rounded-3xl border border-slate-200/70 bg-white/70 p-4 shadow-sm shadow-slate-200/50 backdrop-blur-md transition hover:border-slate-300 hover:bg-white"
-                >
-                  <span className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-sm transition group-hover:bg-gradient-to-tr group-hover:from-cyan-500 group-hover:to-purple-500">
-                    <t.icon className="size-5" strokeWidth={2.2} aria-hidden />
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold text-brand-textDark">
-                      {t.title}
-                    </p>
-                    <p className="mt-0.5 text-xs text-brand-textMuted">
-                      {t.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+            {hechos.map((h) => (
+              <li
+                key={h.texto}
+                className="flex items-center gap-2 text-sm font-medium text-brand-textDark"
+              >
+                <span className="flex size-7 items-center justify-center rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-500 text-white">
+                  <h.icon className="size-3.5" strokeWidth={2.4} aria-hidden />
+                </span>
+                {h.texto}
+              </li>
+            ))}
+          </motion.ul>
         </motion.div>
 
         <motion.div

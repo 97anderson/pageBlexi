@@ -5,6 +5,7 @@ import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
 
 
 import { Reveal } from "@/components/ui/Reveal";
+import { WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
 
 export function BottomCTA() {
   return (
@@ -49,9 +50,7 @@ export function BottomCTA() {
 
               <div className="flex flex-col gap-3 lg:items-end">
                 <motion.a
-                  href="https://wa.me/573222393582?text=Hola!%20Quiero%20empezar%20mi%20prueba%20gratuita%20de%2014%20d%C3%ADas%20de%20Blexi"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="#precios"
                   whileHover={{ scale: 1.03, y: -1 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 450, damping: 22 }}
@@ -62,7 +61,7 @@ export function BottomCTA() {
                   <ArrowRight className="size-5" strokeWidth={2.4} />
                 </motion.a>
                 <motion.a
-                  href="https://wa.me/573222393582"
+                  href={enlaceWhatsApp(WHATSAPP_VENTAS)}
                   target="_blank"
                   rel="noreferrer"
                   whileHover={{ scale: 1.02 }}
