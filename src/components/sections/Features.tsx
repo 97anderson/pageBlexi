@@ -125,7 +125,7 @@ export function Features() {
                   <p className={`mt-3 max-w-md flex-1 text-sm leading-relaxed ${t.texto}`}>
                     {f.description}
                   </p>
-                  <p className={`mt-6 font-mono text-[10px] uppercase tracking-[0.16em] ${t.etiqueta}`}>
+                  <p className={`mt-6 font-grotesk text-[11px] font-bold uppercase tracking-[0.1em] ${t.etiqueta}`}>
                     {f.badge}
                   </p>
                 </motion.article>

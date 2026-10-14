@@ -61,7 +61,7 @@ export function Hero() {
             className="mt-6 font-grotesk text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-brand-textDark sm:text-6xl lg:text-[4.25rem]"
           >
             Tú descansa, BLEXI atiende WhatsApp y{" "}
-            <span className="resaltado">vende por ti.</span>
+            <span className="subrayado">vende por ti.</span>
           </motion.h1>
 
           <motion.p
@@ -100,7 +100,7 @@ export function Hero() {
             </motion.a>
           </motion.div>
 
-          <motion.p variants={fadeUp} className="mt-5 font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">
+          <motion.p variants={fadeUp} className="mt-5 font-grotesk text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">
             <span className="text-[#00D8F0]">●</span> Desde {desde}/mes · 15 días gratis · sin tarjeta
           </motion.p>
           <motion.p variants={fadeUp} className="mt-2 text-sm text-brand-textMuted">
@@ -142,7 +142,7 @@ export function Hero() {
                 transition={{ delay: 0.9 + i * 0.25, type: "spring", stiffness: 260, damping: 24 }}
                 className={`rounded-2xl border border-slate-200/80 bg-white p-4 text-left shadow-lg shadow-slate-900/5 lg:absolute lg:w-56 ${p.lado}`}
               >
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-slate-400">
+                <p className="font-grotesk text-[11px] font-bold uppercase tracking-[0.1em] text-[#7C22D6]">
                   {p.n} · {p.titulo}
                 </p>
                 <p className="mt-1.5 text-sm font-semibold text-slate-900">{p.texto}</p>

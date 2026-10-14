@@ -27,7 +27,7 @@ export function Navbar() {
     >
       <a
         href="#precios"
-        className="block bg-slate-950 px-4 py-1.5 text-center font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-slate-300 transition hover:text-white"
+        className="block bg-slate-950 px-4 py-1.5 text-center font-grotesk text-xs font-semibold text-slate-300 transition hover:text-white"
       >
         <span className="text-[#00D8F0]">●</span> Lanzamiento: {DESCUENTO_DE_LANZAMIENTO_PCT}% menos los
         primeros {MESES_DE_LANZAMIENTO} meses
