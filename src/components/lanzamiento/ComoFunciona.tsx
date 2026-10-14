@@ -1,4 +1,10 @@
-/** "Del ¿cuánto vale? al pedido pagado": rejilla de 6 tarjetas del diseño A. */
+import { Citado } from "@/components/ui/Citado";
+
+/**
+ * "Del ¿cuánto vale? al pedido pagado": 6 tarjetas del diseño A en filas
+ * completas: 3 columnas en escritorio (3+3), 2 en tableta (2+2+2) y 1 en
+ * celular. La tarjeta oscura va en la primera fila, a la derecha.
+ */
 type Tarjeta = { titulo: string; texto: string; icono: React.ReactNode; oscura?: boolean };
 
 const trazo = { fill: "none", strokeWidth: 1.8, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
@@ -22,16 +28,6 @@ const tarjetas: Tarjeta[] = [
     ),
   },
   {
-    titulo: "Cobra",
-    texto: "Nequi, transferencia, Wompi o contraentrega. El comprobante queda en el pedido.",
-    icono: (
-      <>
-        <rect x="3" y="6" width="18" height="12" rx="2" />
-        <path d="M3 10h18" />
-      </>
-    ),
-  },
-  {
     titulo: "Te avisa cada venta",
     texto: "Por WhatsApp y en tu panel: quién compró, qué, cuánto y cómo pagó.",
     oscura: true,
@@ -39,6 +35,16 @@ const tarjetas: Tarjeta[] = [
       <>
         <path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8" />
         <path d="M10 20a2 2 0 0 0 4 0" />
+      </>
+    ),
+  },
+  {
+    titulo: "Cobra",
+    texto: "Nequi, transferencia, Wompi o contraentrega. El comprobante queda en el pedido.",
+    icono: (
+      <>
+        <rect x="3" y="6" width="18" height="12" rx="2" />
+        <path d="M3 10h18" />
       </>
     ),
   },
@@ -71,13 +77,13 @@ export function ComoFunciona() {
     <section id="como" className="mx-auto flex max-w-[1240px] flex-col gap-12 px-4 pb-[120px] sm:px-6">
       <div className="flex max-w-[760px] flex-col gap-4">
         <h2 className="m-0 font-grotesk text-[clamp(36px,4.6vw,60px)] font-bold leading-[1.04] tracking-[-0.035em]">
-          Del &quot;¿cuánto vale?&quot; al pedido pagado, sin que tú escribas.
+          Del <Citado>¿cuánto vale?</Citado> al pedido pagado, sin que tú escribas.
         </h2>
         <p className="m-0 text-xl leading-[1.55] text-blx-texto">
           Blexi conoce tu catálogo, tus precios y tus envíos. Atiende a cada cliente como lo harías tú, a cualquier hora.
         </p>
       </div>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-5">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[repeat(3,minmax(0,1fr))]">
         {tarjetas.map((t) => (
           <div
             key={t.titulo}

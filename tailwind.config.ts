@@ -118,7 +118,7 @@ const config: Config = {
       backgroundImage: {
         "ai-grad": "linear-gradient(135deg, #06B6D4 0%, #A855F7 100%)",
         // Degradado del titular del diseño A y el del logo.
-        "titular": "linear-gradient(120deg, #9030F0, #4890F0 55%, #00B8D4)",
+        "titular": "linear-gradient(120deg, #9030F0, #4890F0 55%, #0097B8)",
         "blexi": "linear-gradient(135deg, #9030F0, #4890F0, #00D8F0)",
         "recomendado": "linear-gradient(120deg, #9030F0, #4890F0)",
         "vitrina": "linear-gradient(180deg, #F1F3FA, #E9EDF8)",

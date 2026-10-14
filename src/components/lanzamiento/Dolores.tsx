@@ -1,3 +1,5 @@
+import { Citado } from "@/components/ui/Citado";
+
 /**
  * Problema y agitación: lo que vive un dueño de pyme con su WhatsApp.
  * Situaciones, no estadísticas. Lectura en F: titular a la izquierda y
@@ -5,19 +7,19 @@
  */
 const dolores = [
   {
-    cita: '"¿Todavía tiene disponible?"',
+    cita: "¿Todavía tiene disponible?",
     texto: "Llega mientras atiendes en el local. Cuando por fin contestas, ya compró en otro lado.",
   },
   {
-    cita: '"¿Cuánto vale?"',
+    cita: "¿Cuánto vale?",
     texto: "El mismo precio, la misma foto, la misma respuesta. Cuarenta veces al día.",
   },
   {
-    cita: '"Visto 22:14"',
+    cita: "Visto 22:14",
     texto: "De noche y en domingo también escriben. El mensaje se queda en visto hasta el lunes.",
   },
   {
-    cita: '"Ya le pregunté a otro"',
+    cita: "Ya le pregunté a otro",
     texto: "El cliente que no recibe respuesta en minutos no espera: le escribe a tu competencia.",
   },
 ];
@@ -36,7 +38,7 @@ export function Dolores() {
         <ul className="mt-12 grid gap-4 sm:grid-cols-2">
           {dolores.map((d) => (
             <li key={d.cita} className="rounded-3xl border border-blx-linea bg-white p-7">
-              <p className="font-grotesk text-xl font-bold text-blx-tinta sm:text-2xl">{d.cita}</p>
+              <p className="font-grotesk text-xl font-bold text-blx-tinta sm:text-2xl"><Citado>{d.cita}</Citado></p>
               <p className="mt-3 text-[16px] leading-relaxed text-blx-texto">{d.texto}</p>
             </li>
           ))}
