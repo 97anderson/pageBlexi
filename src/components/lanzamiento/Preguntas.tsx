@@ -6,8 +6,8 @@ import { PROMESA_ALTA_ASISTIDA, PROMO, PRUEBA_DIAS, pesos } from "@/lib/config";
  * Las objeciones de siempre, respondidas con lo que es verdad hoy. Con
  * <details>: accesibles con teclado y lector de pantalla, sin JavaScript.
  *
- * «¿Me cambia el número?» NO promete que el dueño siga usando la app del
- * celular: la coexistencia no está probada (MOSTRAR_COEXISTENCIA = false).
+ * "¿Me cambia el número?" NO promete que el dueño siga usando la app del
+ * celular: la coexistencia no está probada con un número real.
  */
 const preguntas = [
   {
@@ -48,16 +48,16 @@ const preguntas = [
 
 export function Preguntas() {
   return (
-    <section id="preguntas" className="bg-white py-20 sm:py-28">
-      <div className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+    <section id="preguntas" className="bg-white py-[112px]">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p className="font-display text-sm font-bold uppercase tracking-[0.12em] text-blx-violetaTexto">Preguntas</p>
-          <h2 className="mt-3 font-grotesk text-3xl font-bold leading-tight tracking-[-0.02em] text-blx-tinta [text-wrap:balance] sm:text-[2.6rem]">
+          <p className="text-[15px] font-semibold text-blx-violetaTexto">Preguntas</p>
+          <h2 className="mt-3 font-grotesk text-[clamp(36px,4.6vw,60px)] font-bold leading-[1.04] tracking-[-0.035em] text-blx-tinta [text-wrap:balance]">
             Lo que todo dueño pregunta antes de empezar.
           </h2>
-          <p className="mt-4 text-[15px] text-blx-apagado">
+          <p className="mt-4 text-[15px] text-blx-texto">
             ¿Otra duda? Escríbenos por WhatsApp y te respondemos.{" "}
-            <a href="/tratamiento-de-datos" className="font-semibold text-blx-azulTexto underline underline-offset-2">
+            <a href="/tratamiento-de-datos" className="font-semibold text-blx-cobalto underline underline-offset-2">
               Tratamiento de datos
             </a>
           </p>
@@ -68,9 +68,9 @@ export function Preguntas() {
             <details key={q.p} className="group py-1">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 rounded-lg py-5 font-grotesk text-base font-bold text-blx-tinta sm:text-lg [&::-webkit-details-marker]:hidden">
                 {q.p}
-                <Plus className="size-5 shrink-0 text-blx-azulTexto transition-transform group-open:rotate-45" aria-hidden />
+                <Plus className="size-5 shrink-0 text-blx-cobalto transition-transform group-open:rotate-45" aria-hidden />
               </summary>
-              <p className="max-w-2xl pb-6 text-[16px] leading-relaxed text-blx-apagado">{q.r}</p>
+              <p className="max-w-2xl pb-6 text-[16px] leading-relaxed text-blx-texto">{q.r}</p>
             </details>
           ))}
         </div>

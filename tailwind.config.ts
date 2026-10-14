@@ -11,30 +11,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Marca Blexi (sale del logo y del CRM). El degradado violeta→azul→cian
-        // es la firma; «noche» es la paleta oscura Noche Cobalto del CRM.
-        // El verde de WhatsApp es SOLO para el botón de acción.
+        // Dirección A «Claridad» (diseño aprobado por el dueño, 14-oct-2026).
+        // Valores copiados del diseño; no se interpretan.
         blx: {
-          violeta: "#9030F0",
-          azul: "#4890F0",
+          fondo: "#FBFBFD",
+          tinta: "#0B1020",
+          texto: "#4A5368",
+          texto3: "#2A3247",
+          apagado: "#6B7386",
+          linea: "#E6E8EF",
+          bordeBoton: "#D5D9E3",
+          chip: "#EEF2FF",
+          gris: "#F5F6FA",
           cobalto: "#3060F0",
+          azul: "#4890F0",
+          violeta: "#9030F0",
+          violetaTexto: "#6A2FD6",
           cian: "#00D8F0",
-          violetaTexto: "#7C22D9",
-          azulTexto: "#1F5FD6",
-          cianTexto: "#0A7E99",
-          noche: "#161D32",
-          tarjeta: "#222C48",
-          elevada: "#2E3B5D",
-          borde: "#404F73",
-          bordeFuerte: "#56678F",
-          textoNoche: "#C9D8FF",
-          apagadoNoche: "#A0AFC7",
-          claro: "#F8FAFC",
-          tinta: "#0F172A",
-          apagado: "#475569",
-          linea: "#E2E8F0",
-          wa: "#25D366",
-          waHover: "#1EBE5B",
+          cianClaro: "#7FE6F5",
+          verdeOk: "#7FE6A8",
+          vitrina: "#161D32",
+          vitrinaTarjeta: "#222C48",
+          vitrinaBorde: "#2E3B5D",
+          vitrinaPunto: "#404F73",
+          vitrinaTexto: "#E8ECF7",
+          vitrinaApagado: "#9AA6C4",
+          oscuroTexto: "#B8C2DA",
+          barra: "#E8ECF7",
+          burbujaCliente: "#DCF8C6",
+          burbujaBlexi: "#F2F4F8",
         },
         brand: {
           primary: "#06B6D4",
@@ -93,9 +98,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["var(--font-jakarta)", "Plus Jakarta Sans", "ui-sans-serif", "system-ui", "sans-serif"],
-        grotesk: ["var(--font-grotesk)", "Space Grotesk", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Plus Jakarta Sans para todo el texto; Space Grotesk para títulos y cifras.
+        sans: ["var(--font-jakarta)", "Plus Jakarta Sans", "Segoe UI", "system-ui", "sans-serif"],
+        display: ["var(--font-jakarta)", "Plus Jakarta Sans", "Segoe UI", "system-ui", "sans-serif"],
+        grotesk: ["var(--font-grotesk)", "Space Grotesk", "Segoe UI", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -111,10 +117,11 @@ const config: Config = {
       },
       backgroundImage: {
         "ai-grad": "linear-gradient(135deg, #06B6D4 0%, #A855F7 100%)",
-        "blexi": "linear-gradient(135deg, #9030F0 0%, #4890F0 50%, #00D8F0 100%)",
-        // Para texto sobre fondo claro: los mismos tonos oscurecidos para que
-        // el titular en degradado pase AA de texto grande (≥ 3:1).
-        "blexi-texto": "linear-gradient(135deg, #7C22D9 0%, #1F5FD6 55%, #0A7E99 100%)",
+        // Degradado del titular del diseño A y el del logo.
+        "titular": "linear-gradient(120deg, #9030F0, #4890F0 55%, #00B8D4)",
+        "blexi": "linear-gradient(135deg, #9030F0, #4890F0, #00D8F0)",
+        "recomendado": "linear-gradient(120deg, #9030F0, #4890F0)",
+        "vitrina": "linear-gradient(180deg, #F1F3FA, #E9EDF8)",
       },
       keyframes: {
         "accordion-down": {

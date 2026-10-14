@@ -19,35 +19,21 @@ export function useDiasQueFaltan(): number | null {
   return dias;
 }
 
-/**
- * Franja superior: escasez real (la fecha) y el precio de entrada. No es un
- * botón: el único botón de esta pantalla es el del hero (ley de Hick).
- */
-export function BannerDeLanzamiento({ listaPlata }: { listaPlata?: number }) {
+/** Barra superior oscura del diseño A. */
+export function BannerDeLanzamiento() {
   const dias = useDiasQueFaltan();
   if (!PROMO.activo || dias === 0) return null;
 
-  const ahorro = listaPlata ? (listaPlata - PROMO.precios.plata) * PROMO.meses : null;
-
   return (
-    <div className="relative z-[60] bg-blx-noche text-white">
-      <div className="h-0.5 bg-blexi" aria-hidden />
-      <a
-        href="#precios"
-        className="container-page flex min-h-10 flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-[13px] leading-snug sm:text-sm"
-      >
-        <span>
-          <strong className="font-semibold">Precio de lanzamiento:</strong> Plata a {pesos(PROMO.precios.plata)}/mes tus
-          primeros {PROMO.meses} meses{ahorro ? `, ahorras ${pesos(ahorro)}` : ""}
-          {CUPOS_LANZAMIENTO.activo ? ` · ${CUPOS_LANZAMIENTO.total} cupos` : ""}
-        </span>
-        <span className="whitespace-nowrap rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-semibold text-blx-textoNoche ring-1 ring-white/15">
-          {dias === null
-            ? `Hasta el ${finDeLaPromoEnPalabras()}`
-            : dias === 1
-              ? "Último día"
-              : `Quedan ${dias} días`}
-        </span>
+    <div className="flex flex-wrap items-center justify-center gap-3 bg-blx-tinta px-6 py-3 text-center text-[15px] text-blx-barra">
+      <span>
+        <b className="text-white">Precio de lanzamiento:</b> desde {pesos(PROMO.precios.plata)}/mes tus primeros{" "}
+        {PROMO.meses} meses, para registros hasta el {finDeLaPromoEnPalabras()}
+        {dias !== null && dias > 1 ? ` (quedan ${dias} días)` : dias === 1 ? " (último día)" : ""}.
+        {CUPOS_LANZAMIENTO.activo ? ` ${CUPOS_LANZAMIENTO.total} cupos.` : ""}
+      </span>
+      <a href="#precios" className="font-semibold text-blx-cianClaro no-underline hover:text-white">
+        Ver precios
       </a>
     </div>
   );

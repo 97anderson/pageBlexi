@@ -66,7 +66,7 @@
   }
 
   body {
-    @apply bg-brand-bgMain text-brand-textDark antialiased;
+    @apply bg-blx-fondo text-blx-tinta antialiased;
     font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
     overflow-x: hidden;
   }
@@ -111,7 +111,7 @@
 /* ── Lanzamiento: foco visible y movimiento reducido ─────────────── */
 @layer base {
   :focus-visible {
-    outline: 3px solid #FF6A1A;
+    outline: 3px solid #3060F0;
     outline-offset: 3px;
     border-radius: 6px;
   }

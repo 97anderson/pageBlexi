@@ -5,39 +5,39 @@
  */
 const dolores = [
   {
-    cita: "«¿Todavía tiene disponible?»",
+    cita: '"¿Todavía tiene disponible?"',
     texto: "Llega mientras atiendes en el local. Cuando por fin contestas, ya compró en otro lado.",
   },
   {
-    cita: "«¿Cuánto vale?»",
+    cita: '"¿Cuánto vale?"',
     texto: "El mismo precio, la misma foto, la misma respuesta. Cuarenta veces al día.",
   },
   {
-    cita: "«Visto 22:14»",
+    cita: '"Visto 22:14"',
     texto: "De noche y en domingo también escriben. El mensaje se queda en visto hasta el lunes.",
   },
   {
-    cita: "«Ya le pregunté a otro»",
+    cita: '"Ya le pregunté a otro"',
     texto: "El cliente que no recibe respuesta en minutos no espera: le escribe a tu competencia.",
   },
 ];
 
 export function Dolores() {
   return (
-    <section className="bg-blx-claro py-20 sm:py-28">
-      <div className="container-page">
+    <section className="bg-blx-fondo py-[112px]">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6">
         <div className="max-w-3xl">
-          <p className="font-display text-sm font-bold uppercase tracking-[0.12em] text-blx-violetaTexto">Te suena</p>
-          <h2 className="mt-3 font-grotesk text-3xl font-bold leading-tight tracking-[-0.02em] text-blx-tinta [text-wrap:balance] sm:text-[2.6rem]">
+          <p className="text-[15px] font-semibold text-blx-violetaTexto">¿Te suena?</p>
+          <h2 className="mt-3 font-grotesk text-[clamp(36px,4.6vw,60px)] font-bold leading-[1.04] tracking-[-0.035em] text-blx-tinta [text-wrap:balance]">
             Tu WhatsApp está lleno de ventas que se enfrían esperando respuesta.
           </h2>
         </div>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2">
           {dolores.map((d) => (
-            <li key={d.cita} className="rounded-2xl border border-blx-linea bg-white p-7">
+            <li key={d.cita} className="rounded-3xl border border-blx-linea bg-white p-7">
               <p className="font-grotesk text-xl font-bold text-blx-tinta sm:text-2xl">{d.cita}</p>
-              <p className="mt-3 text-[16px] leading-relaxed text-blx-apagado">{d.texto}</p>
+              <p className="mt-3 text-[16px] leading-relaxed text-blx-texto">{d.texto}</p>
             </li>
           ))}
         </ul>

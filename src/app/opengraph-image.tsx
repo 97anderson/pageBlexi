@@ -2,8 +2,8 @@ import { ImageResponse } from "next/og";
 
 import { PROMO, PRUEBA_DIAS, pesos } from "@/lib/config";
 
-/** Imagen para compartir el enlace, generada en el build. */
-export const alt = "Blexi: tu WhatsApp vende solo. Vendedor con IA para WhatsApp para pymes de Colombia.";
+/** Imagen para compartir el enlace, generada en el build, con el estilo del diseño A. */
+export const alt = "Blexi: tu WhatsApp, vendiendo las 24 horas. Vendedor con inteligencia artificial para pymes de Colombia.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -17,40 +17,27 @@ export default function ImagenParaCompartir() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#161D32",
-          color: "white",
+          background: "#FBFBFD",
+          color: "#0B1020",
           padding: "64px 72px",
           fontFamily: "sans-serif",
-          position: "relative",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            right: -300,
-            top: 40,
-            width: 560,
-            height: 560,
-            borderRadius: 90,
-            background: "linear-gradient(135deg, #9030F0 0%, #4890F0 50%, #00D8F0 100%)",
-            transform: "rotate(12deg)",
-            display: "flex",
-          }}
-        />
-        <div style={{ display: "flex", fontSize: 28, fontWeight: 700, color: "#00D8F0", letterSpacing: 3 }}>
-          BLEXI · HECHO EN COLOMBIA
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <div style={{ display: "flex", width: 56, height: 28, borderRadius: 14, background: "linear-gradient(135deg, #9030F0, #4890F0, #00D8F0)" }} />
+          <div style={{ display: "flex", fontSize: 40, fontWeight: 700 }}>Blexi</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 104, fontWeight: 800, lineHeight: 1 }}>Tu WhatsApp</div>
-          <div style={{ display: "flex", fontSize: 104, fontWeight: 800, lineHeight: 1.05, color: "#4890F0" }}>
-            vende solo.
+          <div style={{ display: "flex", fontSize: 92, fontWeight: 700, lineHeight: 1, letterSpacing: -3 }}>Tu WhatsApp, vendiendo</div>
+          <div style={{ display: "flex", fontSize: 92, fontWeight: 700, lineHeight: 1.1, letterSpacing: -3, color: "#3060F0" }}>
+            las 24 horas.
           </div>
-          <div style={{ display: "flex", fontSize: 34, marginTop: 28, color: "rgba(255,255,255,0.85)", maxWidth: 820 }}>
-            Responde, toma el pedido, lo cobra por Nequi y te avisa.
+          <div style={{ display: "flex", fontSize: 32, marginTop: 26, color: "#4A5368" }}>
+            Responde con fotos y precios, arma el pedido, lo cobra y te avisa.
           </div>
         </div>
-        <div style={{ display: "flex", fontSize: 26, fontWeight: 700, maxWidth: 860 }}>
-          {`${PRUEBA_DIAS} días gratis · Plata desde ${pesos(PROMO.precios.plata)}/mes los primeros ${PROMO.meses} meses · IVA incluido`}
+        <div style={{ display: "flex", fontSize: 28, fontWeight: 600, color: "#0B1020" }}>
+          {`${PRUEBA_DIAS} días gratis · Lanzamiento: desde ${pesos(PROMO.precios.plata)}/mes tus primeros ${PROMO.meses} meses · IVA incluido`}
         </div>
       </div>
     ),

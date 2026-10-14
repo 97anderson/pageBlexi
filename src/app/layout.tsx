@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
 
-// La familia del producto (CRM): Space Grotesk para titulares y cifras,
-// Plus Jakarta Sans para rótulos y display secundario, Inter para leer.
+// Dirección A: Space Grotesk para títulos y cifras; Plus Jakarta Sans para
+// todo el texto.
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-grotesk",
@@ -16,12 +16,7 @@ const grotesk = Space_Grotesk({
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
-  weight: ["500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -60,9 +55,9 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={cn(grotesk.variable, jakarta.variable, inter.variable)}
+      className={cn(grotesk.variable, jakarta.variable)}
     >
-      <body className="bg-brand-bgMain font-sans text-brand-textDark">
+      <body className="bg-blx-fondo font-sans text-blx-tinta">
         {/* Blexi shared SVG defs — disponibles para todos los BlexiMark de la página */}
         <svg
           style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}

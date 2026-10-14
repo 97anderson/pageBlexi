@@ -8,10 +8,13 @@
  */
 
 /**
- * El WhatsApp de ventas, sin «+». Todos los botones de la página van aquí.
+ * El WhatsApp de ventas, sin "+". Todos los botones de la página van aquí.
  * Cuando la línea de Mara (573052629494) esté conectada, se cambia sólo esto.
  */
 export const WHATSAPP_VENTAS = "573222393582";
+
+/** Entrada al CRM (raíz: la SPA lleva al login; `/login` directo da 404 en S3). */
+export const URL_INICIAR_SESION = "https://console.bluecodesolution.com";
 
 /** Enlace a WhatsApp con el mensaje ya escrito. */
 export function enlaceWhatsApp(texto?: string): string {
@@ -44,14 +47,6 @@ export const TEXTO_LEGAL_LANZAMIENTO =
   "Precio de lanzamiento: aplica a tus primeros 3 meses si te registras antes del 31 de diciembre de 2026. Después pagas el precio de lista vigente del plan. Los precios pueden cambiar; el precio que pactas al registrarte se respeta durante su vigencia.";
 
 /**
- * Hero y primer pantallazo: «claro» (claro primero, con vitrina oscura del
- * producto) u «oscuro» (oscuro primero, estilo producto de IA). Por defecto
- * claro: dueños de pyme que entran desde el celular, muchas veces a pleno sol.
- */
-export const VARIANTE_HERO: "claro" | "oscuro" =
-  process.env.NEXT_PUBLIC_VARIANTE_HERO === "oscuro" ? "oscuro" : "claro";
-
-/**
  * Agentes ADICIONALES: no vienen en el plan, tienen costo aparte. Precios por
  * plan sembrados en la base del CRM:
  * - Ana: `platform_addon_plan_prices` (`20260930_01_master_precio_del_empleado_por_plan.py:49`),
@@ -75,7 +70,7 @@ export const PRUEBA_DIAS = 15;
 export const CUPOS_LANZAMIENTO = { activo: false, total: 30 };
 
 /**
- * «Te lo dejamos funcionando»: el equipo carga el catálogo, conecta el
+ * "Te lo dejamos funcionando": el equipo carga el catálogo, conecta el
  * WhatsApp y hace la primera venta de prueba con el dueño. Encendida; el
  * dueño debe confirmar que el equipo puede cumplirla con cada alta.
  */
@@ -84,20 +79,6 @@ export const PROMESA_ALTA_ASISTIDA = {
   corta: "Te lo dejamos funcionando",
   larga:
     "Cargamos tu catálogo, conectamos tu WhatsApp y hacemos contigo la primera venta de prueba.",
-};
-
-/**
- * Datos medidos en producción en una perfumería cliente (sin nombre ni
- * ciudad, por privacidad). Fuente: conversaciones del 27-sep al 13-oct-2026.
- */
-export const PRUEBA_REAL = {
-  quien: "una perfumería que ya usa Blexi",
-  desde: "27 de septiembre",
-  hasta: "13 de octubre de 2026",
-  dias: 17,
-  conversaciones: 36,
-  medianaSegundos: "4,5",
-  fueraDeHorarioPct: 31,
 };
 
 /**
@@ -111,19 +92,12 @@ export const NOMBRES_DE_PLAN: Record<string, string> = {
   platino: "Diamante",
 };
 
-/**
- * La sección «Sigue usando tu WhatsApp». La coexistencia con la app del
- * celular todavía no está probada con un número real en producción: no se
- * promete hasta que lo esté (Ley 1480, información veraz).
- */
-export const MOSTRAR_COEXISTENCIA = false;
-
 /** Formato de pesos colombianos sin decimales: $199.000. */
 export function pesos(n: number): string {
   return `$${Math.round(n).toLocaleString("es-CO", { maximumFractionDigits: 0 })}`;
 }
 
-/** Fecha final de la promoción en palabras: «31 de diciembre». */
+/** Fecha final de la promoción en palabras: "31 de diciembre". */
 export function finDeLaPromoEnPalabras(): string {
   const [anio, mes, dia] = PROMO.hasta.split("-").map(Number);
   const fecha = new Date(Date.UTC(anio, mes - 1, dia, 12));

@@ -1,61 +1,92 @@
-import { MessageCircle } from "lucide-react";
+"use client";
 
-import { BlexiMark } from "@/components/brand/BlexiMark";
-import { VARIANTE_HERO, enlaceWhatsApp } from "@/lib/config";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import { LogoBlexi } from "@/components/brand/LogoBlexi";
+import { URL_INICIAR_SESION, enlaceWhatsApp } from "@/lib/config";
+import { track } from "@/lib/medicion";
 
 const links = [
-  { label: "Cómo vende", href: "#como-vende" },
-  { label: "Haz la cuenta", href: "#calculadora" },
+  { label: "Producto", href: "#producto" },
+  { label: "Cómo funciona", href: "#como" },
   { label: "Precios", href: "#precios" },
   { label: "Preguntas", href: "#preguntas" },
 ];
 
+const MENSAJE = "Hola, quiero probar Blexi gratis en mi negocio";
+
 /**
- * La barra no compite con el botón del hero: el WhatsApp de aquí es un
- * enlace discreto, no un segundo botón verde (ley de Hick).
+ * Nav del diseño A: 84 px, logo 46×24 + "Blexi" a 26 px, enlaces a 17 px.
+ * En celular: logo, "Probar gratis" y un menú desplegable con aria-expanded.
  */
 export function Navbar() {
-  const oscuro = VARIANTE_HERO === "oscuro";
+  const [abierto, setAbierto] = useState(false);
+
+  useEffect(() => {
+    if (!abierto) return;
+    const cerrar = (e: KeyboardEvent) => e.key === "Escape" && setAbierto(false);
+    window.addEventListener("keydown", cerrar);
+    return () => window.removeEventListener("keydown", cerrar);
+  }, [abierto]);
+
   return (
-    <header
-      className={`sticky top-0 z-50 w-full border-b backdrop-blur-xl ${
-        oscuro ? "border-blx-borde bg-blx-noche/90 text-white" : "border-blx-linea bg-white/90 text-blx-tinta"
-      }`}
-    >
-      <div className="container-page flex h-16 items-center justify-between gap-4">
-        <a href="#inicio" className="flex items-center gap-2.5" aria-label="Blexi, inicio">
-          <span className={`flex size-9 items-center justify-center rounded-xl ${oscuro ? "bg-white/5 ring-1 ring-blx-borde" : "bg-white ring-1 ring-blx-linea"}`}>
-            <BlexiMark state="static" height={18} />
-          </span>
-          <span className="font-grotesk text-lg font-bold tracking-tight">Blexi</span>
+    <header className="sticky top-0 z-50 border-b border-blx-linea bg-[rgba(251,251,253,0.92)] backdrop-blur">
+      <nav aria-label="Principal" className="mx-auto flex h-[84px] max-w-[1240px] items-center justify-between gap-3 px-4 sm:gap-6 sm:px-6">
+        <a href="#inicio" className="flex items-center gap-3 text-blx-tinta no-underline">
+          <LogoBlexi id="logo-nav" />
+          <span className="font-grotesk text-[26px] font-bold tracking-[-0.02em]">Blexi</span>
         </a>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Secciones">
+        <div className="hidden gap-9 text-[17px] font-medium lg:flex">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${
-                oscuro ? "text-blx-textoNoche hover:bg-white/5 hover:text-white" : "text-blx-apagado hover:bg-blx-claro hover:text-blx-tinta"
-              }`}
-            >
+            <a key={l.href} href={l.href} className="text-blx-tinta no-underline hover:text-blx-cobalto">
               {l.label}
             </a>
           ))}
-        </nav>
+        </div>
 
-        <a
-          href={enlaceWhatsApp("Hola, tengo una pregunta sobre Blexi")}
-          target="_blank"
-          rel="noreferrer"
-          className={`inline-flex min-h-10 items-center gap-2 rounded-lg px-3 text-sm font-semibold ring-1 ${
-            oscuro ? "text-white ring-blx-borde hover:bg-white/5" : "text-blx-tinta ring-blx-linea hover:bg-blx-claro"
-          }`}
-        >
-          <MessageCircle className="size-4" aria-hidden />
-          <span className="hidden sm:inline">Escríbenos</span>
-          <span className="sr-only sm:hidden">Escríbenos por WhatsApp</span>
-        </a>
+        <div className="flex items-center gap-2.5 sm:gap-5">
+          <a href={URL_INICIAR_SESION} className="hidden text-[17px] font-medium text-blx-tinta no-underline hover:text-blx-cobalto lg:inline">
+            Iniciar sesión
+          </a>
+          <a
+            href={enlaceWhatsApp(MENSAJE)}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => track("cta_clic", { seccion: "navegacion" })}
+            className="inline-flex min-h-11 items-center rounded-full bg-blx-tinta px-4 py-[13px] text-base font-semibold sm:px-[22px] leading-none text-white no-underline hover:bg-[#1B2238]"
+          >
+            Probar gratis
+          </a>
+          <button
+            type="button"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-blx-linea text-blx-tinta lg:hidden"
+            aria-expanded={abierto}
+            aria-controls="menu-movil"
+            aria-label={abierto ? "Cerrar menú" : "Abrir menú"}
+            onClick={() => setAbierto((v) => !v)}
+          >
+            {abierto ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
+          </button>
+        </div>
+      </nav>
+
+      <div id="menu-movil" hidden={!abierto} className="border-t border-blx-linea bg-blx-fondo lg:hidden">
+        <ul className="mx-auto flex max-w-[1240px] flex-col px-6 py-3">
+          {links.map((l) => (
+            <li key={l.href}>
+              <a href={l.href} onClick={() => setAbierto(false)} className="flex min-h-12 items-center text-[17px] font-medium text-blx-tinta no-underline">
+                {l.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href={URL_INICIAR_SESION} className="flex min-h-12 items-center text-[17px] font-medium text-blx-tinta no-underline">
+              Iniciar sesión
+            </a>
+          </li>
+        </ul>
       </div>
     </header>
   );
