@@ -5,7 +5,7 @@ import { ArrowRight, Clock3, LayoutDashboard, MessageCircle, Sparkles, Zap } fro
 
 import { LiveChatSimulation } from "./LiveChatSimulation";
 import { BlexiMark } from "@/components/brand/BlexiMark";
-import { WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
+import { WHATSAPP_PRUEBA, WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
 import {
   MESES_DE_LANZAMIENTO,
   PRECIO_DE_LANZAMIENTO_COP,
@@ -95,18 +95,18 @@ export function Hero() {
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
           >
             <motion.a
-              href="#free-trial"
+              href="#precios"
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 450, damping: 22 }}
               className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-primary px-8 text-base font-semibold text-white shadow-lg shadow-cyan-500/50 transition-shadow hover:bg-brand-primaryHover hover:shadow-xl hover:shadow-cyan-500/60"
             >
               <Sparkles className="size-4" strokeWidth={2.2} aria-hidden />
-              Prueba gratis 15 días
+              Comienza hoy mismo
               <ArrowRight className="size-4" strokeWidth={2.4} aria-hidden />
             </motion.a>
             <motion.a
-              href={enlaceWhatsApp(WHATSAPP_VENTAS)}
+              href={enlaceWhatsApp(WHATSAPP_PRUEBA, "Hola")}
               target="_blank"
               rel="noreferrer"
               whileHover={{ scale: 1.02, y: -1 }}
@@ -119,7 +119,7 @@ export function Hero() {
                 strokeWidth={2.2}
                 aria-hidden
               />
-              Hablar por WhatsApp
+              Pruébalo en WhatsApp
             </motion.a>
           </motion.div>
           <motion.p
@@ -131,7 +131,15 @@ export function Hero() {
             </span>{" "}
             los primeros {MESES_DE_LANZAMIENTO} meses ·{" "}
             <span className="font-semibold text-brand-textDark">15 días gratis</span>, sin
-            tarjeta
+            tarjeta ·{" "}
+            <a
+              href={enlaceWhatsApp(WHATSAPP_VENTAS)}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-brand-primary hover:underline"
+            >
+              ¿Dudas? Habla con un asesor
+            </a>
           </motion.p>
 
           <motion.ul

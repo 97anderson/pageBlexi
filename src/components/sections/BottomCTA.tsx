@@ -50,9 +50,7 @@ export function BottomCTA() {
 
               <div className="flex flex-col gap-3 lg:items-end">
                 <motion.a
-                  href={enlaceWhatsApp(WHATSAPP_VENTAS, "¡Hola! Quiero empezar mi prueba gratuita de 15 días de Blexi")}
-                  target="_blank"
-                  rel="noreferrer"
+                  href="#precios"
                   whileHover={{ scale: 1.03, y: -1 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 450, damping: 22 }}

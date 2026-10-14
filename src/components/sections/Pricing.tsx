@@ -22,7 +22,7 @@ import {
 } from "@/lib/lanzamiento";
 
 import { Reveal } from "@/components/ui/Reveal";
-import { WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
+import { WHATSAPP_VENTAS, enlaceRegistro, enlaceWhatsApp } from "@/lib/contacto";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -100,7 +100,7 @@ const plans: Plan[] = [
       "Tu primer asesor de IA en WhatsApp. Atiende, responde y cierra pedidos mientras descansas.",
     savingsBadge: "Menos que un asesor de medio tiempo",
     cta: "Empezar con Plata",
-    ctaHref: enlaceWhatsApp(WHATSAPP_VENTAS),
+    ctaHref: enlaceRegistro("plata"),
     features: [
       { clave: "monthly_conversations", defecto: 500, texto: (n) => `${n} conversaciones al mes` },
       "1 línea de WhatsApp activa",
@@ -125,7 +125,7 @@ const plans: Plan[] = [
       "Más volumen, analíticas y cinco veces más audios y fotos de tus clientes. El favorito de quienes quieren crecer sin contratar más.",
     savingsBadge: "Ahorra +$1.1M vs. asesor full-time",
     cta: "Quiero el plan Oro",
-    ctaHref: enlaceWhatsApp(WHATSAPP_VENTAS),
+    ctaHref: enlaceRegistro("oro"),
     highlighted: true,
     badge: "Más popular",
     features: [
@@ -152,7 +152,7 @@ const plans: Plan[] = [
       "Alto volumen, tu base de clientes ordenada por valor y el conocimiento del agente en tus manos. Para negocios que ya crecieron.",
     savingsBadge: "10× la capacidad al costo de 1 empleado",
     cta: "Escalar con Diamante",
-    ctaHref: enlaceWhatsApp(WHATSAPP_VENTAS),
+    ctaHref: enlaceRegistro("platino"),
     features: [
       { clave: "monthly_conversations", defecto: 2200, texto: (n) => `${n} conversaciones al mes` },
       "Todo lo del plan Oro incluido",

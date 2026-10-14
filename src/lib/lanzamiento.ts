@@ -12,6 +12,16 @@ export const PRECIO_DE_LANZAMIENTO_COP: Record<string, number> = {
   platino: 1_199_000,
 };
 
+/**
+ * Código de invitación de cada plan: lleva el precio de lanzamiento y los
+ * meses. Se crean en la consola (Invitaciones) con los mismos valores de arriba.
+ */
+export const CODIGO_DE_LANZAMIENTO: Record<string, string> = {
+  plata: "LANZA-PLATA",
+  oro: "LANZA-ORO",
+  platino: "LANZA-DIAMANTE",
+};
+
 export const MESES_DE_LANZAMIENTO = 3;
 export const DESCUENTO_DE_LANZAMIENTO_PCT = 40;
 export const CIERRE_DE_LANZAMIENTO = "31 de diciembre de 2026";
