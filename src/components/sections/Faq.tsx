@@ -29,7 +29,7 @@ const control = [
   },
 ];
 
-const preguntas = [
+export const preguntas = [
   {
     p: "¿Blexi manda mensajes sin que yo lo sepa?",
     r: "Blexi responde a quien te escribe, con tu catálogo, tus precios y tus promociones, y le escribe al cliente que dejó un pedido a medias. Todo queda en Conversaciones de tu CRM, y puedes pausarlo cuando quieras.",

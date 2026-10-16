@@ -28,6 +28,8 @@ import {
  */
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/eliminacion-de-datos" },
+  openGraph: { url: "/eliminacion-de-datos", siteName: "BLEXI", locale: "es_CO", type: "website" },
   title: "Eliminación de Datos | BLEXI",
   description:
     "Cómo pedir la eliminación de los datos que BLEXI guarda cuando conectas tu cuenta de Meta (WhatsApp, Facebook o Instagram) y cómo quitarle el acceso a la app desde Facebook.",

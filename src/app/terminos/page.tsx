@@ -11,6 +11,8 @@ import {
 } from "@/components/LegalShell";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terminos" },
+  openGraph: { url: "/terminos", siteName: "BLEXI", locale: "es_CO", type: "website" },
   title: "Términos y Condiciones | BLEXI",
   description:
     "Términos y Condiciones de Uso de BLEXI — BLUE CODE SOLUTIONS S.A.S.",

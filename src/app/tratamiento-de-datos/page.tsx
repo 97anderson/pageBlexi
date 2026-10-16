@@ -11,6 +11,8 @@ import {
 } from "@/components/LegalShell";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/tratamiento-de-datos" },
+  openGraph: { url: "/tratamiento-de-datos", siteName: "BLEXI", locale: "es_CO", type: "website" },
   title: "Tratamiento de Datos | BLEXI",
   description:
     "Información sobre tratamiento de datos personales en BLEXI — roles, finalidades, seguridad y derechos de los titulares.",
