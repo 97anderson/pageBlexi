@@ -62,9 +62,9 @@ export const RUBROS: Rubro[] = [
     titulo: "servicios y citas",
     ejemplos: "barberías, salones de belleza, consultorios, talleres y veterinarias",
     intro:
-      "Si vendes tu tiempo, cada mensaje sin responder es una cita perdida. Blexi es un agente de IA para WhatsApp que atiende a tus clientes, verifica disponibilidad, confirma la cita y manda los recordatorios, mientras tú atiendes.",
+      "Si vendes tu tiempo, cada mensaje sin responder es una cita perdida. Blexi es un agente de IA para WhatsApp que atiende a tus clientes, verifica disponibilidad, confirma la cita y la cambia si el cliente lo pide, mientras tú atiendes.",
     hace: [
-      { titulo: "Agenda citas", texto: "Verifica la disponibilidad, confirma la cita y manda recordatorios automáticos, sin llamadas ni idas y vueltas. Pensado para salones, consultorios y talleres." },
+      { titulo: "Agenda citas", texto: "Verifica la disponibilidad, agenda, cambia o cancela la cita, sin llamadas ni idas y vueltas. Pensado para salones, consultorios y talleres." },
       { titulo: "Responde dudas sobre tus servicios", texto: "Contesta por texto y por nota de voz, con tu información, tus servicios y tus precios, y en un tono natural." },
       { titulo: "Recuerda a cada cliente", texto: "Su nombre, sus datos y lo que suele pedir quedan en el perfil, para atenderlo mejor cada vez." },
       { titulo: "Todo en el CRM", texto: "Ves quién escribió, qué pidió y cómo va cada cita o pedido, desde cualquier dispositivo." },

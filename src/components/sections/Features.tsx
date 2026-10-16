@@ -65,7 +65,7 @@ const features: Feature[] = [
     icon: CalendarCheck,
     headline: "Citas sin llamadas, sin idas y vueltas",
     description:
-      "Para salones, consultorios y talleres: Blexi verifica disponibilidad, confirma la cita y manda recordatorios automáticos.",
+      "Para salones, consultorios y talleres: Blexi verifica disponibilidad, agenda la cita y la cambia o cancela si el cliente lo pide.",
     badge: "Todos los planes",
     premium: false,
   },
