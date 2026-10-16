@@ -213,7 +213,7 @@ export function LiveChatSimulation() {
           <div className="relative flex size-10 items-center justify-center overflow-hidden rounded-full bg-white shadow-sm ring-1 ring-black/10">
             <Image
               src={blexiLogo}
-              alt="BLEXI"
+              alt="Logo de BLEXI, agente de IA para WhatsApp"
               width={26}
               height={26}
               className="select-none"

@@ -7,9 +7,18 @@ const groups = [
   {
     title: "Producto",
     links: [
-      { label: "Cómo funciona", href: "#flujo" },
-      { label: "CRM en vivo", href: "#crm" },
-      { label: "Precios", href: "#precios" },
+      { label: "Cómo funciona", href: "/#flujo" },
+      { label: "CRM en vivo", href: "/#crm" },
+      { label: "Precios", href: "/#precios" },
+    ],
+  },
+  {
+    title: "Blexi para…",
+    links: [
+      { label: "Restaurantes", href: "/para/restaurantes" },
+      { label: "Tiendas", href: "/para/tiendas" },
+      { label: "Servicios y citas", href: "/para/servicios" },
+      { label: "Chatbot con IA vs. bot de botones", href: "/comparar" },
     ],
   },
   {
@@ -69,7 +78,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {groups.map((g) => (
               <div key={g.title}>
                 <p className="font-grotesk text-sm font-bold text-brand-textDark">

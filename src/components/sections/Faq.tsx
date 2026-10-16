@@ -1,6 +1,8 @@
 import { ChevronDown, LayoutDashboard, PauseCircle, UserRoundCheck } from "lucide-react";
 
 import { Reveal } from "@/components/ui/Reveal";
+import type { PlanDeLaBase } from "@/lib/planes";
+import { textoDePrecios } from "@/lib/precios";
 
 /**
  * «Tú mandas» y preguntas frecuentes.
@@ -29,7 +31,18 @@ const control = [
   },
 ];
 
-export const preguntas = [
+export type Pregunta = { p: string; r: string };
+
+/** Las preguntas; la del precio se arma con los planes que leyó el servidor. */
+export const preguntasDe = (planes: PlanDeLaBase[]): Pregunta[] => [
+  {
+    p: "¿Qué es un agente de IA para WhatsApp?",
+    r: "Es un asistente de inteligencia artificial que atiende los mensajes de tu negocio en WhatsApp: entiende lo que el cliente escribe (también sus notas de voz), responde con tu catálogo, tus precios y tus promociones, toma el pedido o agenda la cita y lo deja todo en un CRM. Blexi es un agente de IA para WhatsApp hecho para pymes de Colombia: lo que no sabe te lo pregunta a ti, y lo puedes pausar cuando quieras.",
+  },
+  {
+    p: "¿Cuánto cuesta un chatbot de WhatsApp con IA en Colombia?",
+    r: textoDePrecios(planes),
+  },
   {
     p: "¿Blexi manda mensajes sin que yo lo sepa?",
     r: "Blexi responde a quien te escribe, con tu catálogo, tus precios y tus promociones, y le escribe al cliente que dejó un pedido a medias. Todo queda en Conversaciones de tu CRM, y puedes pausarlo cuando quieras.",
@@ -64,7 +77,7 @@ export const preguntas = [
   },
 ];
 
-export function Faq() {
+export function Faq({ preguntas }: { preguntas: Pregunta[] }) {
   return (
     <section id="preguntas" className="relative py-24 lg:py-32">
       <div className="container-page">
