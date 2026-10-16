@@ -1,6 +1,7 @@
 "use client";
 
 import { BlexiMark } from "@/components/brand/BlexiMark";
+import { WHATSAPP_VENTAS, enlaceWhatsApp } from "@/lib/contacto";
 
 const groups = [
   {
@@ -15,7 +16,7 @@ const groups = [
     title: "Compañía",
     links: [
       { label: "BlueCode Solutions", href: "https://bluecodesolution.com" },
-      { label: "Contacto", href: "#cta" },
+      { label: "Escríbenos por WhatsApp", href: enlaceWhatsApp(WHATSAPP_VENTAS) },
     ],
   },
   {
@@ -47,6 +48,14 @@ export function Footer() {
               IA y CRM para Pymes en Colombia. Atendemos WhatsApp, cerramos
               ventas y organizamos tu negocio mientras tú descansas.
             </p>
+            <a
+              href={enlaceWhatsApp(WHATSAPP_VENTAS)}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-textDark hover:underline"
+            >
+              ¿Hablamos? WhatsApp +57 305 262 9494
+            </a>
             <p className="mt-6 text-xs text-slate-400">
               Powered by{" "}
               <a
