@@ -13,6 +13,8 @@ import {
 } from "@/components/LegalShell";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacidad" },
+  openGraph: { url: "/privacidad", siteName: "BLEXI", locale: "es_CO", type: "website" },
   title: "Política de Privacidad | BLEXI",
   description:
     "Política de Privacidad y Tratamiento de Datos Personales de BLEXI — BLUE CODE SOLUTIONS S.A.S.",

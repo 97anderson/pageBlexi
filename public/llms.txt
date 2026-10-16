@@ -1,0 +1,9 @@
+# BLEXI
+
+> BLEXI es un asistente de IA y CRM para pymes en Colombia: atiende WhatsApp 24/7, toma pedidos y citas, cobra desde la conversación y deja todo en un CRM. Los primeros 15 días son gratis, sin tarjeta. Lo desarrolla BlueCode Solutions (https://www.bluecodesolution.com).
+
+- [Inicio, funciones, precios y preguntas frecuentes](https://soyblexi.com/)
+- [Términos y condiciones](https://soyblexi.com/terminos)
+- [Política de privacidad](https://soyblexi.com/privacidad)
+- [Tratamiento de datos personales](https://soyblexi.com/tratamiento-de-datos)
+- [Eliminación de datos](https://soyblexi.com/eliminacion-de-datos)

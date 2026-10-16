@@ -10,6 +10,7 @@
 
 export type PlanDeLaBase = {
   slug: string;
+  name?: string;
   monthlyPriceCop: number;
   annualPriceCop: number;
   annualSavingsCop: number;

@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 
+import {
+  DESCRIPCION,
+  EMPRESA_URL,
+  PALABRAS_CLAVE,
+  SITE_NAME,
+  SITE_URL,
+  TITULO,
+} from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
@@ -23,9 +31,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
-  description:
-    "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
+  metadataBase: new URL(SITE_URL),
+  title: TITULO,
+  description: DESCRIPCION,
+  keywords: PALABRAS_CLAVE,
+  applicationName: SITE_NAME,
+  authors: [{ name: "BlueCode Solutions", url: EMPRESA_URL }],
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -33,18 +46,17 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
-    description:
-      "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
-    siteName: "BLEXI",
+    title: TITULO,
+    description: DESCRIPCION,
+    url: "/",
+    siteName: SITE_NAME,
     locale: "es_CO",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BLEXI — IA que vende por WhatsApp para tu Pyme",
-    description:
-      "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.",
+    title: TITULO,
+    description: DESCRIPCION,
   },
 };
 

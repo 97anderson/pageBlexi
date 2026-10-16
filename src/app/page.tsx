@@ -1,6 +1,6 @@
 import { leerPlanes } from "@/lib/planes";
 import { BottomCTA } from "@/components/sections/BottomCTA";
-import { Faq } from "@/components/sections/Faq";
+import { Faq, preguntas } from "@/components/sections/Faq";
 import { CRMShowcase } from "@/components/sections/CRMShowcase";
 import { Features } from "@/components/sections/Features";
 import { Footer } from "@/components/sections/Footer";
@@ -11,6 +11,7 @@ import { PainVsSolution } from "@/components/sections/PainVsSolution";
 import { Pricing } from "@/components/sections/Pricing";
 import { Workflow } from "@/components/sections/Workflow";
 import { StickyWhatsAppCTA } from "@/components/StickyWhatsAppCTA";
+import { datosEstructurados, jsonLd } from "@/lib/seo";
 import { WHATSAPP_PRUEBA, enlaceWhatsApp } from "@/lib/contacto";
 
 export default async function Home() {
@@ -21,6 +22,10 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(datosEstructurados(planes, preguntas)) }}
+      />
       <Navbar />
       <main className="relative pb-24 sm:pb-0">
         <Hero />
