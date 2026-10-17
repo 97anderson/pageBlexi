@@ -1,6 +1,6 @@
 import { leerPlanes } from "@/lib/planes";
 import { BottomCTA } from "@/components/sections/BottomCTA";
-import { Faq, preguntas } from "@/components/sections/Faq";
+import { Faq, preguntasDe } from "@/components/sections/Faq";
 import { CRMShowcase } from "@/components/sections/CRMShowcase";
 import { Features } from "@/components/sections/Features";
 import { Footer } from "@/components/sections/Footer";
@@ -19,6 +19,7 @@ export default async function Home() {
   // pintado: sin esto la página abría con «consulta el precio» y saltaba a la
   // cifra, y los buscadores no veían ninguna.
   const planes = await leerPlanes();
+  const preguntas = preguntasDe(planes);
 
   return (
     <>
@@ -35,7 +36,7 @@ export default async function Home() {
         <CRMShowcase />
         <Pricing planes={planes} />
         <FreeTrial />
-        <Faq />
+        <Faq preguntas={preguntas} />
         <BottomCTA />
       </main>
       <StickyWhatsAppCTA href={enlaceWhatsApp(WHATSAPP_PRUEBA)} />

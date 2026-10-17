@@ -21,6 +21,7 @@ import {
   PRECIO_DE_LANZAMIENTO_COP,
 } from "@/lib/lanzamiento";
 
+import { ASESOR_DESDE_COP, ASESOR_HASTA_COP, pesos } from "@/lib/asesor";
 import { Reveal } from "@/components/ui/Reveal";
 import { WHATSAPP_VENTAS, enlaceRegistro, enlaceWhatsApp } from "@/lib/contacto";
 
@@ -415,17 +416,6 @@ const SLUG_POR_NOMBRE: Record<string, string> = {
   // «Diamante» es el nombre que se ve; el identificador en la base sigue siendo «platino».
   Diamante: "platino",
 };
-
-/** Lo que cuesta un asesor de WhatsApp en Colombia con prestaciones (el rango que cita la página). */
-const ASESOR_DESDE_COP = 1_400_000;
-const ASESOR_HASTA_COP = 2_100_000;
-
-const pesos = (cop: number) =>
-  new Intl.NumberFormat("es-CO", {
-    style: "currency",
-    currency: "COP",
-    maximumFractionDigits: 0,
-  }).format(cop);
 
 const porSlug = (planes: PlanDeLaBase[]) => {
   const mapa: Record<string, PlanDeLaBase> = {};

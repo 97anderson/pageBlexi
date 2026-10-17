@@ -53,7 +53,7 @@ export function Hero() {
           variants={containerVariants}
         >
           <motion.span variants={fadeUp} className="etiqueta">
-            IA que vende por WhatsApp · Colombia
+            Agente de IA para WhatsApp · Colombia
           </motion.span>
 
           <motion.h1
@@ -68,8 +68,9 @@ export function Hero() {
             variants={fadeUp}
             className="mt-6 max-w-2xl text-lg leading-relaxed text-brand-textMuted"
           >
-            Contesta cada mensaje, toma el pedido y lo deja en tu CRM, aunque
-            estés atendiendo, durmiendo o sea domingo.
+            BLEXI es un agente de IA para WhatsApp: contesta cada mensaje, toma
+            el pedido y lo deja en tu CRM, aunque estés atendiendo, durmiendo o
+            sea domingo.
           </motion.p>
 
           <motion.div

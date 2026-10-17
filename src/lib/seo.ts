@@ -10,9 +10,9 @@ import type { PlanDeLaBase } from "@/lib/planes";
 export const SITE_URL = "https://soyblexi.com";
 export const SITE_NAME = "BLEXI";
 export const EMPRESA_URL = "https://www.bluecodesolution.com";
-export const TITULO = "BLEXI — IA que vende por WhatsApp para tu Pyme";
+export const TITULO = "BLEXI — Agente de IA para WhatsApp que vende por ti";
 export const DESCRIPCION =
-  "BLEXI es el asistente de IA y CRM en tiempo real que atiende WhatsApp 24/7, cierra ventas y organiza tu negocio en Colombia sin que sepas de tecnología.";
+  "BLEXI es un agente de IA para WhatsApp con CRM en tiempo real: atiende a tus clientes 24/7, toma pedidos y citas y organiza tu negocio en Colombia sin que sepas de tecnología.";
 
 export const PALABRAS_CLAVE = [
   "agente de IA para WhatsApp",
