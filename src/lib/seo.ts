@@ -30,7 +30,7 @@ export const ORGANIZACION = {
   name: "BlueCode Solutions",
   legalName: "BLUE CODE SOLUTIONS S.A.S.",
   url: EMPRESA_URL,
-  logo: `${SITE_URL}/favicon.svg`,
+  logo: `${SITE_URL}/logo-blexi-512.png`,
   email: "contacto@bluecodesolution.com",
   sameAs: [SITE_URL],
 } as const;
